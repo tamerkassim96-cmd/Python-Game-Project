@@ -36,22 +36,22 @@ print()
 
 slow_text(f'Before we begin {name} choose your path!')
 print()
-time.sleep(0.5)
+time.sleep(1)
 print()
-print('1. Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
-time.sleep(0.5)
+slow_text('1. Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
+time.sleep(1)
 print()
-print('2. Wraith - Magic user, Ranged attack, low-medium damage, low defense')
-time.sleep(0.5)
+slow_text('2. Wraith - Magic user, Ranged attack, low-medium damage, low defense')
+time.sleep(1)
 print()
-print('3. Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense')
+slow_text('3. Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense')
 print()
 
 user_input = input('Enter your choice: ')
 print()
 
 if user_input == '1':
-    print('Good choice! Vanguard is a strong option!')
+    slow_text('Good choice! Vanguard is a strong option!')
 
 elif user_input == '2':
     print()
