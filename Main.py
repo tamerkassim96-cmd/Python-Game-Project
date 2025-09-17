@@ -55,7 +55,12 @@ user_input = input('Enter your choice: ')
 print()
 
 if user_input == '1':
-    slow_text('Good choice! Vanguard is a strong option!')
+    slow_text(f'Vanguard, I see you are a brave warrior. An excellent choice {name}!')
 
 elif user_input == '2':
-    print()
+    slow_text(f'Wraith, a wise decision {name}! I see you like to keep distance in battle.')
+
+elif user_input == '3':
+    slow_text(f'Phantom, a great choice {name}! a sneaky aggressor I see eh?')
+else:
+    slow_text('Invalid input, please try again.')
