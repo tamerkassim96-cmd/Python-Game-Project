@@ -1,5 +1,5 @@
 import time
-from dir.func import slow_text
+from Scripts.func import slow_text
 
 slow_text('Loading...')
 time.sleep(0.3)
@@ -24,29 +24,33 @@ print()
 input('Press ENTER to continue...')
 print()
 time.sleep(0.5)
-slow_text('Enter your name: ')
-name = input()
+print()
+name = input('Please enter your name: ')
 print()
 time.sleep(1)
 name = name.strip()
-print(name, 'eh, a fine name for a warrior we need you!')
+slow_text(f'{name} eh, a fine name for a warrior... We need you!')
 time.sleep(1)
 print()
 
-
+print()
 slow_text(f'Before we begin {name} choose your path!')
 print()
 time.sleep(1)
 print()
+print()
 slow_text('1. Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
 time.sleep(1)
+print()
 print()
 slow_text('2. Wraith - Magic user, Ranged attack, low-medium damage, low defense')
 time.sleep(1)
 print()
+print()
 slow_text('3. Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense')
 print()
 
+print()
 user_input = input('Enter your choice: ')
 print()
 
