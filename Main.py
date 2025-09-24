@@ -1,5 +1,5 @@
 import time
-from Scripts.func import slow_text
+from dir.func import slow_text
 
 slow_text('Loading...')
 time.sleep(0.3)
@@ -81,17 +81,17 @@ print()
 print()
 print()
 
-if user_input == '1':
+if user_input == '1' or user_input == 'Vanguard' or user_input == 'vanguard':
     slow_text(f'Vanguard, I see you are a brave warrior. An excellent choice {name}!')
 
     time.sleep(1)
 
-elif user_input == '2':
+elif user_input == '2' or user_input == 'Wraith' or user_input == 'wraith':
     slow_text(f'Wraith, a wise decision {name}! I see you like to keep distance in battle. ')
 
     time.sleep(1)
 
-elif user_input == '3':
+elif user_input == '3' or user_input == 'Phantom' or user_input == 'phantom':
     slow_text(f'Phantom, a great choice {name}! a sneaky aggressor I see eh?')
 
     time.sleep(1)
