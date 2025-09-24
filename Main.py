@@ -1,5 +1,11 @@
 import time
 from dir.func import slow_text
+from colorama import init, Fore
+
+print(Fore.GREEN + 'This is green text')
+print(Fore.BLUE + 'This is blue text')
+print(Fore.CYAN + 'This is cyan text')
+print(Fore.MAGENTA)
 
 slow_text('Loading...')
 time.sleep(0.3)
@@ -23,6 +29,7 @@ time.sleep(0.01)
 print()
 print()
 slow_text('Welcome player to the...')
+time.sleep(1)
 print()
 
 print("""
@@ -58,7 +65,7 @@ print()
 time.sleep(1)
 name = name.strip()
 print()
-slow_text(f'{name} eh, a fine name for a warrior... We need you!')
+slow_text(f'{name} eh? a fine name for a warrior... We need you!')
 time.sleep(1)
 print()
 print()
@@ -81,8 +88,6 @@ slow_text('3. Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low def
 print()
 
 print()
-print()
-print()
 
 while True:
     print()
@@ -90,19 +95,20 @@ while True:
     print()
 
 
-    if user_input == '1' or user_input == 'Vanguard' or user_input == 'vanguard':
+    if user_input == '1' or user_input.lower() == 'vanguard':
         slow_text(f'Vanguard, I see you are a brave warrior. An excellent choice {name}!')
         print()
+        break
 
         time.sleep(1)
 
-    elif user_input == '2' or user_input == 'Wraith' or user_input == 'wraith':
+    elif user_input == '2' or user_input.lower() == 'wraith':
         slow_text(f'Wraith, a wise decision {name}! I see you like to keep distance in battle. ')
         print()
+        break
 
         time.sleep(1)
-
-    elif user_input == '3' or user_input == 'Phantom' or user_input == 'phantom':
+    elif user_input == '3' or user_input.lower() == 'phantom':
         slow_text(f'Phantom, a great choice {name}! a sneaky aggressor I see eh?')
         print()
         time.sleep(1)
@@ -124,7 +130,7 @@ print()
 
 time.sleep(1)
 
-slow_text(f'Now that you have chosen your class')
+slow_text(f'Now that you have chosen your class.')
 print()
 time.sleep(1)
 
