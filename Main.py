@@ -5,7 +5,8 @@ from colorama import init, Fore
 print(Fore.GREEN + 'This is green text')
 print(Fore.BLUE + 'This is blue text')
 print(Fore.CYAN + 'This is cyan text')
-print(Fore.MAGENTA)
+print(Fore.LIGHTBLUE_EX + 'This is light blue text')
+print()
 
 slow_text('Loading...')
 time.sleep(0.3)
@@ -71,7 +72,7 @@ print()
 print()
 
 print()
-slow_text(f'Before we begin {name} choose your class!')
+slow_text(f'Before we begin {name}, choose your class!')
 print()
 time.sleep(1)
 print()
@@ -100,14 +101,14 @@ while True:
         print()
         break
 
-        time.sleep(1)
+
 
     elif user_input == '2' or user_input.lower() == 'wraith':
         slow_text(f'Wraith, a wise decision {name}! I see you like to keep distance in battle. ')
         print()
         break
 
-        time.sleep(1)
+
     elif user_input == '3' or user_input.lower() == 'phantom':
         slow_text(f'Phantom, a great choice {name}! a sneaky aggressor I see eh?')
         print()
@@ -117,6 +118,7 @@ while True:
     else:
         print()
         slow_text('Invalid input, please try again.')
+        print()
         print()
         time.sleep(1)
 
@@ -135,15 +137,18 @@ print()
 time.sleep(1)
 
 print()
+print()
 slow_text(f'Listen closely {name}...')
 print()
 
 time.sleep(1)
 
 print()
-slow_text('our land has fallen into the darkness,')
+(slow_text('our land has fallen into the'), slow_text(Fore.RED + ' darkness'),
+slow_text(Fore.LIGHTBLUE_EX + ','))
 print()
 
+print(Fore.LIGHTBLUE_EX)
 print()
 time.sleep(1)
 slow_text('The Dark King rules with fear.')
