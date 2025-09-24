@@ -58,6 +58,30 @@ print("""
 
 print()
 input('Press ENTER to continue...')
+
+slow_text('We have been defeated... our armies shattered, our cities burned.')
+time.sleep(1)
+print()
+
+slow_text('The Shadow Kings guards hunting us down like heartless creatures. Families torn apart... hope slowly fading.')
+time.sleep(1)
+print()
+
+slow_text('Our lives now lie in ruins, and we will soon become nothing but whispers in the dark.')
+time.sleep(1)
+print()
+
+slow_text('But there is hope... one soul that could change everything, that could stand against the darkness.')
+time.sleep(1)
+print()
+
+slow_text('A warrior... someone with the willpower and heart to defy the Shadow King himself.')
+time.sleep(1)
+print()
+
+input('Will you help us... warrior?')
+time.sleep(1)
+
 print()
 time.sleep(0.5)
 print()
