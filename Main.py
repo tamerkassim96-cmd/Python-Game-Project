@@ -76,27 +76,39 @@ slow_text('3. Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low def
 print()
 
 print()
-user_input = input('Enter your choice: ')
 print()
 print()
-print()
 
-if user_input == '1' or user_input == 'Vanguard' or user_input == 'vanguard':
-    slow_text(f'Vanguard, I see you are a brave warrior. An excellent choice {name}!')
+while True:
+    user_input = input('Enter your choice: ')
+    print()
 
-    time.sleep(1)
 
-elif user_input == '2' or user_input == 'Wraith' or user_input == 'wraith':
-    slow_text(f'Wraith, a wise decision {name}! I see you like to keep distance in battle. ')
+    if user_input == '1' or user_input == 'Vanguard' or user_input == 'vanguard':
+        slow_text(f'Vanguard, I see you are a brave warrior. An excellent choice {name}!')
+        print()
 
-    time.sleep(1)
+        time.sleep(1)
 
-elif user_input == '3' or user_input == 'Phantom' or user_input == 'phantom':
-    slow_text(f'Phantom, a great choice {name}! a sneaky aggressor I see eh?')
+    elif user_input == '2' or user_input == 'Wraith' or user_input == 'wraith':
+        slow_text(f'Wraith, a wise decision {name}! I see you like to keep distance in battle. ')
+        print()
 
-    time.sleep(1)
-else:
-    slow_text('Invalid input, please try again.')
+        time.sleep(1)
+
+    elif user_input == '3' or user_input == 'Phantom' or user_input == 'phantom':
+        slow_text(f'Phantom, a great choice {name}! a sneaky aggressor I see eh?')
+        print()
+        time.sleep(1)
+        break
+
+    else:
+        slow_text('Invalid input, please try again.')
+        print()
+        time.sleep(1)
+
+
+
 
 print()
 print()
