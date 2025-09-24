@@ -52,9 +52,9 @@ name = input('Please enter your name: ')
 print()
 time.sleep(1)
 name = name.strip()
+print()
 slow_text(f'{name} eh, a fine name for a warrior... We need you!')
 time.sleep(1)
-print()
 print()
 print()
 
@@ -80,6 +80,7 @@ print()
 print()
 
 while True:
+    print()
     user_input = input('Enter your choice: ')
     print()
 
@@ -103,6 +104,7 @@ while True:
         break
 
     else:
+        print()
         slow_text('Invalid input, please try again.')
         print()
         time.sleep(1)
