@@ -1,12 +1,15 @@
+import sys
 import time
-from dir.func import slow_text
-from colorama import init, Fore
+from func import slow_text
+from colorama import Fore
 
 print(Fore.GREEN + 'This is green text')
 print(Fore.BLUE + 'This is blue text')
 print(Fore.CYAN + 'This is cyan text')
-print(Fore.LIGHTBLUE_EX + 'This is light blue text')
+print(Fore.YELLOW + 'This is yellow text')
+print(Fore.RESET + 'This is light blue text')
 print()
+
 
 slow_text('Loading...')
 time.sleep(0.3)
@@ -33,7 +36,7 @@ slow_text('Welcome player to the...')
 time.sleep(1)
 print()
 
-print("""
+print(Fore.YELLOW + """
 ███████╗ ██████╗██╗  ██╗ ██████╗ ███████╗███████╗     ██████╗ ███████╗
 ██╔════╝██╔════╝██║  ██║██╔═══██╗██╔════╝██╔════╝    ██╔═══██╗██╔════╝
 █████╗  ██║     ███████║██║   ██║█████╗  ███████╗    ██║   ██║█████╗
@@ -56,36 +59,116 @@ print("""
 ╚═╝      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═══╝
 """)
 
+print(Fore.RESET)
+
 print()
 input('Press ENTER to continue...')
+print()
 
-slow_text('We have been defeated... our armies shattered, our cities burned.')
+print(Fore.RED)
+print()
+slow_text('We have been defeated...')
 time.sleep(1)
 print()
 
-slow_text('The Shadow Kings guards hunting us down like heartless creatures. Families torn apart... hope slowly fading.')
+print()
+slow_text('our armies shattered')
 time.sleep(1)
 print()
 
-slow_text('Our lives now lie in ruins, and we will soon become nothing but whispers in the dark.')
+print()
+slow_text('our cities burned.')
 time.sleep(1)
 print()
 
-slow_text('But there is hope... one soul that could change everything, that could stand against the darkness.')
+print()
+slow_text('The Shadow Kings guards hunting us down like heartless creatures.')
 time.sleep(1)
 print()
 
-slow_text('A warrior... someone with the willpower and heart to defy the Shadow King himself.')
+print()
+slow_text('Families torn apart... hope slowly fading.')
 time.sleep(1)
 print()
 
-input('Will you help us... warrior?')
+print()
+slow_text('Our lives now lie in ruins, and we will soon become nothing but forgotten echoes in the dark.')
 time.sleep(1)
+print()
+
+print()
+slow_text('But there is hope...')
+time.sleep(1)
+print()
+
+print()
+slow_text('one soul that could change')
+slow_text(Fore.GREEN + ' everything')
+slow_text(Fore.RED + ',')
+time.sleep(1)
+print()
+
+print()
+slow_text('that could stand against the darkness.')
+time.sleep(1)
+print()
+
+print()
+slow_text('A warrior...')
+time.sleep(1)
+print()
+
+print()
+slow_text('someone with the willpower and heart to defy the Shadow King himself.')
+time.sleep(1)
+print()
+
+print()
+time.sleep(1)
+while True:
+    print()
+    user_input1 = input('Will you help us...')
+
+    slow_text(Fore.YELLOW + 'warrior? (yes/no): ')
+    print()
+
+    if user_input1.strip().lower() == 'yes' or user_input1.strip().lower() == 'y':
+        slow_text('Thank you so much for helping us warrior, we now have a glimpse of hope!')
+        print()
+        time.sleep(1)
+        break
+
+    elif user_input1.strip().lower() == 'no' or user_input1.strip().lower() == 'n':
+        slow_text('Then im afraid our world is doomed... farewell,')
+        print()
+        time.sleep(1)
+
+        print()
+        slow_text('Please Exit The Game.')
+        print()
+        time.sleep(1)
+
+        print()
+        input('Press ENTER to exit...')
+        print()
+        sys.exit(0)
+
+
+
+    else:
+        slow_text('Sorry I dont understand, please try again.')
+        print()
+        time.sleep(1)
+
+
 
 print()
 time.sleep(0.5)
 print()
-name = input('Please enter your name: ')
+
+if user_input1.strip().lower() == 'yes' or user_input1.strip().lower() == 'y':
+    name = input('Please enter your name: ')
+
 print()
 time.sleep(1)
 name = name.strip()
