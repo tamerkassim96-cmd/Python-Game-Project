@@ -3,14 +3,6 @@ import time
 from func import slow_text
 from colorama import Fore
 
-print(Fore.GREEN + 'This is green text')
-print(Fore.BLUE + 'This is blue text')
-print(Fore.CYAN + 'This is cyan text')
-print(Fore.YELLOW + 'This is yellow text')
-print(Fore.RESET + 'This is light blue text')
-print()
-
-
 slow_text('Loading...')
 time.sleep(0.3)
 print()
@@ -37,6 +29,7 @@ time.sleep(1)
 print()
 
 print(Fore.YELLOW + """
+
 ███████╗ ██████╗██╗  ██╗ ██████╗ ███████╗███████╗     ██████╗ ███████╗
 ██╔════╝██╔════╝██║  ██║██╔═══██╗██╔════╝██╔════╝    ██╔═══██╗██╔════╝
 █████╗  ██║     ███████║██║   ██║█████╗  ███████╗    ██║   ██║█████╗
@@ -65,7 +58,7 @@ print()
 input('Press ENTER to continue...')
 print()
 
-print(Fore.RED)
+print(Fore.LIGHTRED_EX)
 print()
 slow_text('We have been defeated...')
 time.sleep(1)
@@ -97,24 +90,21 @@ time.sleep(1)
 print()
 
 print()
-slow_text('But there is hope...')
+slow_text(f'But there is {Fore.LIGHTMAGENTA_EX} hope...')
 time.sleep(1)
 print()
 
 print()
 slow_text('one soul that could change')
-slow_text(Fore.GREEN + ' everything')
-slow_text(Fore.RED + ',')
+time.sleep(0.2)
+print()
+print()
+slow_text(Fore.GREEN + 'everything.')
 time.sleep(1)
 print()
 
 print()
-slow_text('that could stand against the darkness.')
-time.sleep(1)
-print()
-
-print()
-slow_text('A warrior...')
+slow_text(Fore.LIGHTMAGENTA_EX + 'That could stand against the darkness,')
 time.sleep(1)
 print()
 
@@ -124,27 +114,41 @@ time.sleep(1)
 print()
 
 print()
+slow_text('You are the only one left amongst the rubble')
+time.sleep(1)
+print()
+
+print()
+slow_text('The only one that can fight...')
+time.sleep(1)
+print()
+
+
+print()
 time.sleep(1)
 while True:
-    print()
-    user_input1 = input('Will you help us...')
+    user_input = input(
 
-    slow_text(Fore.YELLOW + 'warrior? (yes/no): ')
-    print()
 
-    if user_input1.strip().lower() == 'yes' or user_input1.strip().lower() == 'y':
-        slow_text('Thank you so much for helping us warrior, we now have a glimpse of hope!')
+     f"Will you help us...{Fore.YELLOW} warrior?{Fore.RED} (yes/no): "
+    ).strip().lower()
+
+    if user_input == 'yes' or user_input == 'y':
+        print()
+        slow_text('Thank you so much for helping us warrior')
+        time.sleep(1)
+        slow_text(' we now have a glimpse of hope!')
         print()
         time.sleep(1)
         break
 
-    elif user_input1.strip().lower() == 'no' or user_input1.strip().lower() == 'n':
+    elif user_input == 'no' or user_input == 'n':
         slow_text('Then im afraid our world is doomed... farewell,')
         print()
         time.sleep(1)
 
         print()
-        slow_text('Please Exit The Game.')
+        slow_text('Please exit the game.')
         print()
         time.sleep(1)
 
@@ -156,6 +160,7 @@ while True:
 
 
     else:
+        print()
         slow_text('Sorry I dont understand, please try again.')
         print()
         time.sleep(1)
@@ -166,14 +171,14 @@ print()
 time.sleep(0.5)
 print()
 
-if user_input1.strip().lower() == 'yes' or user_input1.strip().lower() == 'y':
+if user_input == 'yes' or user_input == 'y':
     name = input('Please enter your name: ')
 
 print()
 time.sleep(1)
 name = name.strip()
 print()
-slow_text(f'{name} eh? a fine name for a warrior... We need you!')
+slow_text(f'{name} Eh? a fine name for a warrior... We need you!')
 time.sleep(1)
 print()
 print()
@@ -184,47 +189,47 @@ print()
 time.sleep(1)
 print()
 print()
-slow_text('1. Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
+slow_text(f'{Fore.RESET}1. {Fore.LIGHTCYAN_EX}Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
 time.sleep(1)
 print()
 print()
-slow_text('2. Wraith - Magic user, Ranged attack, low-medium damage, low defense')
+slow_text(f'{Fore.RESET}2. {Fore.LIGHTMAGENTA_EX}Wraith - Magic user, Ranged attack, low-medium damage, low defense')
 time.sleep(1)
 print()
 print()
-slow_text('3. Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense')
+slow_text(f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense')
 print()
 
 print()
 
 while True:
     print()
-    user_input = input('Enter your choice: ')
+    choice = input(f'{Fore.LIGHTWHITE_EX}Enter your choice: ').strip().lower()
     print()
 
 
-    if user_input == '1' or user_input.lower() == 'vanguard':
-        slow_text(f'Vanguard, I see you are a brave warrior. An excellent choice {name}!')
+    if choice == '1' or choice == 'vanguard':
+        slow_text(f'{Fore.LIGHTCYAN_EX}Vanguard, I see you are a brave warrior. An excellent choice {name}!{Fore.RESET}')
         print()
         break
 
 
 
-    elif user_input == '2' or user_input.lower() == 'wraith':
-        slow_text(f'Wraith, a wise decision {name}! I see you like to keep distance in battle. ')
+    elif choice == '2' or choice == 'wraith':
+        slow_text(f'{Fore.LIGHTMAGENTA_EX}Wraith, a wise decision {name}! I see you like to keep distance in battle.{Fore.RESET}')
         print()
         break
 
 
-    elif user_input == '3' or user_input.lower() == 'phantom':
-        slow_text(f'Phantom, a great choice {name}! a sneaky aggressor I see eh?')
+    elif choice == '3' or choice == 'phantom':
+        slow_text(f'{Fore.LIGHTYELLOW_EX}Phantom, a great choice {name}! a sneaky aggressor I see eh?{Fore.RESET}')
         print()
         time.sleep(1)
         break
 
     else:
         print()
-        slow_text('Invalid input, please try again.')
+        slow_text(f'{Fore.LIGHTWHITE_EX}Invalid input, please try again.')
         print()
         print()
         time.sleep(1)
@@ -239,11 +244,10 @@ print()
 
 time.sleep(1)
 
-slow_text(f'Now that you have chosen your class.')
+slow_text(f'{Fore.LIGHTRED_EX}Now that you have chosen your class.')
 print()
 time.sleep(1)
 
-print()
 print()
 slow_text(f'Listen closely {name}...')
 print()
@@ -251,11 +255,9 @@ print()
 time.sleep(1)
 
 print()
-(slow_text('our land has fallen into the'), slow_text(Fore.RED + ' darkness'),
-slow_text(Fore.LIGHTBLUE_EX + ','))
+slow_text('our land has fallen into the darkness')
 print()
 
-print(Fore.LIGHTBLUE_EX)
 print()
 time.sleep(1)
 slow_text('The Dark King rules with fear.')
@@ -268,6 +270,13 @@ print()
 time.sleep(1)
 
 print()
-slow_text('but beware... this is not an easy journey.')
+slow_text('but beware... this is not an easy journey,')
+print()
+
+print()
+slow_text('You will need serious training...')
 print()
 time.sleep(1)
+
+
+#Training Arc
