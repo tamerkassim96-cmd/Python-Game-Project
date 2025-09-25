@@ -58,6 +58,8 @@ print()
 input('Press ENTER to continue...')
 print()
 
+#Introduction To The Storyline
+
 print(Fore.LIGHTRED_EX)
 print()
 slow_text('We have been defeated...')
@@ -176,7 +178,7 @@ if user_input == 'yes' or user_input == 'y':
 
 print()
 time.sleep(1)
-name = name.strip()
+name.strip()
 print()
 slow_text(f'{name} Eh? a fine name for a warrior... We need you!')
 time.sleep(1)
@@ -222,7 +224,7 @@ while True:
 
 
     elif choice == '3' or choice == 'phantom':
-        slow_text(f'{Fore.LIGHTYELLOW_EX}Phantom, a great choice {name}! a sneaky aggressor I see eh?{Fore.RESET}')
+        slow_text(f'{Fore.LIGHTYELLOW_EX}Phantom, a great choice {name}! a sneaky aggressor I see eh? {Fore.RESET}')
         print()
         time.sleep(1)
         break
