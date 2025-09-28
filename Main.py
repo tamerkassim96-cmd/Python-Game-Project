@@ -21,9 +21,9 @@ print()
 print()
 slow_text('100%...')
 print()
-time.sleep(0.01)
 print()
 print()
+time.sleep(0.75)
 slow_text('Welcome player to the...')
 time.sleep(1)
 print()
@@ -56,6 +56,7 @@ print(Fore.RESET)
 
 print()
 input('Press ENTER to continue...')
+time.sleep(1)
 print()
 
 #Introduction To The Storyline
@@ -67,7 +68,7 @@ time.sleep(1)
 print()
 
 print()
-slow_text('our armies shattered')
+slow_text('our armies shattered,')
 time.sleep(1)
 print()
 
@@ -82,7 +83,7 @@ time.sleep(1)
 print()
 
 print()
-slow_text('Families torn apart... hope slowly fading.')
+slow_text('Families torn apart... each day we fall further into despair.')
 time.sleep(1)
 print()
 
@@ -92,7 +93,11 @@ time.sleep(1)
 print()
 
 print()
-slow_text(f'But there is {Fore.LIGHTMAGENTA_EX} hope...')
+slow_text('But there is')
+print()
+print()
+time.sleep(0.2)
+slow_text(f'{Fore.LIGHTMAGENTA_EX}hope...')
 time.sleep(1)
 print()
 
@@ -101,7 +106,7 @@ slow_text('one soul that could change')
 time.sleep(0.2)
 print()
 print()
-slow_text(Fore.GREEN + 'everything.')
+slow_text(Fore.LIGHTGREEN_EX + 'everything.')
 time.sleep(1)
 print()
 
@@ -132,9 +137,10 @@ while True:
     user_input = input(
 
 
-     f"Will you help us...{Fore.YELLOW} warrior?{Fore.RED} (yes/no): "
+     f"Will you help us...{Fore.YELLOW} warrior?{Fore.RESET} (yes/no): "
     ).strip().lower()
 
+    print(Fore.BLUE)
     if user_input == 'yes' or user_input == 'y':
         print()
         slow_text('Thank you so much for helping us warrior')
@@ -145,12 +151,12 @@ while True:
         break
 
     elif user_input == 'no' or user_input == 'n':
-        slow_text('Then im afraid our world is doomed... farewell,')
+        slow_text(f'{Fore.RED}Then im afraid our world is doomed... farewell,')
         print()
         time.sleep(1)
 
         print()
-        slow_text('Please exit the game.')
+        slow_text(f'{Fore.RESET}Please exit the game.')
         print()
         time.sleep(1)
 
@@ -174,13 +180,13 @@ time.sleep(0.5)
 print()
 
 if user_input == 'yes' or user_input == 'y':
-    name = input('Please enter your name: ')
+    name = input(f'{Fore.RESET}Please enter your name: ')
 
 print()
 time.sleep(1)
 name.strip()
 print()
-slow_text(f'{name} Eh? a fine name for a warrior... We need you!')
+slow_text(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a warrior...')
 time.sleep(1)
 print()
 print()
@@ -206,12 +212,12 @@ print()
 
 while True:
     print()
-    choice = input(f'{Fore.LIGHTWHITE_EX}Enter your choice: ').strip().lower()
+    choice = input(f'{Fore.RESET}Enter your choice: ').strip().lower()
     print()
 
 
     if choice == '1' or choice == 'vanguard':
-        slow_text(f'{Fore.LIGHTCYAN_EX}Vanguard, I see you are a brave warrior. An excellent choice {name}!{Fore.RESET}')
+        slow_text(f'{Fore.LIGHTCYAN_EX}Vanguard. So you arent afraid of being on the front lines, A trait of a true fighter destined for victory. An excellent choice {name}!')
         print()
         break
 
@@ -231,7 +237,7 @@ while True:
 
     else:
         print()
-        slow_text(f'{Fore.LIGHTWHITE_EX}Invalid input, please try again.')
+        slow_text(f'Invalid input, please try again.')
         print()
         print()
         time.sleep(1)
@@ -246,12 +252,12 @@ print()
 
 time.sleep(1)
 
-slow_text(f'{Fore.LIGHTRED_EX}Now that you have chosen your class.')
+slow_text(f'{Fore.LIGHTMAGENTA_EX}Now that you have chosen your class, you are ready for battle... but,')
 print()
 time.sleep(1)
 
 print()
-slow_text(f'Listen closely {name}...')
+slow_text(f'{Fore.LIGHTRED_EX}Listen closely {name}...')
 print()
 
 time.sleep(1)
@@ -262,7 +268,7 @@ print()
 
 print()
 time.sleep(1)
-slow_text('The Dark King rules with fear.')
+slow_text('The Shadow King rules with fear.')
 print()
 time.sleep(1)
 
