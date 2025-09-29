@@ -1,6 +1,6 @@
 import sys
 import time
-from func import slow_text
+from Func import slow_text
 from colorama import Fore
 
 slow_text('Loading...')
@@ -62,6 +62,20 @@ print()
 #Introduction To The Storyline
 
 print(Fore.LIGHTRED_EX)
+
+slow_text(f'''Welcome to Asgiaburn,
+
+  A land that was once flourished with peace and prosperity,
+  
+  Where communities gathered, where villages thrived in celebration.
+  
+  Beneath golden skies and sparkling stars, 
+  
+  A land once joyous, turned to ruin.
+
+''')
+
+
 print()
 slow_text('We have been defeated...')
 time.sleep(1)
