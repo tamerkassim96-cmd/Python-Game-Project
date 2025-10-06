@@ -1,8 +1,12 @@
 import sys
 import time
+
+import colorama
 from Func import slow_text
 from colorama import Fore
 
+
+print(colorman)
 slow_text('Loading...')
 time.sleep(0.3)
 print()
@@ -61,21 +65,24 @@ print()
 
 #Introduction To The Storyline
 
-print(Fore.LIGHTRED_EX)
+print(Fore.LIGHTBLUE_EX)
 
 slow_text(f'''Welcome to Asgiaburn,
 
-  A land that was once flourished with peace and prosperity,
+A land that was once flourished with peace and prosperity,
   
-  Where communities gathered, where villages thrived in celebration.
+Where communities gathered, where villages thrived in celebration.
   
-  Beneath golden skies and sparkling stars, 
+Beneath golden skies and sparkling stars, 
   
-  A land once joyous, turned to ruin.
+A land once joyous, turned to''')
 
-''')
+time.sleep(1)
+print()
 
+slow_text(f'{Fore.LIGHTRED_EX} ruin')
 
+time.sleep(1)
 print()
 slow_text('We have been defeated...')
 time.sleep(1)
@@ -223,7 +230,7 @@ slow_text(f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Steal
 print()
 
 print()
-
+choice = ["vanguard", "wraith", "phantom", ]
 while True:
     print()
     choice = input(f'{Fore.RESET}Enter your choice: ').strip().lower()
@@ -302,3 +309,7 @@ time.sleep(1)
 
 
 #Training Arc
+
+
+
+
