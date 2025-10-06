@@ -130,7 +130,7 @@ print()
 slow_text(Fore.LIGHTGREEN_EX + 'everything.')
 time.sleep(1)
 print()
-
+slow_text(Fore.LIGHTMAGENTA_EX + 'Some could say he is labelled the Radiant ')
 print()
 slow_text(Fore.LIGHTMAGENTA_EX + 'That could stand against the darkness,')
 time.sleep(1)
@@ -228,6 +228,8 @@ print()
 print()
 slow_text(f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense')
 print()
+print()
+slow_text(f'{Fore.RED}....??? eRrOr, Unauthorised class detected, ACCESS OVERRIDE: SECRET CLASS [???????]')
 
 print()
 choice = ["vanguard", "wraith", "phantom", ]
@@ -263,9 +265,6 @@ while True:
         print()
         time.sleep(1)
 
-
-
-
 print()
 print()
 
@@ -290,6 +289,7 @@ print()
 print()
 time.sleep(1)
 slow_text('The Shadow King rules with fear.')
+
 print()
 time.sleep(1)
 
@@ -307,8 +307,8 @@ slow_text('You will need serious training...')
 print()
 time.sleep(1)
 
-
 #Training Arc
+
 
 
 
