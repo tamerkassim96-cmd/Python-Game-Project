@@ -1,12 +1,11 @@
 import sys
 import time
 
-import colorama
-from Func import slow_text
+from func import slow_text
 from colorama import Fore
+from colorama import init
+init()
 
-
-print(colorman)
 slow_text('Loading...')
 time.sleep(0.3)
 print()
@@ -32,7 +31,7 @@ slow_text('Welcome player to the...')
 time.sleep(1)
 print()
 
-print(Fore.YELLOW + """
+print(Fore.LIGHTYELLOW_EX + """
 
 ███████╗ ██████╗██╗  ██╗ ██████╗ ███████╗███████╗     ██████╗ ███████╗
 ██╔════╝██╔════╝██║  ██║██╔═══██╗██╔════╝██╔════╝    ██╔═══██╗██╔════╝
@@ -63,25 +62,26 @@ input('Press ENTER to continue...')
 time.sleep(1)
 print()
 
-#Introduction To The Storyline
+# Introduction To The Storyline
 
 print(Fore.LIGHTBLUE_EX)
 
 slow_text(f'''Welcome to Asgiaburn,
 
 A land that was once flourished with peace and prosperity,
-  
+
 Where communities gathered, where villages thrived in celebration.
-  
+
 Beneath golden skies and sparkling stars, 
-  
+
 A land once joyous, turned to''')
 
 time.sleep(1)
 print()
 
-slow_text(f'{Fore.LIGHTRED_EX} ruin')
-
+print()
+slow_text(f'{Fore.LIGHTRED_EX}ruin')
+print()
 time.sleep(1)
 print()
 slow_text('We have been defeated...')
@@ -127,17 +127,21 @@ slow_text('one soul that could change')
 time.sleep(0.2)
 print()
 print()
-slow_text(Fore.LIGHTGREEN_EX + 'everything.')
+slow_text('everything.')
+print()
 time.sleep(1)
 print()
-slow_text(Fore.LIGHTMAGENTA_EX + 'Some could say he is labelled the Radiant ')
+slow_text(Fore.LIGHTMAGENTA_EX + 'Some could say he is labelled the')
 print()
-slow_text(Fore.LIGHTMAGENTA_EX + 'That could stand against the darkness,')
 time.sleep(1)
-print()
 
 print()
-slow_text('someone with the willpower and heart to defy the Shadow King himself.')
+slow_text(f'{Fore.LIGHTYELLOW_EX}Radiant')
+print()
+time.sleep(1)
+
+print()
+slow_text(f'{Fore.LIGHTMAGENTA_EX}someone with the willpower and heart to defy the Shadow King himself.')
 time.sleep(1)
 print()
 
@@ -151,14 +155,12 @@ slow_text('The only one that can fight...')
 time.sleep(1)
 print()
 
-
 print()
 time.sleep(1)
 while True:
     user_input = input(
 
-
-     f"Will you help us...{Fore.YELLOW} warrior?{Fore.RESET} (yes/no): "
+        f"Will you help us...{Fore.LIGHTYELLOW_EX} warrior?{Fore.RESET} (yes/no): "
     ).strip().lower()
 
     print(Fore.BLUE)
@@ -194,8 +196,6 @@ while True:
         print()
         time.sleep(1)
 
-
-
 print()
 time.sleep(0.5)
 print()
@@ -207,13 +207,16 @@ print()
 time.sleep(1)
 name.strip()
 print()
-slow_text(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a warrior...')
+slow_text(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a')
+slow_text(f'{Fore.LIGHTYELLOW_EX} Radiant')
+time.sleep(0.5)
+slow_text(f'{Fore.LIGHTBLUE_EX} I mean warrior.')
 time.sleep(1)
 print()
 print()
 
 print()
-slow_text(f'Before we begin {name}, choose your class!')
+slow_text(f'{Fore.RESET}Before we begin training {name}, choose your class!')
 print()
 time.sleep(1)
 print()
@@ -228,32 +231,71 @@ print()
 print()
 slow_text(f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense')
 print()
+time.sleep(2)
 print()
-slow_text(f'{Fore.RED}....??? eRrOr, Unauthorised class detected, ACCESS OVERRIDE: SECRET CLASS [???????]')
+slow_text(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN ACCESS ONLY!, ACCESS OVERRIDE: SECRET CLASS')
+slow_text(f'{Fore.LIGHTYELLOW_EX} [???????]')
 
 print()
-choice = ["vanguard", "wraith", "phantom", ]
+stats = {
+'vanguard': {
+    'attack': 23,
+    'health': 150,
+    'defense': 10,
+    'speed': 8,
+    'magic': 0
+},
+'wraith': {
+    'attack': 17,
+    'health': 120,
+    'defense': 10,
+    'speed': 8,
+    'magic': 15
+},
+'phantom': {
+    'attack': 20,
+    'health': 130,
+    'defense': 10,
+    'speed': 15,
+    'magic': 5,
+},
+'radiant': {
+    'attack': 48,
+    'health': 200,
+    'defense': 100,
+    'speed': 70,
+    'magic': 40,
+    }
+}
+
 while True:
     print()
     choice = input(f'{Fore.RESET}Enter your choice: ').strip().lower()
     print()
 
-
     if choice == '1' or choice == 'vanguard':
-        slow_text(f'{Fore.LIGHTCYAN_EX}Vanguard. So you arent afraid of being on the front lines, A trait of a true fighter destined for victory. An excellent choice {name}!')
+        slow_text(
+            f'{Fore.LIGHTCYAN_EX}Vanguard. So you arent afraid of being on the front lines, A trait of a true fighter destined for victory. An excellent choice {name}!')
         print()
         break
 
 
 
     elif choice == '2' or choice == 'wraith':
-        slow_text(f'{Fore.LIGHTMAGENTA_EX}Wraith, a wise decision {name}! I see you like to keep distance in battle.{Fore.RESET}')
+        slow_text(
+            f'{Fore.LIGHTMAGENTA_EX}Wraith, a wise decision {name}! I see you like to keep distance in battle.{Fore.RESET}')
         print()
         break
 
 
     elif choice == '3' or choice == 'phantom':
         slow_text(f'{Fore.LIGHTYELLOW_EX}Phantom, a great choice {name}! a sneaky aggressor I see eh? {Fore.RESET}')
+        print()
+        time.sleep(1)
+        break
+
+    elif choice == 'radiant' or choice == 'the radiant':
+        slow_text('ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
         print()
         time.sleep(1)
         break
@@ -265,10 +307,29 @@ while True:
         print()
         time.sleep(1)
 
+
+player_stats = stats[choice]
+
+print()
+slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
+time.sleep(0.5)
+print()
+slow_text(f'class: {Fore.LIGHTYELLOW_EX}{choice.capitalize()}{Fore.RESET}')
+time.sleep(0.2)
+
+for stats, value in choice():
+    slow_text(f'{stats.capitalize()}: {value}')
+    time.sleep(0.2)
+
+print()
+slow_text(f'{Fore.LIGHTCYAN_EX}---------------------{Fore.RESET}')
+time.sleep(1)
+print()
+
 print()
 print()
 
-#Introduction to the story line:
+# Introduction to the story line:
 
 time.sleep(1)
 
@@ -307,9 +368,7 @@ slow_text('You will need serious training...')
 print()
 time.sleep(1)
 
-#Training Arc
-
-
+# Training Arc
 
 
 
