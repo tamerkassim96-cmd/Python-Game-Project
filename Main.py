@@ -1,7 +1,7 @@
 import sys
 import time
 
-from func import slow_text
+from dir.func import slow_text
 from colorama import Fore
 from colorama import init
 init()
@@ -80,7 +80,7 @@ time.sleep(1)
 print()
 
 print()
-slow_text(f'{Fore.LIGHTRED_EX}ruin')
+slow_text(f'{Fore.LIGHTRED_EX}ruin.')
 print()
 time.sleep(1)
 print()
@@ -168,7 +168,9 @@ while True:
         print()
         slow_text('Thank you so much for helping us warrior')
         time.sleep(1)
-        slow_text(' we now have a glimpse of hope!')
+        print()
+        print()
+        slow_text('we now have a glimpse of hope!')
         print()
         time.sleep(1)
         break
@@ -207,11 +209,8 @@ print()
 time.sleep(1)
 name.strip()
 print()
-slow_text(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a')
-slow_text(f'{Fore.LIGHTYELLOW_EX} Radiant')
+slow_text(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX}I mean warrior')
 time.sleep(0.5)
-slow_text(f'{Fore.LIGHTBLUE_EX} I mean warrior.')
-time.sleep(1)
 print()
 print()
 
@@ -233,38 +232,44 @@ slow_text(f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Steal
 print()
 time.sleep(2)
 print()
-slow_text(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN ACCESS ONLY!, ACCESS OVERRIDE: SECRET CLASS')
-slow_text(f'{Fore.LIGHTYELLOW_EX} [???????]')
+slow_text(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN ACCESS ONLY!, ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
 
 print()
+
+attack = f'{Fore.LIGHTRED_EX}Attack'
+health = f'{Fore.LIGHTGREEN_EX}health'
+defense = f'{Fore.LIGHTBLUE_EX}defense'
+speed = f'{Fore.YELLOW}speed'
+magic = f'{Fore.LIGHTMAGENTA_EX}magic'
+
 stats = {
 'vanguard': {
-    'attack': 23,
-    'health': 150,
-    'defense': 10,
-    'speed': 8,
-    'magic': 0
+    attack: 23,
+    health: 150,
+    defense: 10,
+    speed: 8,
+    magic: 0
 },
 'wraith': {
-    'attack': 17,
-    'health': 120,
-    'defense': 10,
-    'speed': 8,
-    'magic': 15
+    attack: 17,
+    health: 120,
+    defense: 10,
+    speed: 8,
+    magic: 20
 },
 'phantom': {
-    'attack': 20,
-    'health': 130,
-    'defense': 10,
-    'speed': 15,
-    'magic': 5,
+    attack: 20,
+    health: 130,
+    defense: 10,
+    speed: 15,
+    magic: 5,
 },
 'radiant': {
-    'attack': 48,
-    'health': 200,
-    'defense': 100,
-    'speed': 70,
-    'magic': 40,
+    attack: 48,
+    health: 200,
+    defense: 100,
+    speed: 70,
+    magic: 40,
     }
 }
 
@@ -314,11 +319,11 @@ print()
 slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
 time.sleep(0.5)
 print()
-slow_text(f'class: {Fore.LIGHTYELLOW_EX}{choice.capitalize()}{Fore.RESET}')
+slow_text(f'Class: {Fore.LIGHTYELLOW_EX}{choice.capitalize()}{Fore.RESET}')
 time.sleep(0.2)
 
-for stats, value in choice():
-    slow_text(f'{stats.capitalize()}: {value}')
+for stat, value in player_stats.items():
+    slow_text(f'{stat.capitalize()}: {value}')
     time.sleep(0.2)
 
 print()
@@ -369,6 +374,3 @@ print()
 time.sleep(1)
 
 # Training Arc
-
-
-
