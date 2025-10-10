@@ -1,7 +1,7 @@
 import sys
 import time
 
-from dir.func import slow_text
+from func import slow_text
 from colorama import Fore
 from colorama import init
 init()
@@ -209,7 +209,7 @@ print()
 time.sleep(1)
 name.strip()
 print()
-slow_text(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX}I mean warrior')
+slow_text(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
 time.sleep(0.5)
 print()
 print()
@@ -236,11 +236,11 @@ slow_text(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN A
 
 print()
 
-attack = f'{Fore.LIGHTRED_EX}Attack'
-health = f'{Fore.LIGHTGREEN_EX}health'
-defense = f'{Fore.LIGHTBLUE_EX}defense'
-speed = f'{Fore.YELLOW}speed'
-magic = f'{Fore.LIGHTMAGENTA_EX}magic'
+attack = f'{Fore.LIGHTRED_EX}\nAttack'
+health = f'{Fore.LIGHTGREEN_EX}\nHealth'
+defense = f'{Fore.LIGHTBLUE_EX}\nDefense'
+speed = f'{Fore.YELLOW}\nSpeed'
+magic = f'{Fore.LIGHTMAGENTA_EX}\nMagic'
 
 stats = {
 'vanguard': {
@@ -264,6 +264,8 @@ stats = {
     speed: 15,
     magic: 5,
 },
+
+
 'radiant': {
     attack: 48,
     health: 200,
