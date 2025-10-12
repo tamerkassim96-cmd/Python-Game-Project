@@ -327,7 +327,7 @@ print()
 slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
 time.sleep(0.5)
 print()
-slow_text(f'Class: {Fore.LIGHTYELLOW_EX}{choice.capitalize()}{Fore.RESET}')
+slow_text(f'{Fore.LIGHTYELLOW_EX}Class: {choice.capitalize()}{Fore.RESET}')
 time.sleep(0.2)
 
 for stat, value in player_stats.items():
