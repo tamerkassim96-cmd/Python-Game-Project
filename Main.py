@@ -1,5 +1,5 @@
-import sys
 import time
+import sys
 
 from func import slow_text
 from colorama import Fore
@@ -242,7 +242,12 @@ defense = f'{Fore.LIGHTBLUE_EX}\nDefense'
 speed = f'{Fore.YELLOW}\nSpeed'
 magic = f'{Fore.LIGHTMAGENTA_EX}\nMagic'
 
-stats = {
+vanguard = f'{Fore.LIGHTCYAN_EX}Vanguard'
+wraith = f'{Fore.LIGHTMAGENTA_EX}Wraith'
+phantom = f'{Fore.LIGHTYELLOW_EX}Phantom'
+radiant = f'{Fore.LIGHTYELLOW_EX}Radiant'
+
+class_stats = {
 'vanguard': {
     attack: 23,
     health: 150,
@@ -264,8 +269,6 @@ stats = {
     speed: 15,
     magic: 5,
 },
-
-
 'radiant': {
     attack: 48,
     health: 200,
@@ -273,6 +276,7 @@ stats = {
     speed: 70,
     magic: 40,
     }
+
 }
 
 while True:
@@ -309,13 +313,15 @@ while True:
 
     else:
         print()
-        slow_text(f'Invalid input, please try again.')
+        slow_text('That class doesnt exist, try again.')
         print()
         print()
         time.sleep(1)
+        continue
 
 
-player_stats = stats[choice]
+
+player_stats = class_stats[choice]
 
 print()
 slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
