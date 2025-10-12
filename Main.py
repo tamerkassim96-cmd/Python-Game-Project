@@ -242,25 +242,22 @@ defense = f'{Fore.LIGHTBLUE_EX}\nDefense'
 speed = f'{Fore.YELLOW}\nSpeed'
 magic = f'{Fore.LIGHTMAGENTA_EX}\nMagic'
 
-vanguard = f'{Fore.LIGHTCYAN_EX}Vanguard'
-wraith = f'{Fore.LIGHTMAGENTA_EX}Wraith'
-phantom = f'{Fore.LIGHTYELLOW_EX}Phantom'
-radiant = f'{Fore.LIGHTYELLOW_EX}Radiant'
-
 class_stats = {
 'vanguard': {
     attack: 23,
     health: 150,
     defense: 10,
     speed: 8,
-    magic: 0
+    magic: 0,
+    'colour': Fore.LIGHTCYAN_EX
 },
 'wraith': {
     attack: 17,
     health: 120,
     defense: 10,
     speed: 8,
-    magic: 20
+    magic: 20,
+    'colour': Fore.LIGHTMAGENTA_EX
 },
 'phantom': {
     attack: 20,
@@ -268,6 +265,7 @@ class_stats = {
     defense: 10,
     speed: 15,
     magic: 5,
+   'colour': Fore.LIGHTYELLOW_EX
 },
 'radiant': {
     attack: 48,
@@ -275,7 +273,8 @@ class_stats = {
     defense: 100,
     speed: 70,
     magic: 40,
-    }
+    'colour': Fore.LIGHTYELLOW_EX
+}
 
 }
 
@@ -322,15 +321,18 @@ while True:
 
 
 player_stats = class_stats[choice]
+colour = player_stats['colour']
 
 print()
 slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
 time.sleep(0.5)
 print()
-slow_text(f'{Fore.LIGHTYELLOW_EX}Class: {choice.capitalize()}{Fore.RESET}')
+slow_text(f'{Fore.LIGHTYELLOW_EX}Class: {colour}{choice.capitalize()}{Fore.RESET}')
 time.sleep(0.2)
 
 for stat, value in player_stats.items():
+    if stat == 'colour':
+        continue
     slow_text(f'{stat.capitalize()}: {value}')
     time.sleep(0.2)
 
