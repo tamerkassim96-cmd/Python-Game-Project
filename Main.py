@@ -356,26 +356,13 @@ print()
 slow_text(f'{Fore.LIGHTRED_EX}Listen closely {name}...')
 print()
 
-time.sleep(1)
-
-print()
-slow_text('our land has fallen into the darkness')
-print()
-
-print()
-time.sleep(1)
-slow_text('The Shadow King rules with fear.')
-
-print()
-time.sleep(1)
-
 print()
 slow_text(f'You are the only one capable {name} to be able to reclaim the light taken from us,')
 print()
 time.sleep(1)
 
 print()
-slow_text('but beware... this is not an easy journey,')
+slow_text('but beware... this will not be an easy journey,')
 print()
 
 print()
@@ -384,3 +371,39 @@ print()
 time.sleep(1)
 
 # Training Arc
+
+print()
+slow_text(f'Follow me {name} to the training grounds...')
+time.sleep(1)
+print()
+
+print()
+print()
+slow_text('Heavy gusts of wind howl as you step into the courtyard...')
+time.sleep(1)
+print()
+
+print()
+slow_text('An ancient warrior awaits you... ')
+time.sleep(1)
+print()
+
+print()
+slow_text('His name... Eldric,')
+time.sleep(1)
+print()
+
+print()
+slow_text(f'Eldric The First {Fore.LIGHTYELLOW_EX}Radiant')
+print()
+time.sleep(1)
+
+print()
+slow_text('A man that once defied and banished the Shadow King centuries ago...')
+time.sleep(1)
+print()
+
+print()
+
+
+
