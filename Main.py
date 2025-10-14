@@ -1,14 +1,32 @@
 import time
 import sys
 
-from func import slow_text,slow_print
+from func import slow_text, slow_print
 from colorama import Fore
 from colorama import init
+
 init()
+
+# Character Dialogue Functions
+
+def narrator(text, delay = 0.05):
+    print(Fore.LIGHTWHITE_EX, end ='')
+    slow_text(f'Narrator: {text}', delay)
+    print(Fore.RESET)
+
+def eldric(text, delay = 0.05):
+    print(Fore.LIGHTYELLOW_EX, end ='')
+    slow_text(f'Eldric: {text}', delay)
+    print(Fore.RESET)
+
+def player(text, delay = 0.05):
+    print(Fore.LIGHTCYAN_EX, end ='')
+    slow_text(f'Player: {text}', delay)
+    print(Fore.RESET)
+
 
 # - Intro Loading Screen -
 def loading_screen():
-
     slow_print('Loading...', delay=0.5)
 
     slow_print('25%...', delay=0.4)
@@ -19,11 +37,10 @@ def loading_screen():
 
     slow_print('100%...', delay=0)
 
-    slow_print('Initializing...',)
+    slow_print('Initializing...', )
 
     print()
     slow_print('Welcome player to the...')
-
 
     print(Fore.LIGHTYELLOW_EX + """
 
@@ -33,14 +50,14 @@ def loading_screen():
     ██╔══╝  ██║     ██╔══██║██║   ██║██╔══╝  ╚════██║    ██║   ██║██╔══╝
     ███████╗╚██████╗██║  ██║╚██████╔╝███████╗███████║    ╚██████╔╝██║
     ╚══════╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝     ╚═════╝ ╚═╝
-    
+
                         ████████╗██╗  ██╗███████╗
                         ╚══██╔══╝██║  ██║██╔════╝
                            ██║   ███████║█████╗
                            ██║   ██╔══██║██╔══╝
                            ██║   ██║  ██║███████╗
                            ╚═╝   ╚═╝  ╚═╝╚══════╝
-    
+
     ███████╗ ██████╗ ██████╗  ██████╗  ██████╗ ████████╗████████╗███████╗███╗   ██╗
     ██╔════╝██╔═══██╗██╔══██╗██╔════╝ ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝████╗  ██║
     █████╗  ██║   ██║██████╔╝██║  ███╗██║   ██║   ██║      ██║   █████╗  ██╔██╗ ██║
@@ -56,12 +73,13 @@ def loading_screen():
     time.sleep(1)
     print()
 
+
 loading_screen()
+
 
 # Introduction To The Storyline
 
 def introduction():
-
     print(Fore.LIGHTBLUE_EX)
 
     slow_text(f'''Welcome to Asgiaburn,
@@ -94,7 +112,6 @@ A land once joyous, turned to''')
 
     slow_print(f'{Fore.LIGHTMAGENTA_EX}hope...')
 
-
     slow_print('one soul that could change ', delay=0.2)
 
     slow_print('everything.')
@@ -109,13 +126,13 @@ A land once joyous, turned to''')
 
     slow_print('The only one that can fight...')
 
-    print()
     time.sleep(1)
+
 
 introduction()
 
-def ask_help():
 
+def ask_help():
     while True:
         user_input = input(
 
@@ -156,33 +173,40 @@ print()
 
 ask_help()
 
-def get_player_name():
 
+def get_player_name():
     global name
     name = input(f'{Fore.RESET}Please enter your name: ')
 
     print()
     name.strip()
     print()
-    slow_print(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+    slow_print(
+        f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+
 
 get_player_name()
 
 
-#Class Selection
+# Class Selection
 
 def class_selection():
-
     print()
     slow_print(f'{Fore.RESET}Before we begin training {name}, choose your class!')
 
-    slow_print(f'{Fore.RESET}1. {Fore.LIGHTCYAN_EX}Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
+    slow_print(
+        f'{Fore.RESET}1. {Fore.LIGHTCYAN_EX}Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
 
-    slow_print(f'{Fore.RESET}2. {Fore.LIGHTMAGENTA_EX}Wraith - Magic user, Ranged attack, low-medium damage, low defense')
+    slow_print(
+        f'{Fore.RESET}2. {Fore.LIGHTMAGENTA_EX}Wraith - Magic user, Ranged attack, low-medium damage, low defense')
 
-    slow_print(f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense',delay=2)
+    slow_print(
+        f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense',
+        delay=2)
 
-    slow_print(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN ACCESS ONLY!, ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
+    slow_print(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN ACCESS ONLY!,')
+
+    slow_print(f' ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
 
     attack = f'{Fore.LIGHTRED_EX}\nAttack'
     health = f'{Fore.LIGHTGREEN_EX}\nHealth'
@@ -191,38 +215,38 @@ def class_selection():
     magic = f'{Fore.LIGHTMAGENTA_EX}\nMagic'
 
     class_stats = {
-    'vanguard': {
-        attack: 23,
-        health: 150,
-        defense: 10,
-        speed: 8,
-        magic: 0,
-        'colour': Fore.LIGHTCYAN_EX
-    },
-    'wraith': {
-        attack: 17,
-        health: 120,
-        defense: 10,
-        speed: 8,
-        magic: 20,
-        'colour': Fore.LIGHTMAGENTA_EX
-    },
-    'phantom': {
-        attack: 20,
-        health: 130,
-        defense: 10,
-        speed: 15,
-        magic: 5,
-       'colour': Fore.LIGHTYELLOW_EX
-    },
-    'radiant': {
-        attack: 48,
-        health: 200,
-        defense: 100,
-        speed: 70,
-        magic: 40,
-        'colour': Fore.LIGHTYELLOW_EX
-    }
+        'vanguard': {
+            attack: 23,
+            health: 150,
+            defense: 10,
+            speed: 8,
+            magic: 0,
+            'colour': Fore.LIGHTCYAN_EX
+        },
+        'wraith': {
+            attack: 17,
+            health: 120,
+            defense: 10,
+            speed: 8,
+            magic: 20,
+            'colour': Fore.LIGHTMAGENTA_EX
+        },
+        'phantom': {
+            attack: 20,
+            health: 130,
+            defense: 10,
+            speed: 15,
+            magic: 5,
+            'colour': Fore.LIGHTYELLOW_EX
+        },
+        'radiant': {
+            attack: 48,
+            health: 200,
+            defense: 100,
+            speed: 70,
+            magic: 40,
+            'colour': Fore.LIGHTYELLOW_EX
+            }
 
     }
 
@@ -233,21 +257,35 @@ def class_selection():
 
         if choice == '1' or choice == 'vanguard':
             choice = 'vanguard'
-            slow_print(f'{Fore.LIGHTCYAN_EX}Vanguard. So you arent afraid of being on the front lines, A trait of a true fighter destined for victory. An excellent choice {name}!')
+            slow_print(
+                f'{Fore.LIGHTCYAN_EX}So you have chosen the path of Vanguard, you arent afraid of being on the front lines, A trait of a brave fighter. An excellent choice {name}!')
             break
 
         elif choice == '2' or choice == 'wraith':
             choice = 'wraith'
-            slow_print(f'{Fore.LIGHTMAGENTA_EX}Wraith, a wise decision {name}! I see you like to keep distance in battle.{Fore.RESET}')
+            slow_print(
+                f'{Fore.LIGHTMAGENTA_EX}So you have chosen the path of Wraith, a range based attacker. A wise decision {name}! I see you value intellect over strength.{Fore.RESET}')
             break
 
         elif choice == '3' or choice == 'phantom':
             choice = 'phantom'
-            slow_print(f'{Fore.LIGHTYELLOW_EX}Phantom, a great choice {name}! a sneaky aggressor I see eh? {Fore.RESET}')
+            slow_print(
+                f'{Fore.LIGHTYELLOW_EX}So you have chosen the path of Phantom, a great choice {name}! a sneaky aggressor I see eh? {Fore.RESET}')
             break
 
+        elif choice == 'warrior' or choice == 'the warrior':
+            slow_print(f'{Fore.LIGHTYELLOW_EX}You are close to unlocking the forbidden class, look back...  ')
+            slow_print('There was once a title greater than warrior - one born of light and radiance.')
+            continue
+
+        elif choice == 'warrior' and choice == 'radiant':
+            slow_print('')
+
         elif choice == 'radiant' or choice == 'the radiant':
-            slow_print('ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
+            slow_print(f'{Fore.LIGHTYELLOW_EX}So,')
+            slow_print('the light of Eldric burns once more...')
+            slow_print('I see')
+            slow_print(f'{Fore.RESET}ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
             break
 
         else:
@@ -255,8 +293,6 @@ def class_selection():
             slow_print('That class doesnt exist, try again.')
             print()
             continue
-
-
 
     player_stats = class_stats[choice]
     colour = player_stats['colour']
@@ -281,12 +317,13 @@ def class_selection():
 
     return choice, player_stats
 
+
 class_selection()
 
-#Training Arc
+
+# Training Arc
 
 def training():
-
     time.sleep(0.5)
 
     slow_print(f'{Fore.LIGHTCYAN_EX}Now that you have chosen your class,')
@@ -306,10 +343,67 @@ def training():
 
     slow_print('An ancient warrior awaits you... ')
 
-    slow_print('His name... Eldric,')
+    slow_print('His name, Eldric...')
+
+    print('''                                                                                                                                                                                                        
+                     ▒▒                                                                                 
+                    ▒▒░▒                                                                                
+                    ▒▒░▒▓                                                                               
+                   ▒▒░░▒▒                            ▓▓▓▓▒▓▓▓█                                          
+                   ▒▒▒░░▒█                        ▓▒▒▒▒▒▒▒▒▒▒▓▓▓                                        
+                   ▒▒░░░▒▓                       ▓▒░▒▒▒▒▒▒▒▓▒▒▒▓▒▓                                      
+                   ▒▒░░░▒▓ █                    ▓▒▓▒▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓                                     
+                   ▒▒░░░▒▒▓▓                    ▓▓░░░▒▒▒▒▒▒▓▓▓▒▓▓▓▓▓█         ██▒▓▓▓                    
+                ██ ▒▒░░░▒▓▓█                    ▓▓▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓██     █▓█   █                      
+               ▓█▓▓▒▒▒▒▒▒▓▓██                  ▓▓▓▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓█▓█▓▓▓█▓▓██                           
+                 █▒░▒▒▒▒▒ ▓▓█                 ██▓▓▓▓█▓▒▓█▒▓▓▒▓▓▓█▓█▓▓▓▓▓▓                               
+                 █▓▓▒▒▒▓▓▓▓██                 ██▓▓▒▒▒▒▒▓▒▒▒▒▓█▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓█         ██            
+                ██ ██▓█▓▓██                   ▓▓▓▒█▒▓▒▒▓▓▒▒█▓▓▒▓█▓▓▓▓▓▓▓▓▓▓▓  ██▓▓█                     
+                  ████▓███ ▓██               █▓▒▓▒▒▓░▒▓▒▒▒▓▓▓▒▒▒▓█▓▓▓▓█▓▓▓▓▒▓▓    ▓▓▒▓                  
+                   █▓▓████▓██                ▓█▓▒▒▒▒█▓▓▓▓▓▒▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ █▓▓▓                 
+                  █▓███████                  ▓█▓▓▒▒▓▓▒░▒▓▓▓▓▓▒▓▓▓▓▓▓▓█▓████▓▒▓▓▓▒▓▓▓ █   ▓█             
+                   ███████                 ▓▓▓▓▓▒▒▓▒▒░░░▒▒▒▓▓▓▒▓▓▓▓▓▓▓█▓▓▓▓▓▓▓██▓▓▒▒▓▓████▓▓            
+                     ████▓█              █▒▓▓▓▓█▒▒▒▒▒░░░▒▒▒▓▓▒▒▓▓▓█▓▓█▓▓▒▒██▓▓█▓▓▓▓▓▓▓▓████▓▓▓▓▓        
+                     ███▓█▓█            ▓▓▓▓▓▓█▓▒▒▒░▒▒░▒▒▒▒▓▒▒▓▓▓██▓█▓▓▓█▓▒▒▓▓▓▓██▓▓▓▓▓▓▓▓    █▓█       
+                     █████            █▓▓▓▓▓▓██▓▒▒▒▒░▒▒▒▒▒▒▓▒▓▓▓▓█▓▓█▓██▓▓▒▒▒▓▓▓▓▓██▓▓▓▓▓▓▓▓▓█ █        
+                     ███▓█           ▓▒▓▓▓█▓▓█▓█▒▓▒▒▒▒▒▒▒▒▒▓▒▓▓▒▓▓▓▓██▓▓▓▓▓▓▒▓▒▒▒▓▓████▓█▓▓▓▓▓▓▓▓▓▓█    
+                     █▓▓▓▓█           ▓▓▓▓▓▓██▓▓▒▒▒▒░▒▒▒▓▒▒▓▓▓▓▓██▒██▓▓▓▓▓▓▓▒▓███▓▓██▓▓▓▓▓▓███  █ █▓▓▓  
+                      ▓█▓▓            ██▓██▓█▓▓▓▓▒▒▒▒▒▒▓▒▒▓▓▓▓▓██▓▓███▓▓▓▓▓██▓▓▒▓▓▓▓▓█▓▓▓▓▓▒▓▓▓█        
+                      █▓▓▓▓          █▒▓▓██▓██▓██▓▓▒▒▒▓▒▒▒▓▓█▓▓██▓▓████████▓▓▓▓███▓▓▓█▓▓▓▓▓▓▓▓▒▒▒▓█     
+                      ████           █▓███▓▓██▓██▓▓▓▒▓▓▒▓▓▓█▓▓▓█▓▓████████████▓▓▒▒▒▓▓▓▓▓▓█▓▓▓▓████▓█    
+                      ████          █▓▓▓██▓▓██▓█▓██▓▓▓▒▓▓▓██▓▓███▓██▓████████▓▓▓▓▒▓███████▓▓▓▓▓         
+                      ███▓█         █▒▓▓██▓▒▓▓▓█▓▓██▓▓▓▓████▓███▓▒▓████████▓█▓▓██▓▓▓▓▓▓█▓▓▓▓ █▓▓        
+                      █████         █▓▓███▓▓█▓██████▓▓███▓▓█▓██▓▓▓▓█████████▓▓█▓▓▓▒▒▓█████▓▓ ██         
+                     █▓▓▓█▓▓▒█      █▓▓██▓▓▓█▓▒▓█▒▒▓▓▓██▓▓▓▒▒██████▓█████████▓█████████████▓            
+                    ▓▒▒▓▓▓▒▓▓▓  █▓▓█▓▓███▓▓▓██▓█████▓███████████████████████████████████████            
+                   █▓▒▒▒▓▓██▓▓▓▓▒▒▓▓▓▓█▓████▓▒▓█████▓▒██████▓█▓█████████████████▓████████████           
+                   █▓▓▓▓▓▓▓████▓▓▓▓▓█▓█████▒▓▒▓▓██▒▒▒░▒▒▒▓▒▒░▒▒▓▒░▓▒▓▒▓▓░▓█ █▒▒▓░▒▓▓██▓▓▓▓███           
+                    ▓▒▒▒▓▓▓█▓████▓▓▓█▓████▓▓▓▒▓███▓▒░▒█▒▒▓▒▓▒▓▒▒▒▒▓▓█▓▒▓░▓ ▓░░▓▓░▒▓███▓█▓▓▓▓██          
+                    █▓▒▒▓▓▓█▓██████████████▓██▓███████████████████████████    ████████████████          
+                     █████████████████████▓███▓███▓▓▓▓▓█▓▓▓▓█▓▓▒██▓█▓▓▓██      ██████████████▓          
+                        ████████████████████▓▓▓▓▓▓▓▓▓█▓████████████████▓▓      ███████▓█████▓█          
+                        █▓██     ███████ █▓▓▓▓▓▓▓▓▓██████████████████████       ██████████████          
+                        █▓██             █▓▓▓▓▒▓▓▓▓▓▓▓▓██▓▓▓▓██████████▓██      ███████▓▒▓▓▓▒▒▓▓▓       
+                        █▓▓█             ▓███▓▓▓▓▓█▓▓▓▓██▓▓▓▓████████████       ███▓▒░░░░▒▒▓▓▓██        
+                        █▓▓█         █▓▓█▓▓▓▓██▓▓▓▓▓█▓██████████████████▓█      ▓▒░▒▒░░░▒▓▓█            
+                        ██▓█        ████▓███▓▓█████████▓███▓▓▓▓▓▓▓█████████    █▒▒░▒▒▒▒▒▒▒▒▓            
+                        ██▓█      ███▓█▓▓▓███▓▓▓███▓▓▓▓███████████▓▓█████▓▓█   █▒▒░▒░▒▒▒▒░▒▓█           
+                        ██▓▓    ██████▓▓████▓███████████▓██████▓██▓▓█▓█▓▓█▓▓   █▒▒░▒▒▒░▒▒▓▒▒▒▓          
+                        ██▓▓     ██▓█▓▓██▓▓█▓▓▓▓▓▓▓▓▓█▓▓▓███▓███▓█▓▓▓▓▓▓███▓▓█ ▓▒▓▓▒▒▓▓▒▒▓▓▒▒▓          
+                        ██▓█▓    ▓▓██▓██▓▒▓█▓▓▒▓▓▓▓▓▓▓▓▓▓███▓█▓██▓▓▓▓▓▓▓▓██▓▓▓▒▒▓▓▓▓▒▒▓▒▒▓▓▒▒▓█         
+                        ██▓██   █▓███▓▓▓▒▓██▓▓▓▓▓▓▓▓▓▓▓█████▓▓█▓██▓█▓▓▓▓█▓██▒▓▓█ █▓▒▒▓█▒▒▓▓▓▒▒▓         
+                        ██▓▓█   ████▓▓▓▒▓██▓▓▓▓▓▓▓▓▓███▓▓█▓██▒▒▓▓████▓▓▓▓████▓▓██▓▒▒▓█▓▒▒▓██▓▓█         
+                        ██▓▓█    ██▓▓▓▒████▓▓▓▓▓▓███▓▓█▓▓█████▓▒▓▓█▓▓█████████▓▓█▓▓█  ▓▓▓█   ██         
+                        ███▓█    █▓▓▒▓█████▓▒▓▓▓▓▓▓▓▓▓▓▓█▓█████▓▒▓▓█▓▓▓██████████                       
+                         ██▓█    █▓▒▓██████▓█▒▓▓▓▓▓▓▓▓▓██▓▓█████▓▓▒▓██▓▓▓██▓███▒█                       
+                         ███▓   █▓▒████▓▓██▓██▓▓▓▓▓▓███▓▓▓████████▓▓▒▓█▓▓▓▓██▓█▓▒█                      
+                         ████  █▓▓█████▓███▓▓▓▓█████▓▓▓▓▓▓▓█████████▓▓▓▓█▓▓▓██▓▓▓▓█                     
+                         ████ █▓▓█████▓▓███▓▓▓▓▓██▓▓▓▓▓▓█▓██████▓█████▓▓▓▓█▓▓▓██▓▒▓█ ''')
 
     slow_print(f'Eldric The First {Fore.LIGHTYELLOW_EX}Radiant')
 
-    slow_print(f'{Fore.LIGHTBLUE_EX}A man that once defied and banished the Shadow King centuries ago...')
+    slow_print(f'{Fore.LIGHTBLUE_EX}A man that once defied and banished the Shadow King himself centuries ago...')
+
+    slow_print('So you are the one')
 
 training()
