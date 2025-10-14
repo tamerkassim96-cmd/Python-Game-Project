@@ -128,6 +128,7 @@ def ask_help():
             slow_print('Thank you so much for helping us warrior')
 
             slow_print('we now have a glimpse of hope!')
+            print()
             break
 
         elif user_input == 'no' or user_input == 'n':
@@ -263,7 +264,7 @@ def class_selection():
     print()
     slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
 
-    slow_text(f'{Fore.LIGHTYELLOW_EX}Class: {colour}{choice.capitalize()}{Fore.RESET}')
+    slow_text(f'{Fore.LIGHTYELLOW_EX}\nClass: {colour}{choice.capitalize()}{Fore.RESET}')
     time.sleep(0.2)
 
     for stat, value in player_stats.items():
@@ -272,7 +273,6 @@ def class_selection():
         slow_text(f'{stat.capitalize()}: {value}')
         time.sleep(0.2)
 
-    print()
     print()
     slow_print(f'{Fore.LIGHTCYAN_EX}---------------------{Fore.RESET}')
 
