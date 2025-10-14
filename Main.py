@@ -153,18 +153,25 @@ print()
 time.sleep(0.5)
 print()
 
-name = input(f'{Fore.RESET}Please enter your name: ')
-
-print()
-name.strip()
-print()
-slow_print(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
-
 ask_help()
+
+def get_player_name():
+
+    global name
+    name = input(f'{Fore.RESET}Please enter your name: ')
+
+    print()
+    name.strip()
+    print()
+    slow_print(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+
+get_player_name()
+
 
 #Class Selection
 
 def class_selection():
+
     print()
     slow_print(f'{Fore.RESET}Before we begin training {name}, choose your class!')
 
@@ -224,14 +231,17 @@ def class_selection():
         print()
 
         if choice == '1' or choice == 'vanguard':
+            choice = 'vanguard'
             slow_print(f'{Fore.LIGHTCYAN_EX}Vanguard. So you arent afraid of being on the front lines, A trait of a true fighter destined for victory. An excellent choice {name}!')
             break
 
         elif choice == '2' or choice == 'wraith':
+            choice = 'wraith'
             slow_print(f'{Fore.LIGHTMAGENTA_EX}Wraith, a wise decision {name}! I see you like to keep distance in battle.{Fore.RESET}')
             break
 
         elif choice == '3' or choice == 'phantom':
+            choice = 'phantom'
             slow_print(f'{Fore.LIGHTYELLOW_EX}Phantom, a great choice {name}! a sneaky aggressor I see eh? {Fore.RESET}')
             break
 
@@ -268,6 +278,8 @@ def class_selection():
 
     print()
     print()
+
+    return choice, player_stats
 
 class_selection()
 
