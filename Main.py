@@ -12,16 +12,19 @@ init()
 def narrator(text, delay = 0.05):
     print(Fore.LIGHTWHITE_EX, end ='')
     slow_text(f'Narrator: {text}', delay)
+    time.sleep(delay)
     print(Fore.RESET)
 
 def eldric(text, delay = 0.05):
     print(Fore.LIGHTYELLOW_EX, end ='')
     slow_text(f'Eldric: {text}', delay)
+    time.sleep(delay)
     print(Fore.RESET)
 
 def player(text, delay = 0.05):
     print(Fore.LIGHTCYAN_EX, end ='')
     slow_text(f'Player: {text}', delay)
+    time.sleep(delay)
     print(Fore.RESET)
 
 
@@ -258,7 +261,7 @@ def class_selection():
         if choice == '1' or choice == 'vanguard':
             choice = 'vanguard'
             slow_print(
-                f'{Fore.LIGHTCYAN_EX}So you have chosen the path of Vanguard, you arent afraid of being on the front lines, A trait of a brave fighter. An excellent choice {name}!')
+                f'{Fore.LIGHTCYAN_EX}So you have chosen the path of Vanguard, you arent afraid of being on the front lines. A trait of a brave fighter. An excellent choice {name}!')
             break
 
         elif choice == '2' or choice == 'wraith':
@@ -274,17 +277,14 @@ def class_selection():
             break
 
         elif choice == 'warrior' or choice == 'the warrior':
+            choice = 'warrior'
             slow_print(f'{Fore.LIGHTYELLOW_EX}You are close to unlocking the forbidden class, look back...  ')
             slow_print('There was once a title greater than warrior - one born of light and radiance.')
             continue
 
-        elif choice == 'warrior' and choice == 'radiant':
-            slow_print('')
-
         elif choice == 'radiant' or choice == 'the radiant':
-            slow_print(f'{Fore.LIGHTYELLOW_EX}So,')
-            slow_print('the light of Eldric burns once more...')
-            slow_print('I see')
+            choice = 'radiant'
+            slow_print('So, the light of Eldric burns once more... I see.', delay=1.5)
             slow_print(f'{Fore.RESET}ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
             break
 
@@ -318,12 +318,9 @@ def class_selection():
     return choice, player_stats
 
 
-class_selection()
-
-
 # Training Arc
 
-def training():
+def training(choice, class_stats):
     time.sleep(0.5)
 
     slow_print(f'{Fore.LIGHTCYAN_EX}Now that you have chosen your class,')
@@ -339,11 +336,11 @@ def training():
     slow_print(f'Follow me {name} to the training grounds...', delay=1.5)
 
     print()
-    slow_print(f'{Fore.LIGHTBLUE_EX}~ Gusts of wind howl as you step into the courtyard... ~')
+    narrator(f'{Fore.LIGHTBLUE_EX}~ Gusts of wind howl as you step into the courtyard... ~')
 
-    slow_print('An ancient warrior awaits you... ')
+    narrator('An ancient warrior awaits you... ')
 
-    slow_print('His name, Eldric...')
+    narrator('His name, Eldric...')
 
     print('''                                                                                                                                                                                                        
                      ▒▒                                                                                 
@@ -400,14 +397,50 @@ def training():
                          ████  █▓▓█████▓███▓▓▓▓█████▓▓▓▓▓▓▓█████████▓▓▓▓█▓▓▓██▓▓▓▓█                     
                          ████ █▓▓█████▓▓███▓▓▓▓▓██▓▓▓▓▓▓█▓██████▓█████▓▓▓▓█▓▓▓██▓▒▓█ ''')
 
-    slow_print(f'Eldric The First {Fore.LIGHTYELLOW_EX}Radiant')
+    narrator(f'Eldric The First {Fore.LIGHTYELLOW_EX}Radiant')
 
-    slow_print(f'{Fore.LIGHTBLUE_EX}A man that once defied and banished the Shadow King himself centuries ago...')
+    narrator(f'A man that once defied and banished the Shadow King himself centuries ago...')
 
-    slow_print('So you are the one')
+    if choice == 'radiant':
+        eldric('So you are the one...')
+        eldric('My successor')
+        eldric('the next radiant')
+        eldric('I have been awaiting your return, for many years...')
 
-training()
+        player('My return? What do you mean, How could you have known about me?')
+
+        eldric('Our souls are bound by light itself.')
+        eldric('As soon as you awakened your radiance,')
+        eldric('I felt the surge of power, it called to me.')
+
+        eldric(f'You and I are connected {name},')
+        eldric('We are bound by the same flame that once banished the Shadow King himself.')
+
+        player('So, I was chosen...?')
+
+        eldric('You werent chosen, rather awakened.')
+        eldric('the light found you now because Asgiaburn needs you, just as the world once needed me...')
+
+        eldric('Now, enough talk, lets see if the radiant within you can handle a fragment of what lies ahead.')
+        eldric('Prepare yourself, Radiant. For your first trial will now begin!')
+
+    else:
+        eldric(f'A{colour}{choice.capitalize}? Hm not many of your kind reach this place.')
+        eldric('I see the resolve in your eyes, one that will never give up no matter the challenge.')
+        eldric('I once trained warriors like you - fierce and loyal')
+        eldric('Even without the radiant’s gift, you are able to rival them')
+
+        eldric('Now, enough talk let us begin your training.')
 
 
+choice, player_stats = class_selection()
+colour = player_stats['colour']
+training(choice, player_stats)
 
+def practice_dummy(player_class, player_stats):
+    narrator('You find a practice dummy, ready to test your skills')
 
+    dummy_health = 100
+    player_health = player_stats['health']
+    
+    
