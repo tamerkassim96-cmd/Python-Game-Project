@@ -9,21 +9,21 @@ init()
 
 # Character Dialogue Functions
 
-def narrator(text, delay = 0.05):
+def narrator(text, delay = 0.001):
     print(Fore.LIGHTWHITE_EX, end ='')
     slow_text(f'Narrator: {text}', delay)
     time.sleep(delay)
     print(Fore.RESET)
     print()
 
-def eldric(text, delay = 0.05):
+def eldric(text, delay = 0.001):
     print(Fore.LIGHTYELLOW_EX, end ='')
     slow_text(f'Eldric: {text}', delay)
     time.sleep(delay)
     print(Fore.RESET)
     print()
 
-def player(text, delay = 0.05):
+def player(text, delay = 0.001):
     print(Fore.LIGHTCYAN_EX, end ='')
     slow_text(f'Player: {text}', delay)
     time.sleep(delay)
@@ -214,43 +214,38 @@ def class_selection():
 
     slow_print(f' ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
 
-    attack = f'{Fore.LIGHTRED_EX}\nAttack'
-    health = f'{Fore.LIGHTGREEN_EX}\nHealth'
-    defense = f'{Fore.LIGHTBLUE_EX}\nDefense'
-    speed = f'{Fore.YELLOW}\nSpeed'
-    magic = f'{Fore.LIGHTMAGENTA_EX}\nMagic'
 
     class_stats = {
         'vanguard': {
-            attack: 23,
-            health: 150,
-            defense: 10,
-            speed: 8,
-            magic: 0,
+            'attack': 23,
+            'health': 150,
+            'defense': 10,
+            'speed': 8,
+            'magic': 0,
             'colour': Fore.LIGHTCYAN_EX
         },
         'wraith': {
-            attack: 17,
-            health: 120,
-            defense: 10,
-            speed: 8,
-            magic: 20,
+            'attack': 17,
+            'health': 120,
+            'defense': 10,
+            'speed': 8,
+            'magic': 20,
             'colour': Fore.LIGHTMAGENTA_EX
         },
         'phantom': {
-            attack: 20,
-            health: 130,
-            defense: 10,
-            speed: 15,
-            magic: 5,
+            'attack': 20,
+            'health': 130,
+            'defense': 10,
+            'speed': 15,
+            'magic': 5,
             'colour': Fore.LIGHTYELLOW_EX
         },
         'radiant': {
-            attack: 48,
-            health: 200,
-            defense: 100,
-            speed: 70,
-            magic: 40,
+            'attack': 48,
+            'health': 200,
+            'defense': 100,
+            'speed': 70,
+            'magic': 40,
             'colour': Fore.LIGHTYELLOW_EX
             }
 
@@ -309,7 +304,15 @@ def class_selection():
     for stat, value in player_stats.items():
         if stat == 'colour':
             continue
-        slow_text(f'{stat.capitalize()}: {value}')
+
+        colour_prefix = ''
+        if stat == 'attack': colour_prefix = Fore.LIGHTRED_EX
+        elif stat == 'health': colour_prefix = Fore.LIGHTGREEN_EX
+        elif stat == 'defense': colour_prefix = Fore.LIGHTBLUE_EX
+        elif stat == 'speed': colour_prefix = Fore.LIGHTYELLOW_EX
+        elif stat == 'magic': colour_prefix = Fore.LIGHTMAGENTA_EX
+
+        slow_text(f'{colour_prefix}{stat.capitalize()}: {value}{Fore.RESET}')
         time.sleep(0.2)
 
     print()
@@ -407,7 +410,7 @@ def training(choice, class_stats):
     if choice == 'radiant':
         eldric('So you are the one...')
         eldric('My successor')
-        eldric('the next radiant')
+        eldric('The next radiant')
         eldric('I have been awaiting your return, for many years...')
 
         player('My return? What do you mean, How could you have known about me?')
@@ -449,17 +452,17 @@ def practice_dummy(player_class, player_stats):
     while dummy_health > 0:
         narrator('Go on Radiant let us see if we can put Asgiaburn`s future in your hands')
 
-        action = input(f'{Fore.LIGHTYELLOW_EX}What do you do?{player_class.capitalize()}? ATTACK or DEFEND?{Fore.RESET}').strip().lower()
+        action = input(f'{Fore.LIGHTYELLOW_EX}What do you do? {player_class.capitalize()}? ATTACK or DEFEND?{Fore.RESET}').strip().lower()
         print()
 
         if action == 'attack':
-            damage = player_stats[f'{Fore.LIGHTRED_EX}\nAttack']
+            damage = player_stats['attack']
             dummy_health -= damage
             if dummy_health < 0:
                     dummy_health = 0
 
-        narrator(f'You strike the dummy with all your strength dealing {damage} damage!')
-        narrator(f'The dummy has now got {dummy_health}health remaining!')
+        narrator(f'You strike the dummy with all your strength dealing {Fore.LIGHTRED_EX}{damage}{Fore.RESET} damage!')
+        narrator(f'The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health}{Fore.RESET}health remaining!')
 
         if dummy_health < 0:
             slow_print(f'You have dealt {damage} damage, the dummy has been obliterated!')
