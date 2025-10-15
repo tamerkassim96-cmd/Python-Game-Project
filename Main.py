@@ -456,24 +456,29 @@ def practice_dummy(player_class, player_stats):
             damage = player_stats[f'{Fore.LIGHTRED_EX}\nAttack']
             dummy_health -= damage
             if dummy_health < 0:
-                dummy_health = 0
+                    dummy_health = 0
 
         narrator(f'You strike the dummy with all your strength dealing {damage} damage!')
         narrator(f'The dummy has now got {dummy_health}health remaining!')
 
         if dummy_health < 0:
+            slow_print(f'You have dealt {damage} damage, the dummy has been obliterated!')
             eldric('Well done, just as I would have expected from you')
             eldric('At least now you know basics of how to attack and defend')
-            break
 
         elif action == 'defend':
             slow_print('You go into a defensive stance, ready for anything to strike you, but you stay fearless.')
             slow_print('After waiting expecting an attack, nothing strikes.')
 
-            action = input(f'The dummy is now {dummy_health}, one more strike will do it, go {player_class.capitalize}')
+            eldric(f'The dummy is now {dummy_health}, one more strike will do it, go {player_class.capitalize}')
+            input('Do you ATTACK or DEFEND?')
+            continue
+
+        else:
+            slow_print('That is not a valid move, please try again.')
+            continue
 
 
 
 
-
-practice_dummy(player_stats)
+practice_dummy(choice, player_stats)
