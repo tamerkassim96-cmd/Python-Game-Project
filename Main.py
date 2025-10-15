@@ -1,7 +1,7 @@
 import time
 import sys
 
-from func import slow_text, slow_print
+from dir.func import slow_text, slow_print
 from colorama import Fore
 from colorama import init
 
@@ -443,6 +443,37 @@ training(choice, player_stats)
 def practice_dummy(player_class, player_stats):
     narrator('You find a practice dummy, ready to test your skills')
 
-    dummy_health = 100
+    dummy_health = 50
     player_health = player_stats['health']
 
+    while dummy_health > 0:
+        narrator('Go on Radiant let us see if we can put Asgiaburn`s future in your hands')
+
+        action = input(f'{Fore.LIGHTYELLOW_EX}What do you do?{player_class.capitalize()}? ATTACK or DEFEND?{Fore.RESET}').strip().lower()
+        print()
+
+        if action == 'attack':
+            damage = player_stats[f'{Fore.LIGHTRED_EX}\nAttack']
+            dummy_health -= damage
+            if dummy_health < 0:
+                dummy_health = 0
+
+        narrator(f'You strike the dummy with all your strength dealing {damage} damage!')
+        narrator(f'The dummy has now got {dummy_health}health remaining!')
+
+        if dummy_health < 0:
+            eldric('Well done, just as I would have expected from you')
+            eldric('At least now you know basics of how to attack and defend')
+            break
+
+        elif action == 'defend':
+            slow_print('You go into a defensive stance, ready for anything to strike you, but you stay fearless.')
+            slow_print('After waiting expecting an attack, nothing strikes.')
+
+            action = input(f'The dummy is now {dummy_health}, one more strike will do it, go {player_class.capitalize}')
+
+
+
+
+
+practice_dummy(player_stats)
