@@ -14,18 +14,21 @@ def narrator(text, delay = 0.05):
     slow_text(f'Narrator: {text}', delay)
     time.sleep(delay)
     print(Fore.RESET)
+    print()
 
 def eldric(text, delay = 0.05):
     print(Fore.LIGHTYELLOW_EX, end ='')
     slow_text(f'Eldric: {text}', delay)
     time.sleep(delay)
     print(Fore.RESET)
+    print()
 
 def player(text, delay = 0.05):
     print(Fore.LIGHTCYAN_EX, end ='')
     slow_text(f'Player: {text}', delay)
     time.sleep(delay)
     print(Fore.RESET)
+    print()
 
 
 # - Intro Loading Screen -
@@ -442,5 +445,4 @@ def practice_dummy(player_class, player_stats):
 
     dummy_health = 100
     player_health = player_stats['health']
-    
-    
+
