@@ -1,7 +1,7 @@
 import time
 import sys
 
-from dir.func import slow_text, slow_print
+from func import slow_text, slow_print
 from colorama import Fore
 from colorama import init
 
@@ -217,35 +217,35 @@ def class_selection():
 
     class_stats = {
         'vanguard': {
-            'attack': 23,
-            'health': 150,
-            'defense': 10,
-            'speed': 8,
-            'magic': 0,
+            'Attack': 23,
+            'Health': 150,
+            'Defense': 10,
+            'Speed': 8,
+            'Magic': 0,
             'colour': Fore.LIGHTCYAN_EX
         },
         'wraith': {
-            'attack': 17,
-            'health': 120,
-            'defense': 10,
-            'speed': 8,
-            'magic': 20,
+            'Attack': 17,
+            'Health': 120,
+            'Defense': 10,
+            'Speed': 8,
+            'Magic': 20,
             'colour': Fore.LIGHTMAGENTA_EX
         },
         'phantom': {
-            'attack': 20,
-            'health': 130,
-            'defense': 10,
-            'speed': 15,
-            'magic': 5,
+            'Attack': 20,
+            'Health': 130,
+            'Defense': 10,
+            'Speed': 15,
+            'Magic': 5,
             'colour': Fore.LIGHTYELLOW_EX
         },
         'radiant': {
-            'attack': 48,
-            'health': 200,
-            'defense': 100,
-            'speed': 70,
-            'magic': 40,
+            'Attack': 48,
+            'Health': 200,
+            'Defense': 100,
+            'Speed': 70,
+            'Magic': 40,
             'colour': Fore.LIGHTYELLOW_EX
             }
 
@@ -274,6 +274,17 @@ def class_selection():
                 f'{Fore.LIGHTYELLOW_EX}So you have chosen the path of Phantom, a great choice {name}! a sneaky aggressor I see eh? {Fore.RESET}')
             break
 
+        elif choice == '4':
+            slow_print(f'{Fore.LIGHTWHITE_EX}No mortal dares try to label the forbidden class by a number.')
+            slow_print(f'Indeed, it has a {Fore.LIGHTYELLOW_EX}name...')
+            continue
+
+        elif choice == '5':
+            slow_print(f'{Fore.LIGHTWHITE_EX}Do not insult the forbidden class {Fore.LIGHTWHITE_EX}by applying a number to it.')
+            slow_print(f'{Fore.LIGHTWHITE_EX}The {Fore.LIGHTYELLOW_EX}title {Fore.LIGHTWHITE_EX}lies in past text...')
+            continue
+
+
         elif choice == 'warrior' or choice == 'the warrior':
             choice = 'warrior'
             slow_print(f'{Fore.LIGHTYELLOW_EX}You are close to unlocking the forbidden class, look back...  ')
@@ -282,7 +293,7 @@ def class_selection():
 
         elif choice == 'radiant' or choice == 'the radiant':
             choice = 'radiant'
-            slow_print('So, the light of Eldric burns once more... I see.', delay=1.5)
+            slow_print(f'{Fore.LIGHTWHITE_EX}So, the light of Eldric burns once more... I see.', delay=1.5)
             slow_print(f'{Fore.RESET}ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
             break
 
@@ -292,8 +303,13 @@ def class_selection():
             print()
             continue
 
-    player_stats = class_stats[choice]
-    colour = player_stats['colour']
+    player_stats_colour = class_stats[choice]
+    colour = player_stats_colour['colour']
+
+    battle_stats = {}
+    for key, value in player_stats_colour.items():
+        if key != 'colour':
+            battle_stats[key.lower()] = value
 
     print()
     slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
@@ -301,18 +317,18 @@ def class_selection():
     slow_text(f'{Fore.LIGHTYELLOW_EX}\nClass: {colour}{choice.capitalize()}{Fore.RESET}')
     time.sleep(0.2)
 
-    for stat, value in player_stats.items():
+    for stat, value in player_stats_colour.items():
         if stat == 'colour':
             continue
 
         colour_prefix = ''
-        if stat == 'attack': colour_prefix = Fore.LIGHTRED_EX
-        elif stat == 'health': colour_prefix = Fore.LIGHTGREEN_EX
-        elif stat == 'defense': colour_prefix = Fore.LIGHTBLUE_EX
-        elif stat == 'speed': colour_prefix = Fore.LIGHTYELLOW_EX
-        elif stat == 'magic': colour_prefix = Fore.LIGHTMAGENTA_EX
+        if stat == 'Attack': colour_prefix = Fore.LIGHTRED_EX
+        elif stat == 'Health': colour_prefix = Fore.LIGHTGREEN_EX
+        elif stat == 'Defense': colour_prefix = Fore.LIGHTBLUE_EX
+        elif stat == 'Speed': colour_prefix = Fore.LIGHTYELLOW_EX
+        elif stat == 'Magic': colour_prefix = Fore.LIGHTMAGENTA_EX
 
-        slow_text(f'{colour_prefix}{stat.capitalize()}: {value}{Fore.RESET}')
+        slow_text(f'\n{colour_prefix}{stat.capitalize()}: {value}{Fore.RESET}')
         time.sleep(0.2)
 
     print()
@@ -321,7 +337,7 @@ def class_selection():
     print()
     print()
 
-    return choice, player_stats
+    return choice, player_stats_colour, battle_stats
 
 
 # Training Arc
@@ -348,7 +364,7 @@ def training(choice, class_stats):
 
     narrator('His name, Eldric...')
 
-    print('''                                                                                                                                                                                                        
+    print(f'''{Fore.LIGHTGREEN_EX}                                                                                                                                                                                                        
                      ▒▒                                                                                 
                     ▒▒░▒                                                                                
                     ▒▒░▒▓                                                                               
@@ -403,6 +419,7 @@ def training(choice, class_stats):
                          ████  █▓▓█████▓███▓▓▓▓█████▓▓▓▓▓▓▓█████████▓▓▓▓█▓▓▓██▓▓▓▓█                     
                          ████ █▓▓█████▓▓███▓▓▓▓▓██▓▓▓▓▓▓█▓██████▓█████▓▓▓▓█▓▓▓██▓▒▓█ ''')
 
+    print()
     narrator(f'Eldric The First {Fore.LIGHTYELLOW_EX}Radiant')
 
     narrator(f'A man that once defied and banished the Shadow King himself centuries ago...')
@@ -431,7 +448,7 @@ def training(choice, class_stats):
         eldric('Prepare yourself, Radiant. For your first trial will now begin!')
 
     else:
-        eldric(f'A{colour}{choice.capitalize}? Hm not many of your kind reach this place.')
+        eldric(f'A {choice.capitalize()}? Hm not many of your kind reach this place.')
         eldric('I see the resolve in your eyes, one that will never give up no matter the challenge.')
         eldric('I once trained warriors like you - fierce and loyal')
         eldric('Even without the radiant’s gift, you are able to rival them')
@@ -439,42 +456,68 @@ def training(choice, class_stats):
         eldric('Now, enough talk let us begin your training.')
 
 
-choice, player_stats = class_selection()
-colour = player_stats['colour']
-training(choice, player_stats)
+choice, player_stats_colour, battle_stats = class_selection()
+colour = player_stats_colour['colour']
+training(choice, player_stats_colour)
 
-def practice_dummy(player_class, player_stats):
-    narrator('You find a practice dummy, ready to test your skills')
+
+def practice_dummy(player_class, battle_stats):
+    print()
+    print()
+    narrator('Ready to test your skills, we will start your training.')
 
     dummy_health = 50
-    player_health = player_stats['health']
+    player_health = battle_stats['health']
+
+    narrator(f'Go on {name} let us see if we can put Asgiaburn`s future in your hands')
+    print()
 
     while dummy_health > 0:
-        narrator('Go on Radiant let us see if we can put Asgiaburn`s future in your hands')
-
-        action = input(f'{Fore.LIGHTYELLOW_EX}What do you do? {player_class.capitalize()}? ATTACK or DEFEND?{Fore.RESET}').strip().lower()
+        print()
+        action = input(f'A wooden dummy appears before you... What do you do, {Fore.LIGHTYELLOW_EX}{player_class.capitalize()}? {Fore.RESET}ATTACK or DEFEND? ').strip().lower()
         print()
 
         if action == 'attack':
-            damage = player_stats['attack']
+            damage = battle_stats['attack']
             dummy_health -= damage
             if dummy_health < 0:
-                    dummy_health = 0
+                dummy_health = 0
+            slow_print(f'You strike the dummy with all your strength dealing {Fore.LIGHTRED_EX}{damage} damage!')
+            slow_print(f'The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health} health remaining!')
 
-        narrator(f'You strike the dummy with all your strength dealing {Fore.LIGHTRED_EX}{damage}{Fore.RESET} damage!')
-        narrator(f'The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health}{Fore.RESET}health remaining!')
-
-        if dummy_health < 0:
-            slow_print(f'You have dealt {damage} damage, the dummy has been obliterated!')
-            eldric('Well done, just as I would have expected from you')
-            eldric('At least now you know basics of how to attack and defend')
 
         elif action == 'defend':
-            slow_print('You go into a defensive stance, ready for anything to strike you, but you stay fearless.')
-            slow_print('After waiting expecting an attack, nothing strikes.')
+            defense = battle_stats['defend']
+            slow_print(f'You have equipped {defense} health protection shield')
+            slow_print('As you wait for an attack you realise,')
+            slow_print('The dummy is unable to attack.')
 
-            eldric(f'The dummy is now {dummy_health}, one more strike will do it, go {player_class.capitalize}')
-            input('Do you ATTACK or DEFEND?')
+
+        input('Will you ATTACK or DEFEND?')
+
+        if action == 'attack':
+            if dummy_health < 0:
+                dummy_health = 0
+                slow_print(f'You have attacked the dummy for {Fore.LIGHTRED_EX}{damage} health! ')
+                slow_print(f'The dummy has been obliterated!')
+                eldric('Well done, just as I would have expected from you')
+                eldric('you now know basics of how to attack and defend')
+
+        if dummy_health > 0:
+            input('Are you going to ATTACK or DEFEND?')
+            if action == 'attack':
+                slow_print(f'You have dealt {damage} damage, the dummy has been obliterated!')
+                eldric('Well done, just as I would have expected from you')
+                eldric('At least now you know basics of how to attack and defend')
+            break
+
+        elif action == 'defend':
+            narrator('You go into a defensive stance, ready for anything to strike you, but you stay fearless.')
+            narrator('After waiting expecting an attack, nothing strikes.')
+
+            eldric(f'Attack! a {player_class.capitalize()} never quivers')
+            eldric(f'The dummy is only {dummy_health}, now strike!, go {name}!')
+            input('Click Attack')
             continue
 
         else:
@@ -484,4 +527,4 @@ def practice_dummy(player_class, player_stats):
 
 
 
-practice_dummy(choice, player_stats)
+practice_dummy(choice, battle_stats)
