@@ -215,6 +215,8 @@ def class_selection():
     slow_print(f' ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
 
 
+# Dictionary for class selection stats
+
     class_stats = {
         'vanguard': {
             'Attack': 23,
@@ -311,6 +313,9 @@ def class_selection():
         if key != 'colour':
             battle_stats[key.lower()] = value
 
+
+# This displays the player's class along with their stats
+
     print()
     slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
 
@@ -340,7 +345,7 @@ def class_selection():
     return choice, player_stats_colour, battle_stats
 
 
-# Training Arc
+# Introduction to training
 
 def training(choice, class_stats):
     time.sleep(0.5)
@@ -460,11 +465,12 @@ choice, player_stats_colour, battle_stats = class_selection()
 colour = player_stats_colour['colour']
 training(choice, player_stats_colour)
 
+# Practice battle training, basic mechanics like attack / defend
 
 def practice_dummy(player_class, battle_stats):
     print()
     print()
-    narrator('Ready to test your skills, we will start your training.')
+    narrator('Get ready to test your skills, we are starting your training.')
 
     dummy_health = 50
     player_health = battle_stats['health']
@@ -482,49 +488,51 @@ def practice_dummy(player_class, battle_stats):
             dummy_health -= damage
             if dummy_health < 0:
                 dummy_health = 0
+
             slow_print(f'You strike the dummy with all your strength dealing {Fore.LIGHTRED_EX}{damage} damage!')
-            slow_print(f'The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health} health remaining!')
+            slow_print(f'{Fore.RESET}The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health} health remaining!')
+
+
+            if dummy_health <= 0:
+                slow_print('The dummy has been obliterated!')
+                eldric('Well done, just as I would have expected from you.')
+                eldric('You now know basics of battle.')
+                break
 
 
         elif action == 'defend':
-            defense = battle_stats['defend']
-            slow_print(f'You have equipped {defense} health protection shield')
-            slow_print('As you wait for an attack you realise,')
-            slow_print('The dummy is unable to attack.')
+            defense = battle_stats['defense']
+            dummy_health = 50
+            slow_print(f'You use the defensive shield that saves you {defense} health')
+            slow_print('After waiting and expecting an attack, nothing strikes.')
+            eldric('The dummy is unable to attack,')
+            eldric(f'Attack! a {player_class.capitalize()} never quivers, now strike {name}!')
 
 
-        input('Will you ATTACK or DEFEND?')
+            defend_to_attack = input('Will you ATTACK now?').strip().lower()
 
-        if action == 'attack':
-            if dummy_health < 0:
-                dummy_health = 0
-                slow_print(f'You have attacked the dummy for {Fore.LIGHTRED_EX}{damage} health! ')
-                slow_print(f'The dummy has been obliterated!')
-                eldric('Well done, just as I would have expected from you')
-                eldric('you now know basics of how to attack and defend')
-
-        if dummy_health > 0:
-            input('Are you going to ATTACK or DEFEND?')
-            if action == 'attack':
-                slow_print(f'You have dealt {damage} damage, the dummy has been obliterated!')
-                eldric('Well done, just as I would have expected from you')
-                eldric('At least now you know basics of how to attack and defend')
-            break
-
-        elif action == 'defend':
-            narrator('You go into a defensive stance, ready for anything to strike you, but you stay fearless.')
-            narrator('After waiting expecting an attack, nothing strikes.')
-
-            eldric(f'Attack! a {player_class.capitalize()} never quivers')
-            eldric(f'The dummy is only {dummy_health}, now strike!, go {name}!')
-            input('Click Attack')
-            continue
-
-        else:
-            slow_print('That is not a valid move, please try again.')
-            continue
+            if defend_to_attack == 'attack':
+                damage = battle_stats['attack']
+                dummy_health -= damage
+                if dummy_health < 0:
+                    dummy_health = 0
+                    slow_print(f'You finally swing, with all your might for {Fore.LIGHTRED_EX}{damage} damage!')
+                    slow_print(f'{Fore.RESET}The dummy has {Fore.LIGHTGREEN_EX} {dummy_health} health remaining!')
 
 
+            if dummy_health <= 0:
+                slow_print('The dummy has been collapsed into fragments!')
+                eldric('Well done, just as I would have expected from you.')
+                eldric('You have learned that hesitation does not bring anything to battle')
+                break
+
+            else:
+                slow_print('You hesitate yet again, Eldric shakes his head.')
+                eldric('Fear is your only enemy, try again.')
+
+
+
+eldric('Well done, now its time to get more serious...')
 
 
 practice_dummy(choice, battle_stats)
