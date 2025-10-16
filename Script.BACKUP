@@ -1,0 +1,556 @@
+
+from colorama import Fore
+from colorama import init
+
+init()
+
+# Character Dialogue Functions
+
+def narrator(text, delay = 0.001):
+    print(Fore.LIGHTWHITE_EX, end ='')
+    slow_text(f'Narrator: {text}', delay)
+    time.sleep(delay)
+    print(Fore.RESET)
+    print()
+
+def eldric(text, delay = 0.001):
+    print(Fore.LIGHTYELLOW_EX, end ='')
+    slow_text(f'Eldric: {text}', delay)
+    time.sleep(delay)
+    print(Fore.RESET)
+    print()
+
+def player(text, delay = 0.001):
+    print(Fore.LIGHTCYAN_EX, end ='')
+    slow_text(f'Player: {text}', delay)
+    time.sleep(delay)
+    print(Fore.RESET)
+    print()
+
+
+# - Intro Loading Screen -
+def loading_screen():
+    slow_print('Loading...', delay=0.5)
+
+    slow_print('25%...', delay=0.4)
+
+    slow_print('50%...', delay=0.3)
+
+    slow_print('75%...', delay=0.2)
+
+    slow_print('100%...', delay=0)
+
+    slow_print('Initializing...', )
+
+    print()
+    slow_print('Welcome player to the...')
+
+    print(Fore.LIGHTYELLOW_EX + """
+
+    ███████╗ ██████╗██╗  ██╗ ██████╗ ███████╗███████╗     ██████╗ ███████╗
+    ██╔════╝██╔════╝██║  ██║██╔═══██╗██╔════╝██╔════╝    ██╔═══██╗██╔════╝
+    █████╗  ██║     ███████║██║   ██║█████╗  ███████╗    ██║   ██║█████╗
+    ██╔══╝  ██║     ██╔══██║██║   ██║██╔══╝  ╚════██║    ██║   ██║██╔══╝
+    ███████╗╚██████╗██║  ██║╚██████╔╝███████╗███████║    ╚██████╔╝██║
+    ╚══════╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝     ╚═════╝ ╚═╝
+
+                        ████████╗██╗  ██╗███████╗
+                        ╚══██╔══╝██║  ██║██╔════╝
+                           ██║   ███████║█████╗
+                           ██║   ██╔══██║██╔══╝
+                           ██║   ██║  ██║███████╗
+                           ╚═╝   ╚═╝  ╚═╝╚══════╝
+
+    ███████╗ ██████╗ ██████╗  ██████╗  ██████╗ ████████╗████████╗███████╗███╗   ██╗
+    ██╔════╝██╔═══██╗██╔══██╗██╔════╝ ██╔═══██╗╚══██╔══╝╚══██╔══╝██╔════╝████╗  ██║
+    █████╗  ██║   ██║██████╔╝██║  ███╗██║   ██║   ██║      ██║   █████╗  ██╔██╗ ██║
+    ██╔══╝  ██║   ██║██╔══██╗██║   ██║██║   ██║   ██║      ██║   ██╔══╝  ██║╚██╗██║
+    ██║     ╚██████╔╝██║  ██║╚██████╔╝╚██████╔╝   ██║      ██║   ███████╗██║ ╚████║
+    ╚═╝      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═══╝
+    """)
+
+    print(Fore.RESET)
+
+    print()
+    input('Press ENTER to continue...')
+    time.sleep(1)
+    print()
+
+
+loading_screen()
+
+
+# Introduction To The Storyline
+
+def introduction():
+    print(Fore.LIGHTBLUE_EX)
+
+    slow_text(f'''Welcome to Asgiaburn,
+
+A land that was once flourished with peace and prosperity,
+
+Where communities gathered, where villages thrived in celebration.
+
+Beneath golden skies and sparkling stars, 
+
+A land once joyous, turned to''')
+    print()
+
+    print()
+    slow_print(f'{Fore.LIGHTRED_EX}ruin.')
+
+    slow_print('We have been defeated...')
+
+    slow_print('our armies shattered,')
+
+    slow_print('our cities burned.')
+
+    slow_print('The Shadow Kings guards hunting us down like heartless creatures.')
+
+    slow_print('Families torn apart... each day we fall further into despair.')
+
+    slow_print('Our lives now lie in ruins, and we will soon become nothing but forgotten echoes in the dark.')
+
+    slow_print('But there is', delay=0.2)
+
+    slow_print(f'{Fore.LIGHTMAGENTA_EX}hope...')
+
+    slow_print('one soul that could change ', delay=0.2)
+
+    slow_print('everything.')
+
+    slow_print(Fore.LIGHTMAGENTA_EX + 'Some could say he is labelled the')
+
+    slow_print(f'{Fore.LIGHTYELLOW_EX}Radiant')
+
+    slow_print(f'{Fore.LIGHTMAGENTA_EX}someone with the willpower and heart to defy the Shadow King himself.')
+
+    slow_print('You are the only one left amongst the rubble')
+
+    slow_print('The only one that can fight...')
+
+    time.sleep(1)
+
+
+introduction()
+
+
+def ask_help():
+    while True:
+        user_input = input(
+
+            f"Will you help us...{Fore.LIGHTYELLOW_EX} warrior?{Fore.RESET} (yes/no): "
+        ).strip().lower()
+
+        print(Fore.BLUE)
+        if user_input == 'yes' or user_input == 'y':
+            print()
+            slow_print('Thank you so much for helping us warrior')
+
+            slow_print('we now have a glimpse of hope!')
+            print()
+            break
+
+        elif user_input == 'no' or user_input == 'n':
+            slow_print(f'{Fore.RED}Then im afraid our world is doomed... farewell,')
+
+            slow_text(f'{Fore.RESET}Please exit the game.')
+            print()
+            time.sleep(1)
+
+            print()
+            input('Press ENTER to exit...')
+            print()
+            sys.exit(0)
+
+
+
+        else:
+            print()
+            slow_print('Sorry I dont understand, please try again.')
+
+
+print()
+time.sleep(0.5)
+print()
+
+ask_help()
+
+
+def get_player_name():
+    global name
+    name = input(f'{Fore.RESET}Please enter your name: ')
+
+    print()
+    name.strip()
+    print()
+    slow_print(
+        f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+
+
+get_player_name()
+
+
+# Class Selection
+
+def class_selection():
+    print()
+    slow_print(f'{Fore.RESET}Before we begin training {name}, choose your class!')
+
+    slow_print(
+        f'{Fore.RESET}1. {Fore.LIGHTCYAN_EX}Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
+
+    slow_print(
+        f'{Fore.RESET}2. {Fore.LIGHTMAGENTA_EX}Wraith - Magic user, Ranged attack, low-medium damage, medium-high defense')
+
+    slow_print(
+        f'{Fore.RESET}3. {Fore.LIGHTYELLOW_EX}Phantom - Speedy attacker, Stealthy, Medium damage, Medium-low defense',
+        delay=2)
+
+    slow_print(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN ACCESS ONLY!,')
+
+    slow_print(f' ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
+
+
+# Dictionary for class selection stats
+
+    class_stats = {
+        'vanguard': {
+            'Attack': 38,
+            'Health': 150,
+            'Defense': 50,
+            'Speed': 20,
+            'Magic': 0,
+            'colour': Fore.LIGHTCYAN_EX
+        },
+        'wraith': {
+            'Attack': 27,
+            'Health': 120,
+            'Defense': 70,
+            'Speed': 30,
+            'Magic': 40,
+            'colour': Fore.LIGHTMAGENTA_EX
+        },
+        'phantom': {
+            'Attack': 32,
+            'Health': 130,
+            'Defense': 30,
+            'Speed': 50,
+            'Magic': 10,
+            'colour': Fore.LIGHTYELLOW_EX
+        },
+        'radiant': {
+            'Attack': 52,
+            'Health': 200,
+            'Defense': 100,
+            'Speed': 70,
+            'Magic': 40,
+            'colour': Fore.LIGHTYELLOW_EX
+            }
+
+    }
+
+    while True:
+        print()
+        choice = input(f'{Fore.RESET}Enter your choice: ').strip().lower()
+        print()
+
+        if choice == '1' or choice == 'vanguard':
+            choice = 'vanguard'
+            slow_print(
+                f'{Fore.LIGHTCYAN_EX}So you have chosen the path of Vanguard, you arent afraid of being on the front lines. A trait of a brave fighter. An excellent choice {name}!')
+            break
+
+        elif choice == '2' or choice == 'wraith':
+            choice = 'wraith'
+            slow_print(
+                f'{Fore.LIGHTMAGENTA_EX}So you have chosen the path of Wraith, a range based attacker. A wise decision {name}! I see you value intellect over strength.{Fore.RESET}')
+            break
+
+        elif choice == '3' or choice == 'phantom':
+            choice = 'phantom'
+            slow_print(
+                f'{Fore.LIGHTYELLOW_EX}So you have chosen the path of Phantom, a great choice {name}! a sneaky aggressor I see eh? {Fore.RESET}')
+            break
+
+        elif choice == '4':
+            slow_print(f'{Fore.LIGHTWHITE_EX}No mortal dares try to label the forbidden class by a number.')
+            slow_print(f'Indeed, it has a {Fore.LIGHTYELLOW_EX}name...')
+            continue
+
+        elif choice == '5':
+            slow_print(f'{Fore.LIGHTWHITE_EX}Do not insult the forbidden class {Fore.LIGHTWHITE_EX}by applying a number to it.')
+            slow_print(f'{Fore.LIGHTWHITE_EX}The {Fore.LIGHTYELLOW_EX}title {Fore.LIGHTWHITE_EX}lies in past text...')
+            continue
+
+
+        elif choice == 'warrior' or choice == 'the warrior':
+            choice = 'warrior'
+            slow_print(f'{Fore.LIGHTYELLOW_EX}You are close to unlocking the forbidden class, look back...  ')
+            slow_print('There was once a title greater than warrior - one born of light and radiance.')
+            continue
+
+        elif choice == 'radiant' or choice == 'the radiant':
+            choice = 'radiant'
+            slow_print(f'{Fore.LIGHTWHITE_EX}So, the light of Eldric burns once more... I see.', delay=1.5)
+            slow_print(f'{Fore.RESET}ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
+            break
+
+        else:
+            print()
+            slow_print('That class doesnt exist, try again.')
+            print()
+            continue
+
+    player_stats_colour = class_stats[choice]
+    colour = player_stats_colour['colour']
+
+    battle_stats = {}
+    for key, value in player_stats_colour.items():
+        if key != 'colour':
+            battle_stats[key.lower()] = value
+
+
+# This displays the player's class along with their stats
+
+    print()
+    slow_text(f'{Fore.LIGHTCYAN_EX}--- PLAYER CLASS ---')
+
+    slow_text(f'{Fore.LIGHTYELLOW_EX}\nClass: {colour}{choice.capitalize()}{Fore.RESET}')
+    time.sleep(0.2)
+
+    for stat, value in player_stats_colour.items():
+        if stat == 'colour':
+            continue
+
+        colour_prefix = ''
+        if stat == 'Attack': colour_prefix = Fore.LIGHTRED_EX
+        elif stat == 'Health': colour_prefix = Fore.LIGHTGREEN_EX
+        elif stat == 'Defense': colour_prefix = Fore.LIGHTBLUE_EX
+        elif stat == 'Speed': colour_prefix = Fore.LIGHTYELLOW_EX
+        elif stat == 'Magic': colour_prefix = Fore.LIGHTMAGENTA_EX
+
+        slow_text(f'\n{colour_prefix}{stat.capitalize()}: {value}{Fore.RESET}')
+        time.sleep(0.2)
+
+    print()
+    slow_print(f'{Fore.LIGHTCYAN_EX}---------------------{Fore.RESET}')
+
+    print()
+    print()
+
+    return choice, player_stats_colour, battle_stats
+
+
+# Introduction to training
+
+def training(choice, class_stats):
+    time.sleep(0.5)
+
+    slow_print(f'{Fore.LIGHTCYAN_EX}Now that you have chosen your class,')
+
+    slow_print(f'Listen closely {name}...')
+
+    slow_print(f'You are the only one capable {name} to be able to reclaim the light taken from us,')
+
+    slow_print('but beware... this will not be an easy journey,')
+
+    slow_print('You will need serious training...')
+
+    slow_print(f'Follow me {name} to the training grounds...', delay=1.5)
+
+    print()
+    narrator(f'{Fore.LIGHTBLUE_EX}~ Gusts of wind howl as you step into the courtyard... ~')
+
+    narrator('An ancient warrior awaits you... ')
+
+    narrator('His name, Eldric...')
+
+    print(f'''{Fore.LIGHTGREEN_EX}                                                                                                                                                                                                        
+                     ▒▒                                                                                 
+                    ▒▒░▒                                                                                
+                    ▒▒░▒▓                                                                               
+                   ▒▒░░▒▒                            ▓▓▓▓▒▓▓▓█                                          
+                   ▒▒▒░░▒█                        ▓▒▒▒▒▒▒▒▒▒▒▓▓▓                                        
+                   ▒▒░░░▒▓                       ▓▒░▒▒▒▒▒▒▒▓▒▒▒▓▒▓                                      
+                   ▒▒░░░▒▓ █                    ▓▒▓▒▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓                                     
+                   ▒▒░░░▒▒▓▓                    ▓▓░░░▒▒▒▒▒▒▓▓▓▒▓▓▓▓▓█         ██▒▓▓▓                    
+                ██ ▒▒░░░▒▓▓█                    ▓▓▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓██     █▓█   █                      
+               ▓█▓▓▒▒▒▒▒▒▓▓██                  ▓▓▓▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓█▓█▓▓▓█▓▓██                           
+                 █▒░▒▒▒▒▒ ▓▓█                 ██▓▓▓▓█▓▒▓█▒▓▓▒▓▓▓█▓█▓▓▓▓▓▓                               
+                 █▓▓▒▒▒▓▓▓▓██                 ██▓▓▒▒▒▒▒▓▒▒▒▒▓█▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓█         ██            
+                ██ ██▓█▓▓██                   ▓▓▓▒█▒▓▒▒▓▓▒▒█▓▓▒▓█▓▓▓▓▓▓▓▓▓▓▓  ██▓▓█                     
+                  ████▓███ ▓██               █▓▒▓▒▒▓░▒▓▒▒▒▓▓▓▒▒▒▓█▓▓▓▓█▓▓▓▓▒▓▓    ▓▓▒▓                  
+                   █▓▓████▓██                ▓█▓▒▒▒▒█▓▓▓▓▓▒▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ █▓▓▓                 
+                  █▓███████                  ▓█▓▓▒▒▓▓▒░▒▓▓▓▓▓▒▓▓▓▓▓▓▓█▓████▓▒▓▓▓▒▓▓▓ █   ▓█             
+                   ███████                 ▓▓▓▓▓▒▒▓▒▒░░░▒▒▒▓▓▓▒▓▓▓▓▓▓▓█▓▓▓▓▓▓▓██▓▓▒▒▓▓████▓▓            
+                     ████▓█              █▒▓▓▓▓█▒▒▒▒▒░░░▒▒▒▓▓▒▒▓▓▓█▓▓█▓▓▒▒██▓▓█▓▓▓▓▓▓▓▓████▓▓▓▓▓        
+                     ███▓█▓█            ▓▓▓▓▓▓█▓▒▒▒░▒▒░▒▒▒▒▓▒▒▓▓▓██▓█▓▓▓█▓▒▒▓▓▓▓██▓▓▓▓▓▓▓▓    █▓█       
+                     █████            █▓▓▓▓▓▓██▓▒▒▒▒░▒▒▒▒▒▒▓▒▓▓▓▓█▓▓█▓██▓▓▒▒▒▓▓▓▓▓██▓▓▓▓▓▓▓▓▓█ █        
+                     ███▓█           ▓▒▓▓▓█▓▓█▓█▒▓▒▒▒▒▒▒▒▒▒▓▒▓▓▒▓▓▓▓██▓▓▓▓▓▓▒▓▒▒▒▓▓████▓█▓▓▓▓▓▓▓▓▓▓█    
+                     █▓▓▓▓█           ▓▓▓▓▓▓██▓▓▒▒▒▒░▒▒▒▓▒▒▓▓▓▓▓██▒██▓▓▓▓▓▓▓▒▓███▓▓██▓▓▓▓▓▓███  █ █▓▓▓  
+                      ▓█▓▓            ██▓██▓█▓▓▓▓▒▒▒▒▒▒▓▒▒▓▓▓▓▓██▓▓███▓▓▓▓▓██▓▓▒▓▓▓▓▓█▓▓▓▓▓▒▓▓▓█        
+                      █▓▓▓▓          █▒▓▓██▓██▓██▓▓▒▒▒▓▒▒▒▓▓█▓▓██▓▓████████▓▓▓▓███▓▓▓█▓▓▓▓▓▓▓▓▒▒▒▓█     
+                      ████           █▓███▓▓██▓██▓▓▓▒▓▓▒▓▓▓█▓▓▓█▓▓████████████▓▓▒▒▒▓▓▓▓▓▓█▓▓▓▓████▓█    
+                      ████          █▓▓▓██▓▓██▓█▓██▓▓▓▒▓▓▓██▓▓███▓██▓████████▓▓▓▓▒▓███████▓▓▓▓▓         
+                      ███▓█         █▒▓▓██▓▒▓▓▓█▓▓██▓▓▓▓████▓███▓▒▓████████▓█▓▓██▓▓▓▓▓▓█▓▓▓▓ █▓▓        
+                      █████         █▓▓███▓▓█▓██████▓▓███▓▓█▓██▓▓▓▓█████████▓▓█▓▓▓▒▒▓█████▓▓ ██         
+                     █▓▓▓█▓▓▒█      █▓▓██▓▓▓█▓▒▓█▒▒▓▓▓██▓▓▓▒▒██████▓█████████▓█████████████▓            
+                    ▓▒▒▓▓▓▒▓▓▓  █▓▓█▓▓███▓▓▓██▓█████▓███████████████████████████████████████            
+                   █▓▒▒▒▓▓██▓▓▓▓▒▒▓▓▓▓█▓████▓▒▓█████▓▒██████▓█▓█████████████████▓████████████           
+                   █▓▓▓▓▓▓▓████▓▓▓▓▓█▓█████▒▓▒▓▓██▒▒▒░▒▒▒▓▒▒░▒▒▓▒░▓▒▓▒▓▓░▓█ █▒▒▓░▒▓▓██▓▓▓▓███           
+                    ▓▒▒▒▓▓▓█▓████▓▓▓█▓████▓▓▓▒▓███▓▒░▒█▒▒▓▒▓▒▓▒▒▒▒▓▓█▓▒▓░▓ ▓░░▓▓░▒▓███▓█▓▓▓▓██          
+                    █▓▒▒▓▓▓█▓██████████████▓██▓███████████████████████████    ████████████████          
+                     █████████████████████▓███▓███▓▓▓▓▓█▓▓▓▓█▓▓▒██▓█▓▓▓██      ██████████████▓          
+                        ████████████████████▓▓▓▓▓▓▓▓▓█▓████████████████▓▓      ███████▓█████▓█          
+                        █▓██     ███████ █▓▓▓▓▓▓▓▓▓██████████████████████       ██████████████          
+                        █▓██             █▓▓▓▓▒▓▓▓▓▓▓▓▓██▓▓▓▓██████████▓██      ███████▓▒▓▓▓▒▒▓▓▓       
+                        █▓▓█             ▓███▓▓▓▓▓█▓▓▓▓██▓▓▓▓████████████       ███▓▒░░░░▒▒▓▓▓██        
+                        █▓▓█         █▓▓█▓▓▓▓██▓▓▓▓▓█▓██████████████████▓█      ▓▒░▒▒░░░▒▓▓█            
+                        ██▓█        ████▓███▓▓█████████▓███▓▓▓▓▓▓▓█████████    █▒▒░▒▒▒▒▒▒▒▒▓            
+                        ██▓█      ███▓█▓▓▓███▓▓▓███▓▓▓▓███████████▓▓█████▓▓█   █▒▒░▒░▒▒▒▒░▒▓█           
+                        ██▓▓    ██████▓▓████▓███████████▓██████▓██▓▓█▓█▓▓█▓▓   █▒▒░▒▒▒░▒▒▓▒▒▒▓          
+                        ██▓▓     ██▓█▓▓██▓▓█▓▓▓▓▓▓▓▓▓█▓▓▓███▓███▓█▓▓▓▓▓▓███▓▓█ ▓▒▓▓▒▒▓▓▒▒▓▓▒▒▓          
+                        ██▓█▓    ▓▓██▓██▓▒▓█▓▓▒▓▓▓▓▓▓▓▓▓▓███▓█▓██▓▓▓▓▓▓▓▓██▓▓▓▒▒▓▓▓▓▒▒▓▒▒▓▓▒▒▓█         
+                        ██▓██   █▓███▓▓▓▒▓██▓▓▓▓▓▓▓▓▓▓▓█████▓▓█▓██▓█▓▓▓▓█▓██▒▓▓█ █▓▒▒▓█▒▒▓▓▓▒▒▓         
+                        ██▓▓█   ████▓▓▓▒▓██▓▓▓▓▓▓▓▓▓███▓▓█▓██▒▒▓▓████▓▓▓▓████▓▓██▓▒▒▓█▓▒▒▓██▓▓█         
+                        ██▓▓█    ██▓▓▓▒████▓▓▓▓▓▓███▓▓█▓▓█████▓▒▓▓█▓▓█████████▓▓█▓▓█  ▓▓▓█   ██         
+                        ███▓█    █▓▓▒▓█████▓▒▓▓▓▓▓▓▓▓▓▓▓█▓█████▓▒▓▓█▓▓▓██████████                       
+                         ██▓█    █▓▒▓██████▓█▒▓▓▓▓▓▓▓▓▓██▓▓█████▓▓▒▓██▓▓▓██▓███▒█                       
+                         ███▓   █▓▒████▓▓██▓██▓▓▓▓▓▓███▓▓▓████████▓▓▒▓█▓▓▓▓██▓█▓▒█                      
+                         ████  █▓▓█████▓███▓▓▓▓█████▓▓▓▓▓▓▓█████████▓▓▓▓█▓▓▓██▓▓▓▓█                     
+                         ████ █▓▓█████▓▓███▓▓▓▓▓██▓▓▓▓▓▓█▓██████▓█████▓▓▓▓█▓▓▓██▓▒▓█ ''')
+
+    print()
+    narrator(f'Eldric The First {Fore.LIGHTYELLOW_EX}Radiant')
+
+    narrator(f'A man that once defied and banished the Shadow King himself centuries ago...')
+
+    if choice == 'radiant':
+        eldric('So you are the one...')
+        eldric('My successor')
+        eldric('The next radiant')
+        eldric('I have been awaiting your return, for many years...')
+
+        player('My return? What do you mean, How could you have known about me?')
+
+        eldric('Our souls are bound by light itself.')
+        eldric('As soon as you awakened your radiance,')
+        eldric('I felt the surge of power, it called to me.')
+
+        eldric(f'You and I are connected {name},')
+        eldric('We are bound by the same flame that once banished the Shadow King himself.')
+
+        player('So, I was chosen...?')
+
+        eldric('You werent chosen, rather awakened.')
+        eldric('the light found you now because Asgiaburn needs you, just as the world once needed me...')
+
+        eldric('Now, enough talk, lets see if the radiant within you can handle a fragment of what lies ahead.')
+        eldric('Prepare yourself, Radiant. For your first trial will now begin!')
+
+    else:
+        eldric(f'A {choice.capitalize()}? Hm not many of your kind reach this place.')
+        eldric('I see the resolve in your eyes, one that will never give up no matter the challenge.')
+        eldric('I once trained warriors like you - fierce and loyal')
+        eldric('Even without the radiant’s gift, you are able to rival them')
+
+        eldric('Now, enough talk let us begin your training.')
+
+
+choice, player_stats_colour, battle_stats = class_selection()
+colour = player_stats_colour['colour']
+training(choice, player_stats_colour)
+
+# Practice battle training, basic mechanics like attack / defend
+
+def practice_dummy(player_class, battle_stats):
+    print()
+    print()
+    narrator('Get ready to test your skills, we are starting your training.')
+
+    dummy_health = 100
+    player_health = battle_stats['health']
+
+    narrator(f'Go on {name} let us see if we can put Asgiaburn`s future in your hands')
+    print()
+
+    first_round = True
+
+    while dummy_health > 0:
+        print()
+        if first_round:
+            action = input(f'A wooden dummy appears before you... What do you do, {colour}{player_class.capitalize()}? {Fore.RESET}ATTACK or DEFEND? ').strip().lower()
+            print()
+            first_round = False
+        else:
+            action = input(f'Now, will you ATTACK or DEFEND? ').strip().lower()
+            print()
+
+
+        def attack_func():
+            nonlocal dummy_health
+            damage = battle_stats['attack']
+            dummy_health -= damage
+            if dummy_health < 0:
+                dummy_health = 0
+            return damage # This allows for the damage to be used
+
+
+        if action == 'attack':
+            damage = attack_func()
+            slow_print(f'You strike the dummy with all your strength dealing {Fore.LIGHTRED_EX}{damage} damage!')
+            slow_print(f'{Fore.RESET}The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health} health remaining!{Fore.RESET}')
+
+            if dummy_health <= 0:
+                slow_print('The dummy has been obliterated!')
+                print()
+                eldric(f'Well done {name}, just as I would have expected from you.')
+                eldric('You now know the basics of battle.')
+                break
+
+
+        elif action == 'defend':
+            defense = battle_stats['defense']
+            slow_print(f'You use the defensive shield that saves you {defense} health')
+            slow_print('After waiting and expecting an attack, nothing strikes.')
+            print()
+            eldric('The dummy is unable to attack,')
+            eldric(f'Attack! a {colour}{player_class.capitalize()}{Fore.LIGHTYELLOW_EX} must be offensive, now strike {name}!{Fore.RESET}')
+
+        while True:
+            defend_to_attack = input('What will you do now? ').strip().lower()
+            if defend_to_attack in ('attack', 'defend'):
+                break
+
+
+            if defend_to_attack == 'attack':
+                damage = battle_stats['attack']
+                dummy_health -= damage
+                if dummy_health < 0:
+                    dummy_health = 0
+                    slow_print(f'You finally swing, with all your might for {Fore.LIGHTRED_EX}{damage} damage!')
+                    slow_print(f'{Fore.RESET}The dummy has{Fore.LIGHTGREEN_EX}{dummy_health} health remaining!')
+
+
+            if dummy_health <= 0:
+                slow_print('The dummy has been collapsed into fragments!')
+                eldric(f'Well done {name}, just as I would have expected from you.')
+                eldric('You have learned that hesitation does not bring anything to battle')
+                break
+
+
+            elif defend_to_attack == 'defend':
+                slow_print('You hesitate yet again, ELdric shakes his head.')
+                eldric('Fear is your only enemy, try again.')
+
+            else:
+                slow_print('Invalid choice, try again.')
+
+
+
+eldric('Well done, now its time to get more serious...')
+
+
+practice_dummy(choice, battle_stats)
+
