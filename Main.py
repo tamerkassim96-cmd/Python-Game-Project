@@ -219,31 +219,31 @@ def class_selection():
 
     class_stats = {
         'vanguard': {
-            'Attack': 23,
+            'Attack': 38,
             'Health': 150,
-            'Defense': 10,
-            'Speed': 8,
+            'Defense': 50,
+            'Speed': 20,
             'Magic': 0,
             'colour': Fore.LIGHTCYAN_EX
         },
         'wraith': {
-            'Attack': 17,
+            'Attack': 27,
             'Health': 120,
-            'Defense': 10,
-            'Speed': 8,
-            'Magic': 20,
+            'Defense': 70,
+            'Speed': 30,
+            'Magic': 40,
             'colour': Fore.LIGHTMAGENTA_EX
         },
         'phantom': {
-            'Attack': 20,
+            'Attack': 32,
             'Health': 130,
-            'Defense': 10,
-            'Speed': 15,
-            'Magic': 5,
+            'Defense': 30,
+            'Speed': 50,
+            'Magic': 10,
             'colour': Fore.LIGHTYELLOW_EX
         },
         'radiant': {
-            'Attack': 48,
+            'Attack': 52,
             'Health': 200,
             'Defense': 100,
             'Speed': 70,
@@ -472,15 +472,21 @@ def practice_dummy(player_class, battle_stats):
     print()
     narrator('Get ready to test your skills, we are starting your training.')
 
-    dummy_health = 50
+    dummy_health = 100
     player_health = battle_stats['health']
 
     narrator(f'Go on {name} let us see if we can put Asgiaburn`s future in your hands')
     print()
 
+    first_round = True
+
     while dummy_health > 0:
         print()
-        action = input(f'A wooden dummy appears before you... What do you do, {Fore.LIGHTYELLOW_EX}{player_class.capitalize()}? {Fore.RESET}ATTACK or DEFEND? ').strip().lower()
+        if first_round:
+            action = input(f'A wooden dummy appears before you... What do you do, {colour}{player_class.capitalize()}? {Fore.RESET}ATTACK or DEFEND? ').strip().lower()
+            first_round = False
+        else:
+            action = input(f'Now, will you ATTACK or DEFEND? ').strip().lower()
         print()
 
         if action == 'attack':
@@ -494,7 +500,7 @@ def practice_dummy(player_class, battle_stats):
 
 
             if dummy_health <= 0:
-                slow_print('The dummy has been obliterated!')
+                narrator('The dummy has been obliterated!')
                 eldric('Well done, just as I would have expected from you.')
                 eldric('You now know basics of battle.')
                 break
@@ -502,7 +508,6 @@ def practice_dummy(player_class, battle_stats):
 
         elif action == 'defend':
             defense = battle_stats['defense']
-            dummy_health = 50
             slow_print(f'You use the defensive shield that saves you {defense} health')
             slow_print('After waiting and expecting an attack, nothing strikes.')
             eldric('The dummy is unable to attack,')
@@ -519,6 +524,11 @@ def practice_dummy(player_class, battle_stats):
                     slow_print(f'You finally swing, with all your might for {Fore.LIGHTRED_EX}{damage} damage!')
                     slow_print(f'{Fore.RESET}The dummy has {Fore.LIGHTGREEN_EX} {dummy_health} health remaining!')
 
+            elif defend_to_attack == 'defend':
+                defense = battle_stats['defense']
+                slow_print('You hesitate yet again, Eldric shakes his head.')
+                slow_print('Fear is your only enemy, try again.')
+
 
             if dummy_health <= 0:
                 slow_print('The dummy has been collapsed into fragments!')
@@ -527,9 +537,8 @@ def practice_dummy(player_class, battle_stats):
                 break
 
             else:
-                slow_print('You hesitate yet again, Eldric shakes his head.')
-                eldric('Fear is your only enemy, try again.')
-
+                slow_print('Invalid input, please try again')
+                continue
 
 
 eldric('Well done, now its time to get more serious...')
