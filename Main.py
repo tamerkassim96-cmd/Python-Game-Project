@@ -90,11 +90,11 @@ def introduction():
 
     slow_text(f'''Welcome to Asgiaburn,
 
-A land that was once flourished with peace and prosperity,
+A land that was once flourished with peace and prosperity.
 
 Where communities gathered, where villages thrived in celebration.
 
-Beneath golden skies and sparkling stars, 
+Beneath the endless skies and sparkling stars, 
 
 A land once joyous, turned to''')
     print()
@@ -138,15 +138,15 @@ A land once joyous, turned to''')
 introduction()
 
 
-def ask_help():
+def ask_for_help():
     while True:
-        user_input = input(
+        ask_help = input(
 
             f"Will you help us...{Fore.LIGHTYELLOW_EX} warrior?{Fore.RESET} (yes/no): "
         ).strip().lower()
 
         print(Fore.BLUE)
-        if user_input == 'yes' or user_input == 'y':
+        if ask_help == 'yes' or ask_help == 'y':
             print()
             slow_print('Thank you so much for helping us warrior')
 
@@ -154,7 +154,7 @@ def ask_help():
             print()
             break
 
-        elif user_input == 'no' or user_input == 'n':
+        elif ask_help == 'no' or ask_help == 'n':
             slow_print(f'{Fore.RED}Then im afraid our world is doomed... farewell,')
 
             slow_text(f'{Fore.RESET}Please exit the game.')
@@ -177,7 +177,7 @@ print()
 time.sleep(0.5)
 print()
 
-ask_help()
+ask_for_help()
 
 
 def get_player_name():
@@ -198,7 +198,7 @@ get_player_name()
 
 def class_selection():
     print()
-    slow_print(f'{Fore.RESET}Before we begin training {name}, choose your class!')
+    narrator(f'{Fore.RESET}Before we begin training {name}, choose your class!')
 
     slow_print(
         f'{Fore.RESET}1. {Fore.LIGHTCYAN_EX}Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
@@ -219,7 +219,7 @@ def class_selection():
 
     class_stats = {
         'vanguard': {
-            'Attack': 38,
+            'Attack': 18,
             'Health': 150,
             'Defense': 50,
             'Speed': 20,
@@ -352,15 +352,15 @@ def training(choice, class_stats):
 
     slow_print(f'{Fore.LIGHTCYAN_EX}Now that you have chosen your class,')
 
-    slow_print(f'Listen closely {name}...')
+    narrator(f'Listen closely {name}...')
 
-    slow_print(f'You are the only one capable {name} to be able to reclaim the light taken from us,')
+    narrator(f'You are the only one capable {name} to be able to reclaim the light taken from us,')
 
-    slow_print('but beware... this will not be an easy journey,')
+    narrator('but beware... this will not be an easy journey,')
 
-    slow_print('You will need serious training...')
+    narrator('You will need serious training...')
 
-    slow_print(f'Follow me {name} to the training grounds...', delay=1.5)
+    narrator(f'Follow me {name} to the training grounds, I have someone I want you to meet..',)
 
     print()
     narrator(f'{Fore.LIGHTBLUE_EX}~ Gusts of wind howl as you step into the courtyard... ~')
@@ -468,25 +468,22 @@ training(choice, player_stats_colour)
 # Practice battle training, basic mechanics like attack / defend
 
 def practice_dummy(player_class, battle_stats):
-    print()
-    print()
+    print('\n\n')
     narrator('Get ready to test your skills, we are starting your training.')
 
     dummy_health = 100
-    player_health = battle_stats['health']
 
-    narrator(f'Go on {name} let us see if we can put Asgiaburn`s future in your hands')
-    print()
+    narrator(f'Go on {name} let us see if we can put Asgiaburn`s future in your hands.\n')
 
     first_round = True
 
     while dummy_health > 0:
-        print()
         if first_round:
             action = input(f'A wooden dummy appears before you... What do you do, {colour}{player_class.capitalize()}? {Fore.RESET}ATTACK or DEFEND? ').strip().lower()
             first_round = False
         else:
-            action = input(f'Now, will you ATTACK or DEFEND? ').strip().lower()
+            action = input('\nNow, will you ATTACK or DEFEND? ').strip().lower()
+
         print()
 
         if action == 'attack':
@@ -495,50 +492,60 @@ def practice_dummy(player_class, battle_stats):
             if dummy_health < 0:
                 dummy_health = 0
 
-            slow_print(f'You strike the dummy with all your strength dealing {Fore.LIGHTRED_EX}{damage} damage!')
-            slow_print(f'{Fore.RESET}The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health} health remaining!')
+            narrator(f'You strike the dummy with all your strength dealing {Fore.LIGHTRED_EX}{damage} damage!')
+            narrator(f'The dummy has now got {Fore.LIGHTGREEN_EX}{dummy_health} health remaining!{Fore.RESET}')
 
 
             if dummy_health <= 0:
-                narrator('The dummy has been obliterated!')
-                eldric('Well done, just as I would have expected from you.')
-                eldric('You now know basics of battle.')
+                narrator('\nThe dummy has been obliterated!')
+                eldric(f'\nWell done, just as I would have expected from a {colour}{player_class.capitalize()}.')
+                eldric('\nYou now know basics of battle.')
                 break
 
 
         elif action == 'defend':
             defense = battle_stats['defense']
-            slow_print(f'You use the defensive shield that saves you {defense} health')
-            slow_print('After waiting and expecting an attack, nothing strikes.')
-            eldric('The dummy is unable to attack,')
-            eldric(f'Attack! a {player_class.capitalize()} never quivers, now strike {name}!')
+            narrator(f'You use the defensive shield that saves you {defense} health')
+            narrator('After waiting and expecting an attack, nothing strikes. The dummy can not...')
+            eldric('The dummy is unable to attack,', delay=0.02)
+            eldric(f'Attack {name}! a {player_class.capitalize()} never quivers, now strike!')
+
+        else:
+            slow_print('Invalid action, please try ATTACK or DEFEND.\n')
+            continue
 
 
-            defend_to_attack = input('Will you ATTACK now?').strip().lower()
+        while True:
+            defend_to_attack = input('\nWill you ATTACK or DEFEND? ').strip().lower()
 
             if defend_to_attack == 'attack':
                 damage = battle_stats['attack']
                 dummy_health -= damage
                 if dummy_health < 0:
                     dummy_health = 0
-                    slow_print(f'You finally swing, with all your might for {Fore.LIGHTRED_EX}{damage} damage!')
-                    slow_print(f'{Fore.RESET}The dummy has {Fore.LIGHTGREEN_EX} {dummy_health} health remaining!')
 
-            elif defend_to_attack == 'defend':
-                defense = battle_stats['defense']
-                slow_print('You hesitate yet again, Eldric shakes his head.')
-                slow_print('Fear is your only enemy, try again.')
-
-
-            if dummy_health <= 0:
-                slow_print('The dummy has been collapsed into fragments!')
-                eldric('Well done, just as I would have expected from you.')
-                eldric('You have learned that hesitation does not bring anything to battle')
+                print()
+                narrator(f'You swing, with all your might for {Fore.LIGHTRED_EX}{damage} damage!')
+                narrator(f'The dummy has{Fore.LIGHTGREEN_EX} {dummy_health} health remaining!{Fore.RESET}')
                 break
 
-            else:
-                slow_print('Invalid input, please try again')
+            elif defend_to_attack == 'defend':
+                narrator('You hesitate, Eldric shakes his head.')
+                eldric('Fear is your only enemy, try again.')
                 continue
+
+            else:
+                slow_print('Invalid action, try ATTACK or DEFEND.\n')
+                continue
+
+
+        if dummy_health <= 0:
+            narrator('The dummy has collapsed into fragments!')
+            print()
+            eldric(f'Well done, just as I would have expected from a {colour}{player_class.capitalize()}.')
+            eldric('You have learned that hesitation does not bring anything to battle\n')
+            break
+
 
 
 eldric('Well done, now its time to get more serious...')
