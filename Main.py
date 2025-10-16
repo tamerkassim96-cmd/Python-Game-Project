@@ -33,6 +33,7 @@ def player(text, delay = 0.001):
 
 # - Intro Loading Screen -
 def loading_screen():
+    print()
     slow_print('Loading...', delay=0.5)
 
     slow_print('25%...', delay=0.4)
@@ -187,8 +188,16 @@ def get_player_name():
     print()
     name.strip()
     print()
-    slow_print(
-        f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+
+    if name.strip() == '':
+        slow_print('Invalid input, name cannot be blank')
+        
+
+    else:
+        slow_print(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+
+        if '@' in name:
+            print()
 
 
 get_player_name()
@@ -219,7 +228,7 @@ def class_selection():
 
     class_stats = {
         'vanguard': {
-            'Attack': 18,
+            'Attack': 38,
             'Health': 150,
             'Defense': 50,
             'Speed': 20,
@@ -467,11 +476,14 @@ training(choice, player_stats_colour)
 
 # Practice battle training, basic mechanics like attack / defend
 
+
+
 def practice_dummy(player_class, battle_stats):
     print('\n\n')
     narrator('Get ready to test your skills, we are starting your training.')
 
     dummy_health = 100
+    defend_counter = 0 #This keeps track of how many times the player chose to defend
 
     narrator(f'Go on {name} let us see if we can put Asgiaburn`s future in your hands.\n')
 
@@ -497,22 +509,35 @@ def practice_dummy(player_class, battle_stats):
 
 
             if dummy_health <= 0:
-                narrator('\nThe dummy has been obliterated!')
-                eldric(f'\nWell done, just as I would have expected from a {colour}{player_class.capitalize()}.')
-                eldric('\nYou now know basics of battle.')
+                print()
+                narrator('The dummy has been obliterated!')
+                eldric(f'Well done, just as I would have expected from a {colour}{player_class.capitalize()}.')
+                eldric('You now know the basics of battle.')
                 break
 
 
         elif action == 'defend':
+            defend_counter += 1
             defense = battle_stats['defense']
-            narrator(f'You use the defensive shield that saves you {defense} health')
-            narrator('After waiting and expecting an attack, nothing strikes. The dummy can not...')
-            eldric('The dummy is unable to attack,', delay=0.02)
-            eldric(f'Attack {name}! a {player_class.capitalize()} never quivers, now strike!')
+
+            if defend_counter == 1:
+                narrator(f'You use the defensive shield that saves you {defense} health')
+                narrator('After waiting and expecting an attack, nothing strikes.')
+
+            elif defend_counter == 2:
+                eldric('The dummy is unable to attack,', delay=0.02)
+                eldric(f'Attack {name}! a {player_class.capitalize()} never quivers, now strike!')
+
+            else:
+                narrator('You hesitate, Eldric shakes his head.')
+                eldric('Fear is your only enemy, try again.')
+
+
 
         else:
             slow_print('Invalid action, please try ATTACK or DEFEND.\n')
             continue
+
 
 
         while True:
@@ -530,20 +555,32 @@ def practice_dummy(player_class, battle_stats):
                 break
 
             elif defend_to_attack == 'defend':
-                narrator('You hesitate, Eldric shakes his head.')
-                eldric('Fear is your only enemy, try again.')
+                defend_counter += 1
+                defense = battle_stats['defense']
+                print()
+
+                if defend_counter == 1:
+                    narrator(f'You use the defensive shield that saves you {defense} health')
+                    narrator('After waiting and expecting an attack, nothing strikes.')
+
+                elif defend_counter == 2:
+                    eldric('The dummy is unable to attack,', delay=0.02)
+                    eldric(f'Attack {name}! a {player_class.capitalize()} never quivers, now strike!')
+
+                else:
+                    narrator('You hesitate, Eldric shakes his head.')
+                    eldric('Fear is your only enemy, try again.')
+
                 continue
 
             else:
-                slow_print('Invalid action, try ATTACK or DEFEND.\n')
-                continue
-
+                slow_print('Invalid action, please try ATTACK or DEFEND.\n')
 
         if dummy_health <= 0:
             narrator('The dummy has collapsed into fragments!')
             print()
             eldric(f'Well done, just as I would have expected from a {colour}{player_class.capitalize()}.')
-            eldric('You have learned that hesitation does not bring anything to battle\n')
+            eldric('You now know the basics of battle and learned that hesitation does not bring anything to battle')
             break
 
 
