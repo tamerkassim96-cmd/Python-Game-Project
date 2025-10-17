@@ -299,7 +299,7 @@ def class_selection():
 
         elif choice == 'radiant' or choice == 'the radiant':
             choice = 'radiant'
-            slow_print(f'{Fore.LIGHTWHITE_EX}So, the light of Eldric burns once more... I see.', delay=1.5)
+            slow_print(f'{Fore.LIGHTWHITE_EX}So, the light of {Fore.LIGHTYELLOW_EX}Eldric burns once more... I see.', delay=1.5)
             slow_print(f'{Fore.RESET}ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
             break
 
@@ -596,15 +596,16 @@ def radiance_blade_abilities(player_class, battle_stats):
         'vanguard': {'attack': 2, 'defense': 1.5, 'speed': 1.2, 'health': 1.5},
         'wraith': {'attack': 2.2, 'defense': 1.3, 'speed': 1.5, 'health': 1.3},
         'phantom': {'attack': 2, 'defense': 1.2, 'speed': 1.8, 'health': 1.4},
-        'radiant': {'attack': 1.5, 'defense': 1.5, 'speed': 1.5, 'health': 1.8},
+        'radiant': {'attack': 2.3, 'defense': 1.6, 'speed': 1.9, 'health': 1.7},
     }
 
     for stat in ['attack', 'defense', 'speed', 'health']:
         battle_stats[stat] = int(battle_stats[stat] * multipliers[player_class][stat])
 
-    narrator('Your stats amp up with the power of the Radiance Blade!')
-    narrator(f"Attack: {battle_stats['attack']}, Defense: {battle_stats['defense']}, Speed: {battle_stats['speed']}, Health: {battle_stats['health']}")
+    narrator('Your stats amp up with the power of the Radiance Blade! your stats are now,')
+    narrator(f"Class: {choice.capitalize()}, Attack: {battle_stats['attack']}, Defense: {battle_stats['defense']}, Speed: {battle_stats['speed']}, Health: {battle_stats['health']}")
 
     return battle_stats
 
-    
+battle_stats = radiance_blade_abilities(choice, battle_stats)
+
