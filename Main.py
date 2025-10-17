@@ -609,3 +609,28 @@ def radiance_blade_abilities(player_class, battle_stats):
 
 battle_stats = radiance_blade_abilities(choice, battle_stats)
 
+
+def journey_to_shadow_realm():
+    narrator('With the Radiance Blade in hand, you feel its power coursing within you')
+
+    eldric('The time has now come...')
+
+    eldric('You must defeat the Shadow King and reclaim the stolen light of Asgiaburn')
+
+    eldric('You must travel to, the shadow realm')
+
+    player('With the power this blade surrounds me with...')
+
+    player('Im ready, this will end now.')
+
+    eldric('Remember your training, strike with a purpose, dont hesitate, defend with honor.')
+
+    eldric(f'Now go {choice.capitalize()}!')
+
+
+    print()
+    narrator('You venture through various lands...')
+    narrator('some, once-thriving nations, turned to ruins.')
+    narrator('The sky darkens and gets thicker the closer you approach to the shadow realm.')
+
+    slow_print('Suddenly, a dark figure approaches')
