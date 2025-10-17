@@ -7,6 +7,7 @@ from colorama import init
 
 init()
 
+
 # Character Dialogue Functions
 
 def narrator(text, delay = 0.001):
@@ -180,27 +181,20 @@ print()
 
 ask_for_help()
 
+name = ''
 
-def get_player_name():
+def input_name():
     global name
-    name = input(f'{Fore.RESET}Please enter your name: ')
+    while True:
+        name = input('Please enter your name: ')
+        if name == "" and not name.isalnum():
+            print("Invalid Choice, mo special characters or spaces.")
+            continue
+        else:
+            print(f'{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+        break
 
-    print()
-    name.strip()
-    print()
-
-    if name.strip() == '':
-        slow_print('Invalid input, name cannot be blank')
-        
-
-    else:
-        slow_print(f'{Fore.LIGHTBLUE_EX}{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
-
-        if '@' in name:
-            print()
-
-
-get_player_name()
+input_name()
 
 
 # Class Selection
@@ -584,8 +578,15 @@ def practice_dummy(player_class, battle_stats):
             break
 
 
-
-eldric('Well done, now its time to get more serious...')
-
+eldric('Even without a weapon, you`ve proven your resolve.')
+eldric('Not many can stand unarmed against such challenges and still press forward.')
+eldric('Now that you have flawlessly passed,')
+eldric('It is time I pass onto you the legacy of light itself...')
+narrator(f'Eldric draws out a shimmering blade from the air - {Fore.LIGHTYELLOW_EX}The Radiance Blade{Fore.RESET}')
+eldric(f'Wield it well, {name}. It will guide your strikes and increase your destructive capabilities.')
 
 practice_dummy(choice, battle_stats)
+
+
+
+
