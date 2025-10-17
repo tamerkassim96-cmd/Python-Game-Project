@@ -299,7 +299,7 @@ def class_selection():
 
         elif choice == 'radiant' or choice == 'the radiant':
             choice = 'radiant'
-            slow_print(f'{Fore.LIGHTWHITE_EX}So, the light of {Fore.LIGHTYELLOW_EX}Eldric burns once more... I see.', delay=1.5)
+            slow_print(f'{Fore.LIGHTWHITE_EX}So, the light of Eldric burns once more... I see.', delay=1.5)
             slow_print(f'{Fore.RESET}ACCESS OVERRIDE ACCEPTED... Classified class unlocked: Radiant')
             break
 
@@ -596,41 +596,358 @@ def radiance_blade_abilities(player_class, battle_stats):
         'vanguard': {'attack': 2, 'defense': 1.5, 'speed': 1.2, 'health': 1.5},
         'wraith': {'attack': 2.2, 'defense': 1.3, 'speed': 1.5, 'health': 1.3},
         'phantom': {'attack': 2, 'defense': 1.2, 'speed': 1.8, 'health': 1.4},
-        'radiant': {'attack': 2.3, 'defense': 1.6, 'speed': 1.9, 'health': 1.7},
+        'radiant': {'attack': 1.5, 'defense': 1.5, 'speed': 1.5, 'health': 1.8},
     }
 
     for stat in ['attack', 'defense', 'speed', 'health']:
         battle_stats[stat] = int(battle_stats[stat] * multipliers[player_class][stat])
 
-    narrator('Your stats amp up with the power of the Radiance Blade! your stats are now,')
-    narrator(f"Class: {choice.capitalize()}, Attack: {battle_stats['attack']}, Defense: {battle_stats['defense']}, Speed: {battle_stats['speed']}, Health: {battle_stats['health']}")
+    narrator('Your stats amp up with the power of the Radiance Blade!')
+    narrator(f"Attack: {battle_stats['attack']}, Defense: {battle_stats['defense']}, Speed: {battle_stats['speed']}, Health: {battle_stats['health']}")
 
     return battle_stats
 
-battle_stats = radiance_blade_abilities(choice, battle_stats)
 
+def start_final_journey():
+    print('\n\n')
+    time.sleep(1)
 
-def journey_to_shadow_realm():
-    narrator('With the Radiance Blade in hand, you feel its power coursing within you')
+    narrator('You grip the Radiance Blade tightly. You can feel the power flowing through it.')
+    eldric('Its time...')
+    eldric(f'{name}, the Shadow Realm awaits you.')
+    eldric('You must face the Shadow King there and bring back the light to Asgiaburn.')
 
-    eldric('The time has now come...')
+    player('Im ready to end this.')
 
-    eldric('You must defeat the Shadow King and reclaim the stolen light of Asgiaburn')
-
-    eldric('You must travel to, the shadow realm')
-
-    player('With the power this blade surrounds me with...')
-
-    player('Im ready, this will end now.')
-
-    eldric('Remember your training, strike with a purpose, dont hesitate, defend with honor.')
-
-    eldric(f'Now go {choice.capitalize()}!')
-
+    eldric('Good. Remember what I taught you. Attack smart, dont hesitate and defend when needed to.')
+    
+    eldric('The light will guide your path.')
 
     print()
-    narrator('You venture through various lands...')
-    narrator('some, once-thriving nations, turned to ruins.')
-    narrator('The sky darkens and gets thicker the closer you approach to the shadow realm.')
+    narrator(f'{Fore.LIGHTBLUE_EX}~ You walk through the destroyed lands... ~')
+    narrator('You see the remains of villages that were once full of life.')
+    narrator('The sky gets darker as you get closer to the Shadow Realm.')
+    narrator('You see a huge dark fortress ahead.')
 
-    slow_print('Suddenly, a dark figure approaches')
+    print()
+    slow_print(f'{Fore.LIGHTRED_EX}A dark figure appears from the shadows...')
+    time.sleep(1)
+
+
+# Shows the shadow guard appearing
+def show_shadow_guard():
+    print(f'''{Fore.LIGHTRED_EX}
+    ██████╗ ██╗   ██╗ █████╗ ██████╗ ██████╗ 
+    ██╔════╝ ██║   ██║██╔══██╗██╔══██╗██╔══██╗
+    ██║  ███╗██║   ██║███████║██████╔╝██║  ██║
+    ██║   ██║██║   ██║██╔══██║██╔══██╗██║  ██║
+    ╚██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝
+     ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+    {Fore.RESET}''')
+
+    print()
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: Another one who wants to die...')
+    
+    slow_print(f'Shadow Guard: "The Shadow King doesnt have interest in weak people."')
+    
+    slow_print(f'Shadow Guard: If you want to get to him, you first you have to beat ME, {name}!')
+
+    print()
+    narrator('The Shadow Guard pulls out a dark sword.')
+    
+    player('Move or fight me!')
+
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: "Lets see if your light is strong enough!"\n')
+
+
+# Main battle function - this handles fighting enemies
+def fight_enemy(my_class, my_stats, enemy_name, enemy_hp, enemy_damage, enemy_def):
+    # Get my stats from the dictionary
+    my_hp = my_stats['health']
+    my_damage = my_stats['attack']
+    my_def = my_stats['defense']
+    my_spd = my_stats['speed']
+
+    narrator(f'The battle starts! {enemy_name} is ready to fight!')
+    print()
+
+    round_number = 1
+    is_defending = False
+
+    # Keep fighting until someone loses
+    while my_hp > 0 and enemy_hp > 0:
+        print(f'{Fore.LIGHTCYAN_EX}--- ROUND {round_number} ---{Fore.RESET}')
+        print(f'{Fore.LIGHTGREEN_EX}Your Health: {my_hp}{Fore.RESET}')
+        print(f'{Fore.LIGHTRED_EX}{enemy_name} Health: {enemy_hp}{Fore.RESET}\n')
+
+        # Ask what the player wants to do
+        valid_choice = False
+        while valid_choice == False:
+            try:
+                player_action = input(f'What will you do? [ATTACK / DEFEND / SPECIAL]: ').strip().lower()
+
+                # Check what action they picked
+                if player_action == 'attack':
+                    valid_choice = True
+                    is_defending = False
+
+                    # Do damage to enemy
+                    hit_damage = my_damage
+                    enemy_hp = enemy_hp - hit_damage
+
+                    # Make sure hp doesnt go negative
+                    if enemy_hp < 0:
+                        enemy_hp = 0
+
+                    narrator(
+                        f'You attack with the Radiance Blade for {Fore.LIGHTRED_EX}{hit_damage} damage!{Fore.RESET}')
+                    narrator(f'{enemy_name} has {Fore.LIGHTGREEN_EX}{enemy_hp} health left!{Fore.RESET}')
+
+                elif player_action == 'defend':
+                    valid_choice = True
+                    is_defending = True
+                    narrator(f'You get ready to block the next attack!')
+
+                elif player_action == 'special':
+                    valid_choice = True
+                    is_defending = False
+
+                    # Check if speed is high enough for special move
+                    if my_spd > 35:
+                        # Special does more damage
+                        special_hit = int(my_damage * 1.6)
+                        enemy_hp = enemy_hp - special_hit
+
+                        if enemy_hp < 0:
+                            enemy_hp = 0
+
+                        narrator(f'{Fore.LIGHTYELLOW_EX}RADIANT STRIKE!{Fore.RESET}')
+                        narrator(
+                            f'You do a powerful light attack for {Fore.LIGHTRED_EX}{special_hit} damage!{Fore.RESET}')
+                    else:
+                        narrator('Your speed isnt high enough for special attack!')
+                        narrator('You do a normal attack.')
+                        hit_damage = my_damage
+                        enemy_hp = enemy_hp - hit_damage
+
+                else:
+                    # If the player types something wrong
+                    print(f'{Fore.LIGHTRED_EX}Thats not a valid choice! Pick ATTACK, DEFEND, or SPECIAL.{Fore.RESET}\n')
+                    valid_choice = False
+
+            except:
+                # If something breaks
+                print(f'{Fore.LIGHTRED_EX}Something went wrong. Try again.{Fore.RESET}\n')
+                valid_choice = False
+
+        print()
+
+        # To check if the enemy is dead
+        if enemy_hp <= 0:
+            narrator(f'{Fore.LIGHTYELLOW_EX}{enemy_name} has been defeated!{Fore.RESET}')
+            return my_hp
+
+        # Now its the enemys turn to attack
+        time.sleep(0.5)
+        narrator(f'{enemy_name} is attacking!')
+
+        # Calculate how much damage you take
+        if is_defending == True:
+            # Defense blocks some damage
+            block_amount = my_def // 2
+            damage_taken = enemy_damage - block_amount
+
+            # Make sure damage isnt negative
+            if damage_taken < 0:
+                damage_taken = 0
+
+            my_hp = my_hp - damage_taken
+            narrator(f'You block most of the attack! You take {Fore.LIGHTRED_EX}{damage_taken} damage!{Fore.RESET}')
+        else:
+            # Sometimes enemy does a critical hit
+            random_number = random.random()
+            if random_number < 0.2:
+                # Critical does more damage
+                damage_taken = int(enemy_damage * 1.5)
+                narrator(f'{Fore.LIGHTRED_EX}CRITICAL HIT!{Fore.RESET}')
+            else:
+                damage_taken = enemy_damage
+
+            my_hp = my_hp - damage_taken
+            narrator(f'{enemy_name} hits you! You take {Fore.LIGHTRED_EX}{damage_taken} damage!{Fore.RESET}')
+
+        print()
+
+        # Check if you died
+        if my_hp <= 0:
+            my_hp = 0
+            narrator(f'{Fore.LIGHTRED_EX}You have been defeated...{Fore.RESET}')
+            narrator('The darkness takes over...')
+            narrator('Asgiaburn is lost forever.')
+            print()
+            slow_print(f'{Fore.LIGHTRED_EX}GAME OVER{Fore.RESET}')
+            time.sleep(2)
+            sys.exit(0)
+
+        # Go to next round
+        round_number = round_number + 1
+        time.sleep(1)
+
+    return my_hp
+
+
+# Fight the shadow guard
+def fight_shadow_guard(my_class, my_stats):
+    show_shadow_guard()
+
+    # Calculate shadow guard stats based on my stats
+    guard_hp = int(my_stats['health'] * 1.2)
+    guard_attack = int(my_stats['attack'] * 0.8)
+    guard_defense = int(my_stats['defense'] * 0.7)
+
+    # Start the battle
+    hp_left = fight_enemy(
+        my_class,
+        my_stats,
+        'Shadow Guard',
+        guard_hp,
+        guard_attack,
+        guard_defense
+    )
+
+    # Update my health after battle
+    my_stats['health'] = hp_left
+
+    # Show what happens after winning
+    print('\n')
+    narrator('The Shadow Guard falls down, the darkness fading away.')
+    
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: "Impossible... the light... it hurts..."')
+    
+    slow_print(f'Shadow Guard: "The Shadow King... is waiting... in the throne room..."')
+    
+    narrator('The guard turns into shadows and disappears.')
+
+    print()
+    eldric(f'Good job {name}! But that was just the start.')
+    eldric('The Shadow King is much stronger.')
+    eldric('Take a moment to rest and get ready.')
+
+    # Heal a bit before the final battle
+    max_hp = int(my_stats['attack'] * 2.5)
+    heal = int(max_hp * 0.5)
+    my_stats['health'] = my_stats['health'] + heal
+
+    # Make sure health doesnt go over max
+    if my_stats['health'] > max_hp:
+        my_stats['health'] = max_hp
+
+    narrator(f'The Radiance Blade glows and heals you for {Fore.LIGHTGREEN_EX}{heal} health!{Fore.RESET}')
+    narrator(f'You now have {Fore.LIGHTGREEN_EX}{my_stats["health"]} health{Fore.RESET}')
+
+    print()
+    input('Press ENTER to go into the throne room...')
+
+
+# Fight the shadow king - final boss
+def fight_shadow_king(my_class, my_stats):
+    print('\n\n')
+    narrator('You open the big doors to the throne room.')
+    narrator('Darkness fills the room and pushes against your light.')
+
+    print(f'''{Fore.LIGHTRED_EX}
+    ███████╗██╗  ██╗ █████╗ ██████╗  ██████╗ ██╗    ██╗
+    ██╔════╝██║  ██║██╔══██╗██╔══██╗██╔═══██╗██║    ██║
+    ███████╗███████║███████║██║  ██║██║   ██║██║ █╗ ██║
+    ╚════██║██╔══██║██╔══██║██║  ██║██║   ██║██║███╗██║
+    ███████║██║  ██║██║  ██║██████╔╝╚██████╔╝╚███╔███╔╝
+    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝ 
+
+    ██╗  ██╗██╗███╗   ██╗ ██████╗                       
+    ██║ ██╔╝██║████╗  ██║██╔════╝                       
+    █████╔╝ ██║██╔██╗ ██║██║  ███╗                      
+    ██╔═██╗ ██║██║╚██╗██║██║   ██║                      
+    ██║  ██╗██║██║ ╚████║╚██████╔╝                      
+    ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝                       
+    {Fore.RESET}''')
+
+    print()
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow King: So... the light comes back.')
+    slow_print(f'Shadow King: I remember this. Eldric thought he beat me, and now he brings his successor?')
+    slow_print(f'Shadow King: How ridiculous HAHAHAHAHA. I will end this in an instant.')
+
+    print()
+    player('This will end now!')
+
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow King: "Come then. Let me put out your light."\n')
+
+    # Shadow king is much harder
+    king_hp = int(my_stats['health'] * 2)
+    king_attack = int(my_stats['attack'] * 1.2)
+    king_defense = int(my_stats['defense'] * 1.1)
+
+    # Start the final battle
+    fight_enemy(
+        my_class,
+        my_stats,
+        'Shadow King',
+        king_hp,
+        king_attack,
+        king_defense
+    )
+
+    # YOU WIN - show ending
+    print('\n\n')
+    narrator('The Shadow King falls, turning into dust.')
+    
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow King: "No... this cant... happen..."')
+    
+    narrator('The Shadow Kings dark magic starts breaking apart.')
+
+    print()
+    narrator(f'{Fore.LIGHTYELLOW_EX}Light fills the Shadow Realm, removing all the darkness.{Fore.RESET}')
+    narrator('The shadows covering Asgiaburn start to disappear.')
+    narrator('You can hear sounds of people celebrating.')
+
+    print()
+    narrator(f'{Fore.LIGHTGREEN_EX}The dark fog over the villages goes away.{Fore.RESET}')
+    narrator('Families who were hiding come out from the ruins.')
+    narrator('The Shadow Kings dark soldiers fall down, free from his control.')
+    narrator('Plants start growing again in the dead ground.')
+    narrator('The sky becomes clear and you can see the stars.')
+
+    print()
+    narrator('People all over Asgiaburn see the light returning.')
+    narrator('Everyone hears the news - the Radiant is back.')
+    narrator('The Shadow King is gone.')
+
+    print()
+    eldric('You really did it...')
+    eldric(f'{name}, you broke the curse on our land.')
+    eldric('The people who survived can finally come out and rebuild.')
+    eldric('The Shadow Kings dark magic that killed the plants and blocked the sun... its all gone.')
+    eldric('Asgiaburn can recover now. It will take time, but we have hope again.')
+
+    print()
+    narrator('Over the next few days, people return to their homes.')
+    narrator('Villages start getting rebuilt.')
+    narrator('The Radiance Blade shines bright, showing everyone the light is back.')
+
+    print()
+    narrator(f'You, {colour}{my_class.capitalize()} {name}, are now known as the hero of Asgiaburn.')
+    narrator('People will tell stories about you forever.')
+    narrator('The days of darkness are now over.')
+    narrator(f'{Fore.LIGHTYELLOW_EX}The time of light starts now.{Fore.RESET}')
+    narrator(f'We truly thank you {name}, hero of Asgiaburn.')
+
+    print()
+    slow_print(f'{Fore.LIGHTYELLOW_EX}THE END{Fore.RESET}')
+    print()
+    slow_print('Thanks for playing Echoes of the Forgotten!')
+    time.sleep(2)
+
+
+# Start the final part of the game
+start_final_journey()
+fight_shadow_guard(choice, battle_stats)
+fight_shadow_king(choice, battle_stats)
