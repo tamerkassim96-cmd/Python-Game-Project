@@ -110,7 +110,7 @@ A land once joyous, turned to''')
 
     slow_print('our cities burned.')
 
-    slow_print('The Shadow Kings guards hunting us down like heartless creatures.')
+    slow_print('The Shadow Kings guard and their forces hunting us down like heartless creatures.')
 
     slow_print('Families torn apart... each day we fall further into despair.')
 
@@ -124,11 +124,11 @@ A land once joyous, turned to''')
 
     slow_print('everything.')
 
-    slow_print(Fore.LIGHTMAGENTA_EX + 'Some could say he is labelled the')
+    slow_print(Fore.LIGHTMAGENTA_EX + 'Some could say he is labelled the class,')
 
-    slow_print(f'{Fore.LIGHTYELLOW_EX}Radiant')
+    slow_print(f'{Fore.LIGHTYELLOW_EX}Radiant.')
 
-    slow_print(f'{Fore.LIGHTMAGENTA_EX}someone with the willpower and heart to defy the Shadow King himself.')
+    slow_print(f'{Fore.LIGHTMAGENTA_EX}Someone with the willpower and heart to defy the Shadow King himself.')
 
     slow_print('You are the only one left amongst the rubble')
 
@@ -188,10 +188,10 @@ def input_name():
     while True:
         name = input('Please enter your name: ')
         if name == "" and not name.isalnum():
-            print("Invalid Choice, mo special characters or spaces.")
+            slow_print("Invalid Choice, mo special characters or spaces.")
             continue
         else:
-            print(f'{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
+            slow_print(f'\n{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
         break
 
 input_name()
@@ -201,7 +201,7 @@ input_name()
 
 def class_selection():
     print()
-    narrator(f'{Fore.RESET}Before we begin training {name}, choose your class!')
+    narrator(f'Before we begin training {name}, choose your class!')
 
     slow_print(
         f'{Fore.RESET}1. {Fore.LIGHTCYAN_EX}Vanguard - Front line attacker, Deals medium-high damage, Medium defense')
@@ -255,6 +255,7 @@ def class_selection():
             }
 
     }
+
 
     while True:
         print()
@@ -372,7 +373,7 @@ def training(choice, class_stats):
 
     narrator('His name, Eldric...')
 
-    print(f'''{Fore.LIGHTGREEN_EX}                                                                                                                                                                                                        
+    print(f'''{Fore.LIGHTBLUE_EX}                                                                                                                                                                                                        
                      ▒▒                                                                                 
                     ▒▒░▒                                                                                
                     ▒▒░▒▓                                                                               
@@ -449,7 +450,7 @@ def training(choice, class_stats):
 
         player('So, I was chosen...?')
 
-        eldric('You werent chosen, rather awakened.')
+        eldric('You were not chosen, rather awakened.')
         eldric('the light found you now because Asgiaburn needs you, just as the world once needed me...')
 
         eldric('Now, enough talk, lets see if the radiant within you can handle a fragment of what lies ahead.')
@@ -574,19 +575,36 @@ def practice_dummy(player_class, battle_stats):
             narrator('The dummy has collapsed into fragments!')
             print()
             eldric(f'Well done, just as I would have expected from a {colour}{player_class.capitalize()}.')
-            eldric('You now know the basics of battle and learned that hesitation does not bring anything to battle')
+            eldric('You now know the basics of battle and learned that hesitation does not bring anything to battle.\n')
             break
 
-
+practice_dummy(choice, battle_stats)
+'\n'
 eldric('Even without a weapon, you`ve proven your resolve.')
 eldric('Not many can stand unarmed against such challenges and still press forward.')
 eldric('Now that you have flawlessly passed,')
 eldric('It is time I pass onto you the legacy of light itself...')
-narrator(f'Eldric draws out a shimmering blade from the air - {Fore.LIGHTYELLOW_EX}The Radiance Blade{Fore.RESET}')
-eldric(f'Wield it well, {name}. It will guide your strikes and increase your destructive capabilities.')
-
-practice_dummy(choice, battle_stats)
+narrator(f'Eldric draws out a shimmering blade from the air - {Fore.LIGHTYELLOW_EX}The Radiance Blade.{Fore.RESET}')
+eldric(f'Wield it well, {name}. It will guide your strikes and surely increase your battle capabilities.')
 
 
 
+def radiance_blade_abilities(player_class, battle_stats):
+    narrator('The Radiance Blade converges with energy, it merges with your soul.')
 
+    multipliers = {
+        'vanguard': {'attack': 2, 'defense': 1.5, 'speed': 1.2, 'health': 1.5},
+        'wraith': {'attack': 2.2, 'defense': 1.3, 'speed': 1.5, 'health': 1.3},
+        'phantom': {'attack': 2, 'defense': 1.2, 'speed': 1.8, 'health': 1.4},
+        'radiant': {'attack': 1.5, 'defense': 1.5, 'speed': 1.5, 'health': 1.8},
+    }
+
+    for stat in ['attack', 'defense', 'speed', 'health']:
+        battle_stats[stat] = int(battle_stats[stat] * multipliers[player_class][stat])
+
+    narrator('Your stats amp up with the power of the Radiance Blade!')
+    narrator(f"Attack: {battle_stats['attack']}, Defense: {battle_stats['defense']}, Speed: {battle_stats['speed']}, Health: {battle_stats['health']}")
+
+    return battle_stats
+
+    
