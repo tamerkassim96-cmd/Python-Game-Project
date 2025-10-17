@@ -648,7 +648,7 @@ def show_shadow_guard():
     print()
     slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: Another one who wants to die...')
     
-    slow_print(f'Shadow Guard: "The Shadow King doesnt have interest in weak people."')
+    slow_print(f'Shadow Guard: The King doesnt have interest in weak people.')
     
     slow_print(f'Shadow Guard: If you want to get to him, you first you have to beat ME, {name}!')
 
@@ -657,7 +657,7 @@ def show_shadow_guard():
     
     player('Move or fight me!')
 
-    slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: "Lets see if your light is strong enough!"\n')
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: Lets see if your light is strong enough!\n')
 
 
 # Main battle function - this handles fighting enemies
@@ -822,9 +822,9 @@ def fight_shadow_guard(my_class, my_stats):
     print('\n')
     narrator('The Shadow Guard falls down, the darkness fading away.')
     
-    slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: "Impossible... the light... it hurts..."')
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: Impossible... the light... it hurts...')
     
-    slow_print(f'Shadow Guard: "The Shadow King... is waiting... in the throne room..."')
+    slow_print(f'Shadow Guard: The Shadow King... is waiting... in the throne room...')
     
     narrator('The guard turns into shadows and disappears.')
 
@@ -879,10 +879,10 @@ def fight_shadow_king(my_class, my_stats):
     print()
     player('This will end now!')
 
-    slow_print(f'{Fore.LIGHTRED_EX}Shadow King: "Come then. Let me put out your light."\n')
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow King: Come then. Let me put out your light.\n')
 
-    # Shadow king is much harder
-    king_hp = int(my_stats['health'] * 2)
+    # Shadow king is much harder to win
+    king_hp = int(my_stats['health'] * 1.5)
     king_attack = int(my_stats['attack'] * 1.2)
     king_defense = int(my_stats['defense'] * 1.1)
 
@@ -900,7 +900,7 @@ def fight_shadow_king(my_class, my_stats):
     print('\n\n')
     narrator('The Shadow King falls, turning into dust.')
     
-    slow_print(f'{Fore.LIGHTRED_EX}Shadow King: "No... this cant... happen..."')
+    slow_print(f'{Fore.LIGHTRED_EX}Shadow King: No... this cant... happen...')
     
     narrator('The Shadow Kings dark magic starts breaking apart.')
 
