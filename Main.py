@@ -11,7 +11,7 @@ init()
 
 # Character Dialogue Functions
 
-def narrator(text, delay=0.001): # A typewriter effect that also prints out 'narrator: ' then the text
+def narrator(text, delay=0.05):  # A typewriter effect that also prints out 'narrator: ' then the text
     print(Fore.LIGHTWHITE_EX, end='')
     slow_text(f'Narrator: {text}', delay)
     time.sleep(delay)
@@ -19,7 +19,7 @@ def narrator(text, delay=0.001): # A typewriter effect that also prints out 'nar
     print()
 
 
-def eldric(text, delay=0.001): # A typewriter effect that also prints out 'eldric: ' then the text
+def eldric(text, delay=0.05):  # A typewriter effect that also prints out 'eldric: ' then the text
     print(Fore.LIGHTYELLOW_EX, end='')
     slow_text(f'Eldric: {text}', delay)
     time.sleep(delay)
@@ -27,7 +27,7 @@ def eldric(text, delay=0.001): # A typewriter effect that also prints out 'eldri
     print()
 
 
-def player(text, delay=0.001): # A typewriter effect that also prints out 'player: ' then the text
+def player(text, delay=0.05):  # A typewriter effect that also prints out 'player: ' then the text
     print(Fore.LIGHTCYAN_EX, end='')
     slow_text(f'Player: {text}', delay)
     time.sleep(delay)
@@ -95,13 +95,13 @@ def introduction():
 
     slow_text(f'''Welcome to Asgiaburn,
 
-A land that was once flourished with peace and prosperity.
+A land that was once filled with tranquility and peace.
 
 Where communities gathered, where villages thrived in celebration.
 
-Beneath the endless skies and sparkling stars, 
+Below the endless skies and shimmering stars, 
 
-A land once joyous, turned to''')
+A land once that was once joyous, turned to''')
     print()
 
     print()
@@ -113,7 +113,7 @@ A land once joyous, turned to''')
 
     slow_print('our cities burned.')
 
-    slow_print('The Shadow Kings guard and their forces hunting us down like heartless creatures.')
+    slow_print('The Shadow King, his guard and their forces hunting us down like heartless creatures.')
 
     slow_print('Families torn apart... each day we fall further into despair.')
 
@@ -186,16 +186,16 @@ ask_for_help()
 
 name = ''
 
+
 def input_name():
     while True:
         name = input('Please enter your name: ')
-        if name == "" and name.isalnum(): # This makes sure if the user enters special characters or any empty spaces then it would say the name is invalid and to try again
-            return name
-            slow_print('Invalid input, no special characters or spaces. Try again.')
+        if not name.isalnum():  # This makes sure if the user enters special characters or any empty spaces then it would say the name is invalid and to try again
+            slow_print('\nInvalid input, no special characters or spaces. Try again.')
             continue
         else:
             slow_print(f'\n{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
-        break
+            return name
 
 
 name = input_name()
@@ -219,7 +219,11 @@ def class_selection():
 
     slow_print(f'{Fore.LIGHTRED_EX}...??? eRrOr, Unauthorised class detected, ADMIN ACCESS ONLY!,')
 
-    slow_print(f' ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
+    slow_print(f'ACCESS OVERRIDE: SECRET CLASS{Fore.LIGHTYELLOW_EX} [???????]')
+
+    '\n'
+    print()
+    slow_print(f'{Fore.RESET}Hint: type "4" or "5" or "warrior"')
 
     # Dictionary for class selection stats
 
@@ -315,10 +319,10 @@ def class_selection():
     player_stats_colour = class_stats[choice]
     colour = player_stats_colour['colour']
 
-    battle_stats = {}
+    player_stats = {}
     for key, value in player_stats_colour.items():
         if key != 'colour':
-            battle_stats[key.lower()] = value
+            player_stats[key.lower()] = value
 
     # This displays the player's class along with their stats
 
@@ -353,7 +357,7 @@ def class_selection():
     print()
     print()
 
-    return choice, player_stats_colour, battle_stats
+    return choice, player_stats_colour, player_stats
 
 
 # Introduction to training
@@ -472,7 +476,7 @@ def training(choice, class_stats):
         eldric('Now, enough talk let us begin your training.')
 
 
-choice, player_stats_colour, battle_stats = class_selection()
+choice, player_stats_colour, player_stats = class_selection()
 colour = player_stats_colour['colour']
 training(choice, player_stats_colour)
 
@@ -480,7 +484,7 @@ training(choice, player_stats_colour)
 # Practice battle training, basic mechanics like attack / defend
 
 
-def practice_dummy(player_class, battle_stats):
+def practice_dummy(player_class, player_stats):
     print('\n\n')
     narrator('Get ready to test your skills, we are starting your training.')
 
@@ -502,7 +506,7 @@ def practice_dummy(player_class, battle_stats):
         print()
 
         if action == 'attack':
-            damage = battle_stats['attack']
+            damage = player_stats['attack']
             dummy_health -= damage
             if dummy_health < 0:
                 dummy_health = 0
@@ -520,7 +524,7 @@ def practice_dummy(player_class, battle_stats):
 
         elif action == 'defend':
             defend_counter += 1
-            defense = battle_stats['defense']
+            defense = player_stats['defense']
 
             if defend_counter == 1:
                 narrator(f'You use the defensive shield that saves you {defense} health')
@@ -544,7 +548,7 @@ def practice_dummy(player_class, battle_stats):
             defend_to_attack = input('\nWill you ATTACK or DEFEND? ').strip().lower()
 
             if defend_to_attack == 'attack':
-                damage = battle_stats['attack']
+                damage = player_stats['attack']
                 dummy_health -= damage
                 if dummy_health < 0:
                     dummy_health = 0
@@ -556,7 +560,7 @@ def practice_dummy(player_class, battle_stats):
 
             elif defend_to_attack == 'defend':
                 defend_counter += 1
-                defense = battle_stats['defense']
+                defense = player_stats['defense']
                 print()
 
                 if defend_counter == 1:
@@ -584,8 +588,9 @@ def practice_dummy(player_class, battle_stats):
             break
 
 
-practice_dummy(choice, battle_stats)
+practice_dummy(choice, player_stats)
 '\n'
+
 eldric('Even without a weapon, you`ve proven your resolve.')
 eldric('Not many can stand unarmed against such challenges and still press forward.')
 eldric('Now that you have flawlessly passed,')
@@ -594,24 +599,27 @@ narrator(f'Eldric draws out a shimmering blade from the air - {Fore.LIGHTYELLOW_
 eldric(f'Wield it well, {name}. It will guide your strikes and surely increase your battle capabilities.')
 
 
-def radiance_blade_abilities(player_class, battle_stats):
+def radiance_blade_abilities(player_class, player_stats):
+
     narrator('The Radiance Blade converges with energy, it merges with your soul.')
 
     multipliers = {
-        'vanguard': {'attack': 2, 'defense': 1.5, 'speed': 1.2, 'health': 1.5},
-        'wraith': {'attack': 2.2, 'defense': 1.3, 'speed': 1.5, 'health': 1.3},
-        'phantom': {'attack': 2, 'defense': 1.2, 'speed': 1.8, 'health': 1.4},
-        'radiant': {'attack': 1.5, 'defense': 1.5, 'speed': 1.5, 'health': 1.8},
+        'vanguard': {'attack': 2.2, 'defense': 1.5, 'speed': 1.2, 'health': 1.8},
+        'wraith': {'attack': 2.5, 'defense': 1.3, 'speed': 1.5, 'health': 1.6},
+        'phantom': {'attack': 2, 'defense': 1.2, 'speed': 1.8, 'health': 1.5},
+        'radiant': {'attack': 2, 'defense': 1.5, 'speed': 1.5, 'health': 1.8},
     }
 
     for stat in ['attack', 'defense', 'speed', 'health']:
-        battle_stats[stat] = int(battle_stats[stat] * multipliers[player_class][stat])
+        player_stats[stat] = int(player_stats[stat] * multipliers[player_class][stat])
 
     narrator('Your stats amp up with the power of the Radiance Blade!')
     narrator(
-        f"Attack: {battle_stats['attack']}, Defense: {battle_stats['defense']}, Speed: {battle_stats['speed']}, Health: {battle_stats['health']}")
+        f"Attack: {player_stats['attack']}, Defense: {player_stats['defense']}, Speed: {player_stats['speed']}, Health: {player_stats['health']}")
 
-    return battle_stats
+    return player_stats
+
+player_stats = radiance_blade_abilities(choice, player_stats)
 
 
 def start_journey():
@@ -649,7 +657,7 @@ def show_shadow_guard():
     ╚════██║██╔══██║██╔══██║██║  ██║██║   ██║██║███╗██║
     ███████║██║  ██║██║  ██║██████╔╝╚██████╔╝╚███╔███╔╝
     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝ 
-                                                       
+
          ██████╗ ██╗   ██╗ █████╗ ██████╗ ██████╗          
         ██╔════╝ ██║   ██║██╔══██╗██╔══██╗██╔══██╗         
         ██║  ███╗██║   ██║███████║██████╔╝██║  ██║         
@@ -735,7 +743,8 @@ def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_da
                             enemy_health = 0
 
                         narrator(f'{Fore.LIGHTYELLOW_EX}RADIANT STRIKE!{Fore.RESET}')
-                        narrator(f'You do a powerful light attack for {Fore.LIGHTRED_EX}{special_hit} damage!{Fore.RESET}')
+                        narrator(
+                            f'You do a powerful light attack for {Fore.LIGHTRED_EX}{special_hit} damage!{Fore.RESET}')
                     else:
                         narrator('Your speed isnt high enough for special attack!')
                         narrator('You do a normal attack.')
@@ -847,7 +856,7 @@ def fight_shadow_guard(player_class, player_stats):
 
     # Heal a bit before the final battle
     max_health = int(player_stats['attack'] * 2.5)
-    heal = int(max_health * 0.5)
+    heal = int(max_health * 1)
     player_stats['health'] = player_stats['health'] + heal
 
     # Make sure health doesnt go over max
@@ -966,12 +975,12 @@ def fight_shadow_king(player_class, player_stats):
     narrator('The Shadow Kings dark magic starts breaking apart.')
 
     print()
-    narrator(f'{Fore.LIGHTYELLOW_EX}Light fills the Shadow Realm, removing all the darkness.{Fore.RESET}')
+    narrator(f'Light fills the Shadow Realm, removing all the darkness.{Fore.RESET}')
     narrator('The shadows covering Asgiaburn start to disappear.')
     narrator('You can hear sounds of people celebrating.')
 
     print()
-    narrator(f'{Fore.LIGHTGREEN_EX}The dark fog over the villages goes away.{Fore.RESET}')
+    narrator(f'The dark fog over the villages goes away.{Fore.RESET}')
     narrator('Families who were hiding come out from the ruins.')
     narrator('The Shadow Kings dark soldiers fall down, free from his control.')
     narrator('Plants start growing again in the dead ground.')
@@ -995,7 +1004,7 @@ def fight_shadow_king(player_class, player_stats):
     narrator('The Radiance Blade shines bright, showing everyone the light is back.')
 
     print()
-    narrator(f'You, {colour}{my_class.capitalize()} {name}, are now known as the hero of Asgiaburn.')
+    narrator(f'You, {colour}{player_class.capitalize()}, are now known as the hero of Asgiaburn.')
     narrator('People will tell stories about you forever.')
     narrator('The days of darkness are now over.')
     narrator(f'{Fore.LIGHTYELLOW_EX}The time of light starts now.{Fore.RESET}')
@@ -1010,5 +1019,5 @@ def fight_shadow_king(player_class, player_stats):
 
 # Start the final part of the game
 start_journey()
-fight_shadow_guard(choice, battle_stats)
-fight_shadow_king(choice, battle_stats)
+fight_shadow_guard(choice, player_stats)
+fight_shadow_king(choice, player_stats)
