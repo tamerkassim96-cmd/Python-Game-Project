@@ -866,7 +866,8 @@ def fight_shadow_king(player_class, player_stats):
     print('\n\n')
     narrator('You open the big doors to the throne room.')
     narrator('Darkness fills the room and pushes against your light.')
-    narrator('You see the Shadow King on his throne, he stands up...')
+    narrator('You see the Shadow King on his throne, he stands up.')
+    narrator('Slowly walking towards you...')
 
     print(f'''{Fore.LIGHTRED_EX}                                                                                                    
                                                  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓                                       
