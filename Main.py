@@ -640,7 +640,7 @@ def start_journey():
     time.sleep(1)
 
 
-# Shows the shadow guard appearing
+# The Shadow Guard appears
 def show_shadow_guard():
     print(f'''{Fore.LIGHTRED_EX}
     ██████╗  ██╗   ██╗ █████╗ ██████╗ ██████╗ 
@@ -666,8 +666,8 @@ def show_shadow_guard():
     slow_print(f'{Fore.LIGHTRED_EX}Shadow Guard: Lets see if your light is strong enough!\n')
 
 
-# Main battle function - this handles fighting enemies
-def fight_enemy(player_class, player_stats, enemy_name, enemy_health, enemy_damage, enemy_defense):
+# The main battle function
+def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_damage, enemy_defense):
     # Get my stats from the dictionary
     player_health = player_stats['health']
     player_damage = player_stats['attack']
@@ -802,7 +802,7 @@ def fight_enemy(player_class, player_stats, enemy_name, enemy_health, enemy_dama
 
 
 # Fight the shadow guard
-def fight_shadow_guard(my_class, my_stats):
+def fight_shadow_guard(player_class, player_stats):
     show_shadow_guard()
 
     # Calculate shadow guard stats based on my stats
@@ -811,7 +811,7 @@ def fight_shadow_guard(my_class, my_stats):
     guard_defense = int(player_stats['defense'] * 0.7)
 
     # Start the battle
-    health_left = fight_enemy(
+    health_left = battle_system(
         player_class,
         player_stats,
         'Shadow Guard',
@@ -892,7 +892,7 @@ def fight_shadow_king(player_class, player_stats):
     king_defense = int(player_stats['defense'] * 1.1)
 
     # Start the final battle
-    fight_enemy(
+    battle_system(
         player_class,
         player_stats,
         'Shadow King',
