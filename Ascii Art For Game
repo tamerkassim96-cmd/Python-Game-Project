@@ -1,4 +1,4 @@
-#The Shadow King
+# The Shadow King
 
 print('''                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
@@ -65,7 +65,7 @@ print('''
                                                                                                     ''')
 
 
-#Eldric The First Radiant
+# Eldric The First Radiant
 
 print('''                                                                                                                                                                                                        
                  ▒▒                                                                                 
