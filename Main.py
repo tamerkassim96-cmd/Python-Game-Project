@@ -1,4 +1,5 @@
 import time
+import random
 import sys
 
 from func import slow_text, slow_print
@@ -10,7 +11,7 @@ init()
 
 # Character Dialogue Functions
 
-def narrator(text, delay=0.001):
+def narrator(text, delay=0.001): # A typewriter effect that also prints out 'narrator: ' then the text
     print(Fore.LIGHTWHITE_EX, end='')
     slow_text(f'Narrator: {text}', delay)
     time.sleep(delay)
@@ -18,7 +19,7 @@ def narrator(text, delay=0.001):
     print()
 
 
-def eldric(text, delay=0.001):
+def eldric(text, delay=0.001): # A typewriter effect that also prints out 'eldric: ' then the text
     print(Fore.LIGHTYELLOW_EX, end='')
     slow_text(f'Eldric: {text}', delay)
     time.sleep(delay)
@@ -26,7 +27,7 @@ def eldric(text, delay=0.001):
     print()
 
 
-def player(text, delay=0.001):
+def player(text, delay=0.001): # A typewriter effect that also prints out 'player: ' then the text
     print(Fore.LIGHTCYAN_EX, end='')
     slow_text(f'Player: {text}', delay)
     time.sleep(delay)
@@ -185,20 +186,19 @@ ask_for_help()
 
 name = ''
 
-
 def input_name():
-    global name
     while True:
         name = input('Please enter your name: ')
-        if name == "" and not name.isalnum():
-            slow_print("Invalid Choice, mo special characters or spaces.")
+        if name == "" and name.isalnum(): # This makes sure if the user uses special characters or empty space then it would say the name is invalid and to try again
+            return name
+            slow_print('Invalid Choice, no special characters or spaces. Try again.')
             continue
         else:
             slow_print(f'\n{name} Eh? a fine name for a {Fore.LIGHTYELLOW_EX}Radiant{Fore.LIGHTBLUE_EX} I mean warrior')
         break
 
 
-input_name()
+name = input_name()
 
 
 # Class Selection
@@ -614,7 +614,7 @@ def radiance_blade_abilities(player_class, battle_stats):
     return battle_stats
 
 
-def start_final_journey():
+def start_journey():
     print('\n\n')
     time.sleep(1)
 
@@ -643,7 +643,7 @@ def start_final_journey():
 # Shows the shadow guard appearing
 def show_shadow_guard():
     print(f'''{Fore.LIGHTRED_EX}
-    ██████╗ ██╗   ██╗ █████╗ ██████╗ ██████╗ 
+    ██████╗  ██╗   ██╗ █████╗ ██████╗ ██████╗ 
     ██╔════╝ ██║   ██║██╔══██╗██╔══██╗██╔══██╗
     ██║  ███╗██║   ██║███████║██████╔╝██║  ██║
     ██║   ██║██║   ██║██╔══██║██╔══██╗██║  ██║
@@ -667,12 +667,12 @@ def show_shadow_guard():
 
 
 # Main battle function - this handles fighting enemies
-def fight_enemy(my_class, my_stats, enemy_name, enemy_hp, enemy_damage, enemy_def):
+def fight_enemy(player_class, player_stats, enemy_name, enemy_health, enemy_damage, enemy_defense):
     # Get my stats from the dictionary
-    player_health = my_stats['health']
-    player_damage = my_stats['attack']
-    player_defense = my_stats['defense']
-    player_speed = my_stats['speed']
+    player_health = player_stats['health']
+    player_damage = player_stats['attack']
+    player_defense = player_stats['defense']
+    player_speed = player_stats['speed']
 
     narrator(f'The battle starts! {enemy_name} is ready to fight!')
     print()
@@ -721,7 +721,7 @@ def fight_enemy(my_class, my_stats, enemy_name, enemy_hp, enemy_damage, enemy_de
                     # Check if speed is high enough for special move
                     if player_speed > 35:
                         # Special does more damage
-                        special_hit = int(my_damage * 1.6)
+                        special_hit = int(player_damage * 1.6)
                         enemy_health = enemy_health - special_hit
 
                         if enemy_health < 0:
@@ -766,7 +766,7 @@ def fight_enemy(my_class, my_stats, enemy_name, enemy_hp, enemy_damage, enemy_de
             if damage_taken < 0:
                 damage_taken = 0
 
-            my_hp = my_hp - damage_taken
+            player_health = player_health - damage_taken
             narrator(f'You block most of the attack! You take {Fore.LIGHTRED_EX}{damage_taken} damage!{Fore.RESET}')
         else:
             # Sometimes enemy does a critical hit
@@ -806,14 +806,14 @@ def fight_shadow_guard(my_class, my_stats):
     show_shadow_guard()
 
     # Calculate shadow guard stats based on my stats
-    guard_health = int(my_stats['health'] * 1.2)
-    guard_attack = int(my_stats['attack'] * 0.8)
-    guard_defense = int(my_stats['defense'] * 0.7)
+    guard_health = int(player_stats['health'] * 1.2)
+    guard_attack = int(player_stats['attack'] * 0.8)
+    guard_defense = int(player_stats['defense'] * 0.7)
 
     # Start the battle
     health_left = fight_enemy(
-        my_class,
-        my_stats,
+        player_class,
+        player_stats,
         'Shadow Guard',
         guard_health,
         guard_attack,
@@ -821,7 +821,7 @@ def fight_shadow_guard(my_class, my_stats):
     )
 
     # Update my health after battle
-    my_stats['health'] = health_left
+    player_stats['health'] = health_left
 
     # Show what happens after winning
     print('\n')
@@ -839,23 +839,23 @@ def fight_shadow_guard(my_class, my_stats):
     eldric('Take a moment to rest and get ready.')
 
     # Heal a bit before the final battle
-    max_health = int(my_stats['attack'] * 2.5)
+    max_health = int(player_stats['attack'] * 2.5)
     heal = int(max_health * 0.5)
-    my_stats['health'] = my_stats['health'] + heal
+    player_stats['health'] = player_stats['health'] + heal
 
     # Make sure health doesnt go over max
-    if my_stats['health'] > max_health:
-        my_stats['health'] = max_health
+    if player_stats['health'] > max_health:
+        player_stats['health'] = max_health
 
     narrator(f'The Radiance Blade glows and heals you for {Fore.LIGHTGREEN_EX}{heal} health!{Fore.RESET}')
-    narrator(f'You now have {Fore.LIGHTGREEN_EX}{my_stats["health"]} health{Fore.RESET}')
+    narrator(f'You now have {Fore.LIGHTGREEN_EX}{player_stats["health"]} health{Fore.RESET}')
 
     print()
     input('Press ENTER to go into the throne room...')
 
 
 # Fight the shadow king - final boss
-def fight_shadow_king(my_class, my_stats):
+def fight_shadow_king(player_class, player_stats):
     print('\n\n')
     narrator('You open the big doors to the throne room.')
     narrator('Darkness fills the room and pushes against your light.')
@@ -887,14 +887,14 @@ def fight_shadow_king(my_class, my_stats):
     slow_print(f'{Fore.LIGHTRED_EX}Shadow King: Come then. Let me put out your light.\n')
 
     # Shadow king is much harder to win
-    king_health = int(my_stats['health'] * 1.5)
-    king_attack = int(my_stats['attack'] * 1.2)
-    king_defense = int(my_stats['defense'] * 1.1)
+    king_health = int(player_stats['health'] * 1.5)
+    king_attack = int(player_stats['attack'] * 1.2)
+    king_defense = int(player_stats['defense'] * 1.1)
 
     # Start the final battle
     fight_enemy(
-        my_class,
-        my_stats,
+        player_class,
+        player_stats,
         'Shadow King',
         king_health,
         king_attack,
@@ -953,6 +953,6 @@ def fight_shadow_king(my_class, my_stats):
 
 
 # Start the final part of the game
-start_final_journey()
+start_journey()
 fight_shadow_guard(choice, battle_stats)
 fight_shadow_king(choice, battle_stats)
