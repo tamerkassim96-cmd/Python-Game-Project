@@ -189,7 +189,7 @@ name = ''
 def input_name():
     while True:
         name = input('Please enter your name: ')
-        if name == "" and name.isalnum(): # This makes sure if the user uses special characters or empty space then it would say the name is invalid and to try again
+        if name == "" and name.isalnum(): # This makes sure if the user enters special characters or any empty spaces then it would say the name is invalid and to try again
             return name
             slow_print('Invalid Choice, no special characters or spaces. Try again.')
             continue
