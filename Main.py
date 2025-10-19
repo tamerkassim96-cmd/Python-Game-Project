@@ -11,7 +11,7 @@ init()
 
 # Character Dialogue Functions
 
-def narrator(text, delay=0.05):  # A typewriter effect that also prints out 'narrator: ' then the text
+def narrator(text, delay=0.001):  # A typewriter effect that also prints out 'narrator: ' then the text
     print(Fore.LIGHTWHITE_EX, end='')
     slow_text(f'Narrator: {text}', delay)
     time.sleep(delay)
@@ -19,7 +19,7 @@ def narrator(text, delay=0.05):  # A typewriter effect that also prints out 'nar
     print()
 
 
-def eldric(text, delay=0.05):  # A typewriter effect that also prints out 'eldric: ' then the text
+def eldric(text, delay=0.001):  # A typewriter effect that also prints out 'eldric: ' then the text
     print(Fore.LIGHTYELLOW_EX, end='')
     slow_text(f'Eldric: {text}', delay)
     time.sleep(delay)
@@ -27,7 +27,7 @@ def eldric(text, delay=0.05):  # A typewriter effect that also prints out 'eldri
     print()
 
 
-def player(text, delay=0.05):  # A typewriter effect that also prints out 'player: ' then the text
+def player(text, delay=0.001):  # A typewriter effect that also prints out 'player: ' then the text
     print(Fore.LIGHTCYAN_EX, end='')
     slow_text(f'Player: {text}', delay)
     time.sleep(delay)
@@ -229,8 +229,8 @@ def class_selection():
 
     class_stats = {
         'vanguard': {
-            'Attack': 38,
-            'Health': 150,
+            'Attack': 38,   # Having an uppercase for the stats is very important because i made the uppercase 'Attack' or 'Health'
+            'Health': 150,  # display with their assigned colour on the player class and stats part which is lines
             'Defense': 50,
             'Speed': 20,
             'Magic': 0,
@@ -603,11 +603,13 @@ def radiance_blade_abilities(player_class, player_stats):
 
     narrator('The Radiance Blade converges with energy, it merges with your soul.')
 
+# Code below multiplies the players stats because of the radiance blade
+
     multipliers = {
-        'vanguard': {'attack': 2.2, 'defense': 1.5, 'speed': 1.2, 'health': 1.8},
-        'wraith': {'attack': 2.5, 'defense': 1.3, 'speed': 1.5, 'health': 1.6},
-        'phantom': {'attack': 2, 'defense': 1.2, 'speed': 1.8, 'health': 1.5},
-        'radiant': {'attack': 2, 'defense': 1.5, 'speed': 1.5, 'health': 1.8},
+        'vanguard': {'attack': 2.3, 'defense': 1.5, 'speed': 2, 'health': 2}, # check how the stats look in battle and see if there is good balance
+        'wraith': {'attack': 2.5, 'defense': 1.3, 'speed': 1.5, 'health': 2},
+        'phantom': {'attack': 2.1, 'defense': 1.2, 'speed': 1.8, 'health': 2},
+        'radiant': {'attack': 2.1, 'defense': 1.5, 'speed': 1.5, 'health': 2},
     }
 
     for stat in ['attack', 'defense', 'speed', 'health']:
@@ -683,7 +685,7 @@ def show_shadow_guard():
 
 # The main battle function
 def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_damage, enemy_defense):
-    # Get my stats from the dictionary
+    # Gets the players stats from the dictionary
     player_health = player_stats['health']
     player_damage = player_stats['attack']
     player_defense = player_stats['defense']
@@ -693,7 +695,7 @@ def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_da
     print()
 
     round_number = 1
-    is_defending = False
+    defending = False # This checks if the player is defending or not
 
     # Keep fighting until someone loses
     while player_health > 0 and enemy_health > 0:
@@ -701,22 +703,21 @@ def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_da
         print(f'{Fore.LIGHTGREEN_EX}Your Health: {player_health}{Fore.RESET}')
         print(f'{Fore.LIGHTRED_EX}{enemy_name} Health: {enemy_health}{Fore.RESET}\n')
 
-        # Ask what the player wants to do
-        valid_choice = False
-        while valid_choice == False:
+        # Asks the player what they want to do
+        valid_input = False
+        while valid_input == False:
             try:
                 player_action = input(f'What will you do? [ATTACK / DEFEND / SPECIAL]: ').strip().lower()
-
-                # Check what action they picked
+                # Checks what action they picked
                 if player_action == 'attack':
-                    valid_choice = True
-                    is_defending = False
+                    valid_input = True
+                    defending = False
 
                     # Do damage to enemy
                     hit_damage = player_damage
                     enemy_health = enemy_health - hit_damage
 
-                    # Make sure hp doesnt go negative
+                    # Makes sure the health doesnt go negative
                     if enemy_health < 0:
                         enemy_health = 0
 
@@ -725,41 +726,41 @@ def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_da
                     narrator(f'{enemy_name} has {Fore.LIGHTGREEN_EX}{enemy_health} health left!{Fore.RESET}')
 
                 elif player_action == 'defend':
-                    valid_choice = True
-                    is_defending = True
+                    valid_input = True
+                    defending = True
                     narrator(f'You get ready to block the next attack!')
 
                 elif player_action == 'special':
-                    valid_choice = True
-                    is_defending = False
+                    valid_input = True
+                    defending = False
 
                     # Check if speed is high enough for special move
                     if player_speed > 35:
                         # Special does more damage
-                        special_hit = int(player_damage * 1.6)
-                        enemy_health = enemy_health - special_hit
+                        special_attack = int(player_damage * 1.6)
+                        enemy_health = enemy_health - special_attack
 
                         if enemy_health < 0:
                             enemy_health = 0
 
                         narrator(f'{Fore.LIGHTYELLOW_EX}RADIANT STRIKE!{Fore.RESET}')
                         narrator(
-                            f'You do a powerful light attack for {Fore.LIGHTRED_EX}{special_hit} damage!{Fore.RESET}')
+                            f'You do a powerful attack for {Fore.LIGHTRED_EX}{special_attack} damage!{Fore.RESET}')
                     else:
                         narrator('Your speed isnt high enough for special attack!')
-                        narrator('You do a normal attack.')
+                        narrator('You do a normal attack instead.')
                         hit_damage = player_damage
                         enemy_health = enemy_health - hit_damage
 
                 else:
                     # If the player types something wrong
                     print(f'{Fore.LIGHTRED_EX}Thats not a valid choice! Pick ATTACK, DEFEND, or SPECIAL.{Fore.RESET}\n')
-                    valid_choice = False
+                    valid_input = False
 
             except:
                 # If something breaks
                 print(f'{Fore.LIGHTRED_EX}Something went wrong. Try again.{Fore.RESET}\n')
-                valid_choice = False
+                valid_input = False
 
         print()
 
@@ -773,12 +774,12 @@ def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_da
         narrator(f'{enemy_name} is attacking!')
 
         # Calculate how much damage you take
-        if is_defending == True:
-            # Defense blocks some damage
+        if defending == True:
+            # Defense blocks half the damage
             block_amount = player_defense // 2
             damage_taken = enemy_damage - block_amount
 
-            # Make sure damage isnt negative
+            # Makes sure the damage isnt negative
             if damage_taken < 0:
                 damage_taken = 0
 
@@ -795,11 +796,11 @@ def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_da
                 damage_taken = enemy_damage
 
             player_health = player_health - damage_taken
-            narrator(f'{enemy_name} hits you! You take {Fore.LIGHTRED_EX}{damage_taken} damage!{Fore.RESET}')
+            narrator(f'{enemy_name} strikes you! You take {Fore.LIGHTRED_EX}{damage_taken} damage!{Fore.RESET}')
 
         print()
 
-        # Check if you died
+        # To check if the player died
         if player_health <= 0:
             player_health = 0
             narrator(f'{Fore.LIGHTRED_EX}You have been defeated...{Fore.RESET}')
@@ -836,10 +837,10 @@ def fight_shadow_guard(player_class, player_stats):
         guard_defense
     )
 
-    # Update my health after battle
+    # Updates my health after the battle
     player_stats['health'] = health_left
 
-    # Show what happens after winning
+    # Shows what happens after winning
     print('\n')
     narrator('The Shadow Guard falls down, the darkness fading away.')
 
@@ -855,11 +856,13 @@ def fight_shadow_guard(player_class, player_stats):
     eldric('Take a moment to rest and get ready.')
 
     # Heal a bit before the final battle
-    max_health = int(player_stats['attack'] * 2.5)
-    heal = int(max_health * 1)
-    player_stats['health'] = player_stats['health'] + heal
+    max_health = int(player_stats['health'] * 2.5)
 
-    # Make sure health doesnt go over max
+    heal = max_health - player_stats['health']
+
+    player_stats['health'] = max_health
+
+    # Makes sure the players health doesnt go over the max
     if player_stats['health'] > max_health:
         player_stats['health'] = max_health
 
@@ -870,10 +873,10 @@ def fight_shadow_guard(player_class, player_stats):
     input('Press ENTER to go into the throne room...')
 
 
-# Fight the shadow king - final boss
+# Fight the shadow king
 def fight_shadow_king(player_class, player_stats):
     print('\n\n')
-    narrator('You open the big doors to the throne room.')
+    narrator('You open the massive doors to the throne room.')
     narrator('Darkness fills the room and pushes against your light.')
     narrator('You see the Shadow King on his throne, he stands up.')
     narrator('Slowly walking towards you...')
@@ -951,9 +954,9 @@ def fight_shadow_king(player_class, player_stats):
 
     slow_print(f'{Fore.LIGHTRED_EX}Shadow King: Come then. Let me put out your light.\n')
 
-    # Shadow king is much harder to win
-    king_health = int(player_stats['health'] * 1.5)
-    king_attack = int(player_stats['attack'] * 1.2)
+    # Shadow king's stats based on the players stats
+    king_health = int(player_stats['health'] * 1.3)
+    king_attack = int(player_stats['attack'] * 1)
     king_defense = int(player_stats['defense'] * 1.1)
 
     # Start the final battle
@@ -966,7 +969,7 @@ def fight_shadow_king(player_class, player_stats):
         king_defense
     )
 
-    # YOU WIN - show ending
+    # YOU WIN show ending
     print('\n\n')
     narrator('The Shadow King falls, turning into dust.')
 
@@ -1017,7 +1020,7 @@ def fight_shadow_king(player_class, player_stats):
     time.sleep(2)
 
 
-# Start the final part of the game
+# Starts the final part of the game
 start_journey()
 fight_shadow_guard(choice, player_stats)
 fight_shadow_king(choice, player_stats)
