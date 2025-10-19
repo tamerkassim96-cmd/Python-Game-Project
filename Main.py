@@ -623,7 +623,6 @@ def radiance_blade_abilities(player_class, player_stats):
 
 player_stats = radiance_blade_abilities(choice, player_stats)
 
-
 def start_journey():
     print('\n\n')
     time.sleep(1)
@@ -809,7 +808,7 @@ def battle_system(player_class, player_stats, enemy_name, enemy_health, enemy_da
             print()
             slow_print(f'{Fore.LIGHTRED_EX}GAME OVER{Fore.RESET}')
             time.sleep(2)
-            sys.exit(0)
+            sys.exit(0) # If the player loses then this ends the game after 'GAME OVER'
 
         # Go to next round
         round_number = round_number + 1
