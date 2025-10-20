@@ -11,7 +11,7 @@ init()
 
 # Character Dialogue Functions
 
-def narrator(text, delay=0.05):  # A typewriter effect that also prints out 'narrator: ' then the text
+def narrator(text, delay=0.001):  # A typewriter effect that also prints out 'narrator: ' then the text
     print(Fore.LIGHTWHITE_EX, end='')
     slow_text(f'Narrator: {text}', delay)
     time.sleep(delay)
@@ -19,7 +19,7 @@ def narrator(text, delay=0.05):  # A typewriter effect that also prints out 'nar
     print()
 
 
-def eldric(text, delay=0.05):  # A typewriter effect that also prints out 'eldric: ' then the text
+def eldric(text, delay=0.001):  # A typewriter effect that also prints out 'eldric: ' then the text
     print(Fore.LIGHTYELLOW_EX, end='')
     slow_text(f'Eldric: {text}', delay)
     time.sleep(delay)
@@ -27,7 +27,7 @@ def eldric(text, delay=0.05):  # A typewriter effect that also prints out 'eldri
     print()
 
 
-def player(text, delay=0.05):  # A typewriter effect that also prints out 'player: ' then the text
+def player(text, delay=0.001):  # A typewriter effect that also prints out 'player: ' then the text
     print(Fore.LIGHTCYAN_EX, end='')
     slow_text(f'Player: {text}', delay)
     time.sleep(delay)
@@ -183,8 +183,6 @@ time.sleep(0.5)
 print()
 
 ask_for_help()
-
-name = ''
 
 
 def input_name():
@@ -1006,10 +1004,10 @@ def fight_shadow_king(player_class, player_stats):
     narrator('The Radiance Blade shines bright, showing everyone the light is back.')
 
     print()
-    narrator(f'You, {colour}{player_class.capitalize()}, are now known as the hero of Asgiaburn.')
+    narrator(f'You, {colour}{player_class.capitalize()},{Fore.LIGHTWHITE_EX} are now known as the hero of Asgiaburn.')
     narrator('People will tell stories about you forever.')
     narrator('The days of darkness are now over.')
-    narrator(f'{Fore.LIGHTYELLOW_EX}The time of light starts now.{Fore.RESET}')
+    narrator(f'The time of {Fore.LIGHTYELLOW_EX}light{Fore.LIGHTWHITE_EX} starts now.')
     narrator(f'We truly thank you {name}.')
 
     print()
