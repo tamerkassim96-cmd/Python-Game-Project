@@ -11,7 +11,7 @@ init()
 
 # Character Dialogue Functions
 
-def narrator(text, delay=0.001):  # A typewriter effect that also prints out 'narrator: ' then the text
+def narrator(text, delay=0.05):  # A typewriter effect that also prints out 'narrator: ' then the text
     print(Fore.LIGHTWHITE_EX, end='')
     slow_text(f'Narrator: {text}', delay)
     time.sleep(delay)
@@ -19,7 +19,7 @@ def narrator(text, delay=0.001):  # A typewriter effect that also prints out 'na
     print()
 
 
-def eldric(text, delay=0.001):  # A typewriter effect that also prints out 'eldric: ' then the text
+def eldric(text, delay=0.05):  # A typewriter effect that also prints out 'eldric: ' then the text
     print(Fore.LIGHTYELLOW_EX, end='')
     slow_text(f'Eldric: {text}', delay)
     time.sleep(delay)
@@ -27,7 +27,7 @@ def eldric(text, delay=0.001):  # A typewriter effect that also prints out 'eldr
     print()
 
 
-def player(text, delay=0.001):  # A typewriter effect that also prints out 'player: ' then the text
+def player(text, delay=0.05):  # A typewriter effect that also prints out 'player: ' then the text
     print(Fore.LIGHTCYAN_EX, end='')
     slow_text(f'Player: {text}', delay)
     time.sleep(delay)
