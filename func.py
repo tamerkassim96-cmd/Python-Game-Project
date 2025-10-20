@@ -1,6 +1,6 @@
 import sys, time
 
-def slow_text(text, min_delay = 0.001):
+def slow_text(text, min_delay = 0.05):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
